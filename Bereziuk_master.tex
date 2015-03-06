@@ -5,6 +5,8 @@
 \usepackage{tikz}
 \usepackage{graphicx}
 \usepackage{subfig}
+\usepackage{tikz-cd}
+\usetikzlibrary{decorations.pathmorphing}
 
 \usepackage[ukrainian]{babel}
 \author{Березюк~Іван}
@@ -114,10 +116,12 @@
 	
 	\section{Сигнал}	
 	Програмний пакет Garfield дає можливість просимулювати сигнал отримуваний від проходження частинки. 
-	Figure \ref{fig:track_reconstruction} shows the schematic view of a particle passing the straw and producing ionization clusters along its path inside the straw. The number of produced ionization clusters directly affects the hit efficiency profile.  Smaller ionization length increase hit efficiency, as more ionization clusters are produced.  After the ionization is produced the electrons drifts to the wire due to the electrical field between the wire and the straw. When the ionization cluster approaches the wire, the electrons ionize the gas due to the high electric field around the wire.  Subsequently a signal is induced on the wire and propagates to the readout electronics. The signal is registered if it passes a threshold value. A variation of the signal height introduces a variation in the time when the
+	Figure \ref{fig:track_reconstruction} shows the schematic view of a particle passing the straw and producing ionization clusters along its path inside the straw. The number of produced ionization clusters directly affects the hit efficiency profile. \cite{kozlinskiy} Smaller ionization length increase hit efficiency, as more ionization clusters are produced.  After the ionization is produced the electrons drifts to the wire due to the electrical field between the wire and the straw. When the ionization cluster approaches the wire, the electrons ionize the gas due to the high electric field around the wire.  Subsequently a signal is induced on the wire and propagates to the readout electronics. The signal is registered if it passes a threshold value (Fig. \ref{fig:signal_example}). A variation of the signal height introduces a variation in the time when the
 signal passes the threshold and is considered to be the main contribution to the STRAW tracker resolution. 
 
-	In the track reconstruction software(GARFIELD \cite{garfield} an effective TR-relation is used.
+	In the track reconstruction software(GARFIELD \cite{garfield} an effective TR-relation is used. It only describes the relation between the drift time and the distance from the track to the wire, which differs from the distance to the ionization cluster. The shape of the TR-relation is defined by the drift velocity of the ionization cluster inside the straw. The electric field increases towards the wire, leading to a non linear TR-relation. Currently almost parabolic dependence is used, and easily can be fitted by \ref{eq:fit_tr} function.
+
+	The drift time versus the unbiased distance distribution and the result of the fit are shown in Fig. \ref{fig:t_r_distr_00}. The noise hits under the main distribution, i.e. at earlier times, are due to primary or secondary particles ($\delta$-rays) passing the straw at a closer distance to the wire, consequently producing an earlier signal.
 	
 	За приклад в симуляціях в ролі частинки, що прошиває об’єм трубки будемо використовувати мюон $mu$ з енергією $1GeV$. Приклад треків від такої частинки видно на Рис. \ref{fig:electron_ion_track},\ref{fig:electron_ion_track_sag}. Зеленим кольором позначено точки локалізації кластерів іонізації визваної частинкою.
 	
@@ -132,6 +136,9 @@ signal passes the threshold and is considered to be the main contribution to the
 	\label{fig:signal_example}
 	\end{figure}
 	
+	\subsection{ STRAW efficiency}
+		
+	
 	\section{Gain}
 	Оцінка вихідного струму визначає front-end електроніку детектору. Коефіцієнт газового підсилення залежить від складових газової суміші, тиску, температури і поля в якому рухаються електрони/іони і розвиваються електрон-іонні лавини.
 	
@@ -139,6 +146,15 @@ signal passes the threshold and is considered to be the main contribution to the
 	
 	Дана перспектива може бути виконана в майбутньому як частина даної дипломної роботи.
 	
+	
+	\section{ Sag estimation}
+	
+	\begin{figure}[h]
+	\includegraphics[width=0.8\textwidth]{chi_063_5k.eps}
+	\centering
+	\caption{ Bias estimation distribution for 5k data. 50k events for core template histograms. True bias is 0.063 mm. 1 bin = 0.1 mm. } 
+	\label{fig:chi_063_5k}
+	\end{figure}
 	
 	
 	\section{Калібровочна крива}
@@ -180,21 +196,27 @@ signal passes the threshold and is considered to be the main contribution to the
 	
 	\begin{figure}[h]
 	\begin{tikzpicture}
+	
+	\tikzset{snake it/.style={decorate, decoration=snake}}
+	
 	\draw (0,0) circle (4);
 	
 	\draw[ultra thick] (0,0) circle (0.05);
 	\node[below] at (0,0) {wire};
 	
 	\draw[thick,->] (0,0) -- (1.6,1.6);	
-	\node at (1.5,0.7) {$r(t_{drift})$};
-	
+	\node at (1.5,0.7) {$r_{track}$};
+
+	\draw[thick,->] (0,0) -- (-4,0);	
+	\node[above right] at (-4,0) {$r_{tube}$};
+		
 	\draw[thick,->] (-6,2.3) -- (6,2.3);
-	\node[above] at (-5,2.3) {$\mu$};
+	\node[above] at (-5,2.3) {$particle$};
 	
 	\draw[ultra thick, gray, dashed, ->] (-6,-2.3) -- (6,-2.3);
 	
 	\draw[ultra thick,gray,dashed] (0,0) circle (2.3);
-	\node[below] at (0,-2.3) { $r_{reconstructed}$};
+	\node[below] at (3,-2.3) { $r_{reconstructed}$};
 	
 	\draw[thick,orange] (-3.0,2.3) circle(0.05);
 	\draw[thick,orange] (-2.7,2.3) circle(0.05);
@@ -215,8 +237,18 @@ signal passes the threshold and is considered to be the main contribution to the
 	\draw[thick,orange] (2.68,2.3) circle(0.05);
 	\draw[thick,orange] (2.88,2.3) circle(0.05);
 	\draw[thick,orange] (3.00,2.3) circle(0.05);
+	
+	\draw[red,snake it](-0.6,2.3) -- (0,0);
+	\draw[red,snake it](-0.5,2.3) -- (0,0);
+	\draw[red,snake it](0.26,2.3) -- (0,0);
+	\draw[red,snake it](0.4,2.3) -- (0,0);
+	\node[] at (-0.3,1) {drift path};
+	
 	\end{tikzpicture} 
-	\caption{track position reconstruction. Реконструкція положення треку $r(t_{drift})$ мюона з енергією $E=1GeV$.}
+	\caption{Schematic view of a particle passing the straw and producing
+ionization clusters. The ionization cluster electrons drift to the wire and
+induce the signal. Only the earliest signal is detected. The closest distance
+from the track to the wire, $r_{track}$, and radius of the straw, $r_{tube} = 2.45 mm$, are also indicated.}
 	\label{fig:track_reconstruction}
 	\end{figure}
 	
@@ -264,7 +296,8 @@ the peak. This allows to reduce the contribution of incorrectly assigned hits
 	\begin{figure}[h]
 	\includegraphics[width=0.7\textwidth]{rt_calibration.eps}
 	\centering
-	\caption{ TR-ralation(red line) between distance from the track $r_{track}$ and drift time $t_{drift}$.  from fitting }
+	\caption{ RT-ralation(calibration line, figured in red color) between drift time $t_{drift}$ and distance from the  track $r_{track}$ .  The fit is performed in the range of
+$0 < t_{drift} < 150 ns$ and $|r| < 4.9mm$ }
 	\label{fig:calibration_00}
 	\end{figure}
 	
@@ -308,6 +341,7 @@ the peak. This allows to reduce the contribution of incorrectly assigned hits
 	
 	Використаємо цю хитрість для розбиття даних на дві частини - дві гілки в RT розподілі. Від так ми можемо для  кожної гілки знайти свою власну калібровочну криву.
 	
+	
 	\subsection{ Випадок максимального провисання дроту}
 	Як видно з розрахунку профілю провисання, максимальне значення відхилення дроту від центру трубки становить $1.49~mm$. В цьому випадку очікуємо великих статистичних похибок. Густина точок розподілу та структурна діаграма для даного розподілу точок зображена на рисунку.
 	
@@ -339,7 +373,10 @@ the peak. This allows to reduce the contribution of incorrectly assigned hits
 	
 \newpage
 \begin{thebibliography}{00}
-	\bibitem{garfield} http://garfield.web.cern.ch/garfield/
+	\bibitem{garfield} http://garfield.web.cern.ch/garfield
+
+	\bibitem{kozlinskiy}  thesis Kozlinskiy.pdf 
+	
 \end{thebibliography}
 	
 \end{document}
