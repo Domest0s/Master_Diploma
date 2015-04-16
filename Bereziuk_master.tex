@@ -43,6 +43,7 @@
 		$ K^+ \rightarrow \mu^+ \nu $ та 
 		$ K^+ \rightarrow \pi^+ \pi^+ \pi^- $ розпади.
 		
+		
 		\section{Формулювання задачі}
 		Для визначення треків заряджених $\pi$ та $\mu$ частинок в експерименті SHiP пропонується використовувати детекторну систему на базі дрейфових трубок.
 		
@@ -53,50 +54,190 @@
 		\item точність визначення імпульсу частинки має бути на рівні $0.5\%$ обо ж нижче.
 \end{itemize}
 		Виконання всіх цих вимог дозволить отримати роздільну здатність по масі на рівні $10^{-3}~GeV^2 / c^4$, що має бути достатньо для поставленої задачі.
-		\section{Трековий частина детектора}
-		Трековий детектор має складатися з двох частин - каонного та піонного. По суті це тонкі детектори розташовані перперндикулярно до напряму пучка, в області розташування яких діє сильне штучне магнітне поле. Каонний спектроментр являє собою три послідовно розташовані твердотільні піксельні детектори.
+
 		
-		Піонний спектрометр в свою чергу складається з шарів дрейфових трубок розташованих в середині вакуумного танкеру. Вибір STRAW трекера у вакуумі був зроблений з міркувань зменшення інтенсивності багаторазового розсіяння частинок пучка на конструкційних матеріалах.
+%		\section{Трековий частина детектора}
+%		Трековий детектор має складатися з двох частин - каонного та піонного. По суті це тонкі детектори розташовані перперндикулярно до напряму пучка, в області розташування яких діє сильне штучне магнітне поле. Каонний спектроментр являє собою три послідовно розташовані твердотільні піксельні детектори.
 		
-		STRAW трекер є предметом дослідження дарої роботи. Визначення його роздільної спроможності та пошук кращих дизайнерських рішень з метою поліпшення його просторово роздільної спроможності в межах даного експерименту.
+%		Піонний спектрометр в свою чергу складається з шарів дрейфових трубок розташованих в середині вакуумного танкеру. Вибір STRAW трекера у вакуумі був зроблений з міркувань зменшення інтенсивності багаторазового розсіяння частинок пучка на конструкційних матеріалах.
+		
+%		STRAW трекер є предметом дослідження дарої роботи. Визначення його роздільної спроможності та пошук кращих дизайнерських рішень з метою поліпшення його просторово роздільної спроможності в межах даного експерименту.
 		 
-		\section{Параметри STRAW детектору}
-		Параметри STRAW трекеру подібні до експерименту NA62 з єдиною відмінністю -- вони стали довшими($5m$ проти $2.1m$ у випадку NA62). В наступній таблиці описані параметри дрейфових трубок.
+		 
+ \section{STRAW tubes}
+	The option for STRAW tubes is similar as in NA62 experiment with one main difference -- the length is twice longer( $5m$ versus $2.1m$).
+		
+		The next table. \ref{table:straw_par} describe STRAW tube options.
+		
+%		Параметри STRAW трекеру подібні до експерименту NA62 з єдиною відмінністю -- вони стали довшими($5m$ проти $2.1m$ у випадку NA62). В наступній таблиці описані параметри дрейфових трубок.
 
 	\begin{table}[h]
 	\centering
 	\begin{tabular}{|l|l|p{8cm}|}
 		\hline
-		Величина & Значення\\
+		Parameter name & Value \\
 		\hline
-		радіус дроту & $30\mu m$\\
+		wire & $30\mu m$ gold-plated Tungsten\\
 		\hline
-		матеріал дроту & gold-plated Thungsten\\
+		straw length & $5m$ \\
 		\hline
-		довжина дроту & $5m$ \\
+		Voltage & $1750 V$ \\
 		\hline
-		потенціал дроту & $1750 V$ \\
+		inner tube radius & $9.8~mm$ \\
 		\hline
-		потенціал стінок трубки & $0 V$ \\
+		wire medium density & $19.3 ~g/cm^3$ \\
 		\hline
-		Внутрішній радіус трубки & $9.8~mm$ \\
+		Wire tension& $\sim 90~g$ \\
 		\hline
-		Густина дроту & $19.3 ~g/cm^3$ \\
-		\hline
-		сила натягу дроту & $\sim 90~g$ \\
-		\hline
-		склад газової суміші в трубці & $Ar70\% ~CO_2 30\%$ \\
+		Working tube gas mixture & $Ar70\% ~CO_2 30\%$ \\
 		\hline
 	\end{tabular}
 	\caption[Table caption text]{STRAW tube parameters }
 	\label{table:straw_par}
-	\end{table}
-	Дріт всередині трубки має масу і під дією гравітаційного та електричного поля всередині трубки значно "провисає" (Рис. \ref{fig:sagProfile})
+	\end{table}		
+	
+	\section{Signal}	
+	Computer program Garfield \cite{garfield} is designed for detailed simulation of two- and three-dimensional drift chambers. So we will perform STRAW tube studies using this program.
+	
+	Charged particle  create elector-ion pairs wile traverse the drift tube. Electrons under affecting the electric field drift to the wire anode \ref{fig:track_reconstruction}. During the travel they increase their energy and invoke avalanche. Therefore they produce a measurable signal.
+	
+%	Figure \ref{fig:track_reconstruction} shows the schematic view of a particle passing the straw and producing ionization clusters along its path inside the straw. 
+	  After the ionization is produced the electrons drift to the wire due to the electrical field between the wire and the tube wall. Electrons ionize gas molecules due to the high electric field around the wire, especially near the wire when the electric becomes very strong.  Subsequently readout electronics process the signal induced on the wire.
+	  The signal is registered if it passes a threshold value (Fig. \ref{fig:signal_example}). A variation of the signal height introduces a variation in the time when the signal passes the threshold and is considered to be the main contribution to the STRAW tracker resolution.
 	
 	\begin{figure}[h]
+	\begin{tikzpicture}
+	
+	\tikzset{snake it/.style={decorate, decoration=snake}}
+	
+	\draw (0,0) circle (4);
+	
+	\draw[ultra thick] (0,0) circle (0.05);
+	\node[below] at (0,0) {wire};
+	
+	\draw[thick,->] (0,0) -- (1.6,1.6);	
+	\node at (1.5,0.7) {$r_{track}$};
+
+	\draw[thick,->] (0,0) -- (-4,0);	
+	\node[above right] at (-4,0) {$r_{tube}$};
+		
+	\draw[thick,->] (-6,2.3) -- (6,2.3);
+	\node[above] at (-5,2.3) {$particle$};
+	
+	\draw[ultra thick, gray, dashed, ->] (-6,-2.3) -- (6,-2.3);
+	
+	\draw[ultra thick,gray,dashed] (0,0) circle (2.3);
+	\node[below] at (3,-2.3) { $r_{rec}$};
+	
+	% gravitation force vector
+	\draw[thick, ->] (-6,1.5) -- ( -6, -1);
+	\node[left] at (-6,0) {$\vec{g}$};
+	
+	% r_track axis
+	\node[above,rotate=-90] at (-6,0) {$r_{track}$ axis};
+	
+	% initial ekectron/ion clusters
+	\draw[thick,orange] (-3.0,2.3) circle(0.05);
+	\draw[thick,orange] (-2.7,2.3) circle(0.05);
+	\draw[thick,orange] (-2.6,2.3) circle(0.05);
+	\draw[thick,orange] (-2.5,2.3) circle(0.05);
+	\draw[thick,orange] (-2.1,2.3) circle(0.05);
+	\draw[thick,orange] (-1.8,2.3) circle(0.05);
+	\draw[thick,orange] (-1.0,2.3) circle(0.05);
+	\draw[thick,orange] (-0.6,2.3) circle(0.05);
+	\draw[thick,orange] (-0.5,2.3) circle(0.05);
+	\draw[thick,orange] (0.26,2.3) circle(0.05);
+	\draw[thick,orange] (0.4 ,2.3) circle(0.05);
+	\draw[thick,orange] (1.3 ,2.3) circle(0.05);
+	\draw[thick,orange] (1.56,2.3) circle(0.05);
+	\draw[thick,orange] (1.96,2.3) circle(0.05);
+	\draw[thick,orange] (2.22,2.3) circle(0.05);
+	\draw[thick,orange] (2.48,2.3) circle(0.05);
+	\draw[thick,orange] (2.68,2.3) circle(0.05);
+	\draw[thick,orange] (2.88,2.3) circle(0.05);
+	\draw[thick,orange] (3.00,2.3) circle(0.05);
+	
+	\draw[red,snake it](-0.6,2.3) -- (0,0);
+	\draw[red,snake it](-0.5,2.3) -- (0,0);
+	\draw[red,snake it](0.26,2.3) -- (0,0);
+	\draw[red,snake it](0.4,2.3) -- (0,0);
+	\node[] at (-0.3,1) {drift path};
+	
+	\end{tikzpicture} 
+	\caption{Schematic view of a particle passing the straw and producing
+ionization clusters. The ionization cluster electrons drift to the wire and
+induce the signal. Only the earliest signal is detected. The closest distance
+from the track to the wire, $r_{track}$, and radius of the straw, $r_{tube} = 2.45 mm$, are also indicated.}
+	\label{fig:track_reconstruction}
+	\end{figure}
+
+
+	In the track reconstruction software(GARFIELD \cite{garfield} an effective TR-relation is used. It only describes the relation between the drift time and the distance from the track to the wire, which differs from the distance to the ionization cluster. The shape of the TR-relation is defined by the drift velocity of the ionization cluster inside the straw. The electric field increases towards the wire, leading to a non linear TR-relation. Currently almost parabolic dependence is used, and easily can be fitted by function (\ref{eq:fit_tr}).
+
+	The drift time versus the unbiased distance distribution and the result of the fit are shown in Fig. \ref{fig:t_r_distr_00}. Noise hits under the main distribution, i.e. at earlier times, are due to primary or secondary particles ($\delta$-rays) passing the straw at a closer distance to the wire, consequently producing an earlier signal.
+	
+	Muon $\mu$ was chosen as test particle for simulation with energy $1GeV$. You can see some of typical tracks from the $\mu$ through the tube Fig.\ref{fig:electron_ion_track},\ref{fig:electron_ion_track_sag}. Initial clusters along the track are marked by orange points on the figure.
+		
+%	Робочою частинкою, що прошиває об’єм трубки в симуляціях взято мюон $mu$ з енергією $1GeV$. Приклад треків від такої частинки видно на Рис. \ref{fig:electron_ion_track},\ref{fig:electron_ion_track_sag}. Зеленим кольором позначено точки локалізації кластерів іонізації визваної частинкою.
+	
+	\subsection{ Leakage noise}
+	
+		
+	
+	До сигналу від треку також необхідно додати шум паразитичного струму. завжди присутній в зчитувальному каналі front-end електроніки. Шум вибирався таким, щоб наближено дорівнював типовому. Вважаючи, що шум розподілений за розподілом пуассона, RMS розподілу шуму вибирався на рівні максимального значення вихідної напруги від 2000 електронів. На практиці шум дуже залежить від реалізації детектора, тому передчасно судити дуже важко. З виходом перших екземплярів дрейфових трубок потрібної конфігураці та відповідного набору front-end електроніки можна буде виміряти шумові характеристики каналів. Однак наразі в нас не лишається ішого шляху як задати шум у вигляді описаному вище.
+	 
+	На Рис. \ref{fig:signal_example} моментом часу $Time=0$ відповідає момент утворення первинних електрон-іонних пар від акту взаємодії мюона з атомами газу. Такий акт з великою точністю можна вважати миттєвим. Проте на експерименті такого фіксатора часу не буде. Тож в даних симуляціях відсутність передісторії сигналу погано вплине на точністю реконструкції, особливо якщо в схемі зчитування присутні інтегруючі ланки. В нашому випадку, це лише покращить кінцевий результат(точність реконструкції треків), так як все ще лишається імовірність того, що шум в колі все ще може перевищити порогове значення дискримінатора.
+	
+	Передбачається, що часові характеристки сигналу будуть визначатися саме метедом порогу -- тригерування  сигналу дискримінатором.
+	
+	\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{signal_noise_threshold.eps}
+	\caption{ Приблизний сигнал(напруга) на виході з формувача зчитувальної електроніки(жовта лінія). Складова шуму позначена синьою лінією. Зелена лінія відповідає напрузі 4 середніх квадратичних відхилень розподілу шуму. (Зазнач, що по осі Y величина суть напруга, проте домножена на сталий коефіцієнт, далекий від правди $\sim \frac{1}{Gain}$)}
+	\label{fig:signal_example}
+	\end{figure}
+	
+	
+	
+	\subsection{ STRAW efficiency}
+	The number of produced ionization clusters directly affects the hit efficiency profile. \cite{kozlinskiy} Smaller ionization length increase hit efficiency, as more ionization clusters are produced.
+	
+	Взаємодія зарядженої частинки з молекулами газової суміші всередині STRAW tube має імовірнісний характер. Тож можуть виникати ситуції коли частинка, що прошиває drift tube не утворить жодного іон-електронного кластеру в об’ємі трубки. Даний ефект особливо наглядно спостерігати в областях трубки де довжина треку через об’єм трубки зовсім невеликий. Фактично це  треки, що проходять біля краю трубки.
+	
+	\begin{figure}
+	\includegraphics[width=\textwidth]{periffEff}
+	\caption{Ефективність реєстрації треків в області периферії трубки від рівномірного опромінення 50 тис. треків( $\dfrac{50k~events}{100 bin}  = 500 \dfrac{eventst}{bin}$)}
+	\label{fig:efficiency}
+	\end{figure}
+	
+	Як видно з Рис. \ref{fig:efficiency} ефективність реєстрації сягає майже 100\% за виключенням пристінкових областей, де ефективність падає за рахунок зменшення області пробігу частинки.
+	
+	Також наводимо розподіл кількості електрон-іонних пар для центрального треку(тобиш той що проходить через центр трубки) Рис. \ref{fig:n_cluster_distr}. Тож враховуючи що з частотою кластерів, порядку $\sim 3 \frac{cluster}{mm}$ можна стверджувати, що ефективність реєстрації треків у STRAW tube буде високою і близькою до 100\%, що й наглядно показано на рис. \ref{fig:efficiency}.
+	
+	Hа практиці, даний показник зазвичай гірший приблизно вдвічі(на прикладі експерименту NA62 \cite{}
+	 
+	 \begin{figure}[h]
+	 \includegraphics[width=\textwidth]{cluster_distrib}
+	 \caption{ Розподіл кількості кластерів на діагональний трек через дрейфову трубку.}
+	 \label{fig:n_cluster_distr}
+	 \end{figure} 
+		 
+
+
+	
+	
+	\section{ Wire sagging}
+	Lets estimate wire sagging in this section. This is very important section because of track reconstruction algorithm depend on it.
+	
+	We estimate significant wire sagging(by comparison to the tube radius) because of wire affecting by gravitation plus electric field attract wire to the tube.
+	The variation of wire tension should be taken into account as high affect factor. You can see a profile of wire sagging for wire in $5m$ straw and 1750V voltage Рис.\ref{fig:sagProfile}.
+	
+	\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\textwidth]{sagProfileFit.eps}
-	\caption{Профіль провисання проводу в дрейфовій трубці довжиною 5 метрів під дією електричного та гравітаційного полів розрaхований у програмному пакеті Garfield }
+	\caption{Wire sag profile for straw described in table~\ref{table:straw_par} affected by electric and gravitation filed calculated in Garfield }
+	%Профіль провисання проводу в дрейфовій трубці довжиною 5 метрів під дією електричного та гравітаційного полів розрaхований у програмному пакеті Garfield
+	
 	\label{fig:sagProfile}
 	\end{figure}	
 	
@@ -118,51 +259,6 @@
 			\label{fig:electron_ion_track_sag} }%
 		\caption{ Приклад траекторії руху електронів та іонів в дрейфовій трубці в результаті проходження зарядженої частинки в горизонтальному напрямку(перпендикулярно до напрямку провисання трубки в площині поперечного перерізу дрейфової трубки}			
 	\end{figure}
-	
-	\section{Сигнал}	
-	Програмний пакет Garfield \cite{garfield} дає можливість просимулювати сигнал від проходження частинки чере dridt tube. 
-	Figure \ref{fig:track_reconstruction} shows the schematic view of a particle passing the straw and producing ionization clusters along its path inside the straw. The number of produced ionization clusters directly affects the hit efficiency profile. \cite{kozlinskiy} Smaller ionization length increase hit efficiency, as more ionization clusters are produced.  After the ionization is produced the electrons drifts to the wire due to the electrical field between the wire and the straw. When the ionization cluster approaches the wire, the electrons ionize the gas due to the high electric field around the wire.  Subsequently a signal is induced on the wire and propagates to the readout electronics. The signal is registered if it passes a threshold value (Fig. \ref{fig:signal_example}). A variation of the signal height introduces a variation in the time when the signal passes the threshold and is considered to be the main contribution to the STRAW tracker resolution. 
-
-	In the track reconstruction software(GARFIELD \cite{garfield} an effective TR-relation is used. It only describes the relation between the drift time and the distance from the track to the wire, which differs from the distance to the ionization cluster. The shape of the TR-relation is defined by the drift velocity of the ionization cluster inside the straw. The electric field increases towards the wire, leading to a non linear TR-relation. Currently almost parabolic dependence is used, and easily can be fitted by function (\ref{eq:fit_tr}).
-
-	The drift time versus the unbiased distance distribution and the result of the fit are shown in Fig. \ref{fig:t_r_distr_00}. The noise hits under the main distribution, i.e. at earlier times, are due to primary or secondary particles ($\delta$-rays) passing the straw at a closer distance to the wire, consequently producing an earlier signal.
-	
-	Робочою частинкою, що прошиває об’єм трубки в симуляціях взято мюон $mu$ з енергією $1GeV$. Приклад треків від такої частинки видно на Рис. \ref{fig:electron_ion_track},\ref{fig:electron_ion_track_sag}. Зеленим кольором позначено точки локалізації кластерів іонізації визваної частинкою.
-	
-	До сигналу від треку також необхідно додати шум. Шум вибирався таким, щоб наближено дорівнював типовому. Вважаючи, що шум розподілений за розподілом пуассона, RMS розподілу шуму вибирався на рівні максимального значення вихідної напруги від 2000 електронів. На практиці шум дуже залежить від реалізації детектора, тому передчасно судити дуже важко. З виходом перших екземплярів дрейфових трубок потрібної конфігураці та відповідного набору front-end електроніки можна буде виміряти шумові характеристики каналів. Однак наразі в нас не лишається ішого шляху як задати шум у вигляді описаному вище.
-	 
-	На Рис. \ref{fig:signal_example} моментом часу $Time=0$ відповідає момент утворення первинних електрон-іонних пар від акту взаємодії мюона з атомами газу. Такий акт з великою точністю можна вважати миттєвим. Проте на експерименті такого фіксатора часу не буде. Тож в даних симуляціях відсутність передісторії сигналу погано вплине на точністю реконструкції, особливо якщо в схемі зчитування присутні інтегруючі ланки. В нашому випадку, це лише покращить кінцевий результат(точність реконструкції треків), так як все ще лишається імовірність того, що шум в колі все ще може перевищити порогове значення дискримінатора.
-	
-	Передбачається, що часові характеристки сигналу будуть визначатися саме метедом порогу -- тригерування  сигналу дискримінатором.
-	
-	\begin{figure}
-	\centering
-	\includegraphics[width=0.7\textwidth]{signal_noise_threshold.eps}
-	\caption{ Приблизний сигнал(напруга) на виході з формувача зчитувальної електроніки(жовта лінія). Складова шуму позначена синьою лінією. Зелена лінія відповідає напрузі 4 середніх квадратичних відхилень розподілу шуму. (Зазнач, що по осі Y величина суть напруга, проте домножена на сталий коефіцієнт, далекий від правди $\sim \frac{1}{Gain}$)}
-	\label{fig:signal_example}
-	\end{figure}
-	
-	\subsection{ STRAW efficiency}
-	Взаємодія зарядженої частинки з молекулами газової суміші всередині STRAW tube має імовірнісний характер. Тож можуть виникати ситуції коли частинка, що прошиває drift tube не утворить жодного іон-електронного кластеру в об’ємі трубки. Даний ефект особливо наглядно спостерігати в областях трубки де довжина треку через об’єм трубки зовсім невеликий. Фактично це  треки, що проходять біля краю трубки.
-	
-	\begin{figure}
-	\includegraphics[width=\textwidth]{periffEff}
-	\caption{Ефективність реєстрації треків в області периферії трубки від рівномірного опромінення 50 тис. треків( $\dfrac{50k~events}{100 bin}  = 500 \dfrac{eventst}{bin}$)}
-	\label{fig:efficiency}
-	\end{figure}
-	
-	Як видно з Рис. \ref{fig:efficiency} ефективність реєстрації сягає майже 100\% за виключенням пристінкових областей, де ефективність падає за рахунок зменшення області пробігу частинки.
-	
-	Також наводимо розподіл кількості електрон-іонних пар для центрального треку(тобиш той що проходить через центр трубки) Рис. \ref{fig:n_cluster_distr}. Тож враховуючи що з частотою кластерів, порядку $\sim 3 \frac{cluster}{mm}$ можна стверджувати, що ефективність реєстрації треків у STRAW tube буде високою і близькою до 100\%, що й наглядно показано на рис. \ref{fig:efficiency}.
-	
-	Hа практиці, даний показник зазвичай гірший приблизно вдвічі(на прикладі експерименту NA62 \cite{}
-	 
-	 \begin{figure}[h]
-	 \includegraphics[width=\textwidth]{cluster_distrib}
-	 \caption{ Розподіл кількості кластерів на діагональний трек через дрейфову трубку.}
-	 \label{fig:n_cluster_distr}
-	 \end{figure} 
-		 
 	 
 	\section{Gain}
 	На базі оцінки форми сигналу та амплітуди вихідного струму каналу STRAW трубки проектується відповідна front-end електроніка. Коефіцієнт газового підсилення залежить від складових газової суміші, тиску, температури і поля в якому рухаються електрони/іони і розвиваються електрон-іонні лавини.
@@ -188,7 +284,7 @@
 	
 	Очікується, що для кожному окремому положенню дроту в трубці (зміщення від центрального положення) буде відповідати своя TR-залежність. Тож першочерговим завданням є визначити зміщення дроту в  трубці від центрального положення.
 	
-	Як логічно припустити з Рис. \ref{fig:t_r_distr_00} та \ref{fig:tr_distr_15} розподіл часу дрейфу  для випадків з різним значенням зміщення дроту буде також різнитися Рис. \ref{fig:DrftTimeDistr_00_09_comp}.
+	Як логічно припустити з Рис. \ref{fig:t_r_distr_00} та \ref{fig:tr_distr_15} розподіл часу дрейфу  для випадків з різним значенням зміщення дроту буде також різнитися Рис. \ref{fig:DrftTimeDistr_00_09_comp}. На прикладі порівнянн  двох діаграм видна сходинко-подібна природа.
 	Отже з цих розподілів легко можна отримати значення відхилення дроту в даному місці трубки.
 	
 	\begin{figure}[h]
@@ -236,10 +332,34 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 	\end{figure}
 	
 	
-	\section{Калібровочна крива}
+	\section{Track reconstruction}
 	
-	\subsection{Знаходження часу дрейфу}
-	Після проходження зарядженої чатинки через об’єм дрейфової трубки вздовж треку виникають електрон іонні кластери, які під дією сильного електричного поля починають дрейфувати до відповідних електродів викликаючи струм у електричному колі дрейфової трубки. Слідом, ненульовий струм кола дрейфової трубки відповідає руху зарядів в о’бємі трубки. Час дрейфу найближчих до аноду електронів містить інформацію про положення треку в трубці, тож по моменту часу переднього фронту сигналу можна відновити положення треку, а точніше радіус кола дотичного до треку і паралельного трубці. Надалі будемо позначати {\it часом дрейфу} проміжок часу від моменту появи треку до перевищення вихідним сигналом певного порогового значення(зелена штрихована лінія на Рис. \ref{fig:signal_example}).
+	 The time between the track hit time stamp and the signal at the wire at the wire is a measure for {\it drift time} of these electrons. The relation between the   {\it drift time} and  the distance from the track to the center of the tube(wire while no sag for centered wire) is called {\it drift time - distance relation} or {\it rt-relation}.
+	
+	The drift time $t$ is a function of track position relative to the wire(so it mean the track position) and electric field along the drift trajectory.
+	
+	Assumed that the working  position  for straws will be parallel to the particle bunch, and particle speed acceptance will not be significantly big. So tracks will be collinear each other for every separate unit STRAW tube.
+	
+	Summing the above mentioned we have one dimension task -- reconstruct tracks on vertical axis\footnote{An example of single track reconstruction which explaining the approximate procedure of reconstruction you can see in Fig.\ref{fig:track_reconstruction}}
+	(see example outcome rt-distribution $t = t(r,s=0)$ in Fig.\ref{fig:t_r_distr_00} ) even the wire sagging. Sagging will be always down thanks to gravitation force $\vec{g}$.
+	
+	\begin{figure}[h]
+	\includegraphics[width=0.8\textwidth]{t_r_distr_00.eps}
+	\centering
+	\caption{ Distribution of drift time $t_{drift}$ as function of track position $r_{track}$ relatively to the tube center} 
+	\label{fig:t_r_distr_00}
+	\end{figure}
+		
+	The rt-relation is differ along the tube because different wire position $s$. We thus have for the drift time 
+	\begin{equation}
+	t = t(r_{track},s)
+	\end{equation}
+	
+	\subsection{ Double ambiguity in track reconstruction}
+	Usually the outcome of first step reconstruction is two position.
+	
+	
+%	Після проходження зарядженої чатинки через об’єм дрейфової трубки вздовж треку виникають електрон іонні кластери, які під дією сильного електричного поля починають дрейфувати до відповідних електродів викликаючи струм у електричному колі дрейфової трубки. Слідом, ненульовий струм кола дрейфової трубки відповідає руху зарядів в о’бємі трубки. Час дрейфу найближчих до аноду електронів містить інформацію про положення треку в трубці, тож по моменту часу переднього фронту сигналу можна відновити положення треку, а точніше радіус кола дотичного до треку і паралельного трубці. Надалі будемо позначати {\it часом дрейфу} проміжок часу від моменту появи треку до перевищення вихідним сигналом певного порогового значення(зелена штрихована лінія на Рис. \ref{fig:signal_example}).
 	
 	\subsection{Джерела похибок}
 	
@@ -269,86 +389,24 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 	Калібровочною кривою в даному випадку будемо називати функцію, яка є оптимально відповідність між часом дрейфу та нійблільш імовірним положенням треку(наприклад радіус кола, дотичного до лінії треку частинки концентричного до поперечного профілю трубки).\\
 		
 	\subsection{Випадок центрованого дроту}
+	Хоча, я відчуваю "симетричний випадок" і не ввійде в мою роботу і до розгляду буде одразу представлений загальний випадок знаходження калібровочної кривої я всеодно виділю окремий розділ. Частина з нього точно буде присутня у фінальній версії диплому(як мінімум рисунки).
+	
 	До початку розглянемо випадок, коли дріт трубки розташований строго по центру і можна застосувати спрощену процедуру для побудови RT - залежності. Частинки, що проходять крізь дрейфову трубку на однаковій відстані мають викликати сигнал з однаковими часовими характеристиками зростаючого фронту. 
 	
 	Знаючи час дрейфу можемо відновити дотичне до треку коло. Якщо ж напрямок поширення частинки відомий то кількість можливих положень частинки зводиться до двох. На експерименті очікується, що дрейфові трубки будуть розташовані в площині перпендикулярній до напрямку пучка. Тож залишається серед двох дзеркальних до дроту треків вибрати один. Ця задача легко вирішується вже в процесі комбінаторики відновлення треку по хітах.
 	
 	
-	\begin{figure}[h]
-	\begin{tikzpicture}
-	
-	\tikzset{snake it/.style={decorate, decoration=snake}}
-	
-	\draw (0,0) circle (4);
-	
-	\draw[ultra thick] (0,0) circle (0.05);
-	\node[below] at (0,0) {wire};
-	
-	\draw[thick,->] (0,0) -- (1.6,1.6);	
-	\node at (1.5,0.7) {$r_{track}$};
 
-	\draw[thick,->] (0,0) -- (-4,0);	
-	\node[above right] at (-4,0) {$r_{tube}$};
-		
-	\draw[thick,->] (-6,2.3) -- (6,2.3);
-	\node[above] at (-5,2.3) {$particle$};
 	
-	\draw[ultra thick, gray, dashed, ->] (-6,-2.3) -- (6,-2.3);
 	
-	\draw[ultra thick,gray,dashed] (0,0) circle (2.3);
-	\node[below] at (3,-2.3) { $r_{reconstructed}$};
-	
-	\draw[thick,orange] (-3.0,2.3) circle(0.05);
-	\draw[thick,orange] (-2.7,2.3) circle(0.05);
-	\draw[thick,orange] (-2.6,2.3) circle(0.05);
-	\draw[thick,orange] (-2.5,2.3) circle(0.05);
-	\draw[thick,orange] (-2.1,2.3) circle(0.05);
-	\draw[thick,orange] (-1.8,2.3) circle(0.05);
-	\draw[thick,orange] (-1.0,2.3) circle(0.05);
-	\draw[thick,orange] (-0.6,2.3) circle(0.05);
-	\draw[thick,orange] (-0.5,2.3) circle(0.05);
-	\draw[thick,orange] (0.26,2.3) circle(0.05);
-	\draw[thick,orange] (0.4 ,2.3) circle(0.05);
-	\draw[thick,orange] (1.3 ,2.3) circle(0.05);
-	\draw[thick,orange] (1.56,2.3) circle(0.05);
-	\draw[thick,orange] (1.96,2.3) circle(0.05);
-	\draw[thick,orange] (2.22,2.3) circle(0.05);
-	\draw[thick,orange] (2.48,2.3) circle(0.05);
-	\draw[thick,orange] (2.68,2.3) circle(0.05);
-	\draw[thick,orange] (2.88,2.3) circle(0.05);
-	\draw[thick,orange] (3.00,2.3) circle(0.05);
-	
-	\draw[red,snake it](-0.6,2.3) -- (0,0);
-	\draw[red,snake it](-0.5,2.3) -- (0,0);
-	\draw[red,snake it](0.26,2.3) -- (0,0);
-	\draw[red,snake it](0.4,2.3) -- (0,0);
-	\node[] at (-0.3,1) {drift path};
-	
-	\end{tikzpicture} 
-	\caption{Schematic view of a particle passing the straw and producing
-ionization clusters. The ionization cluster electrons drift to the wire and
-induce the signal. Only the earliest signal is detected. The closest distance
-from the track to the wire, $r_{track}$, and radius of the straw, $r_{tube} = 2.45 mm$, are also indicated.}
-	\label{fig:track_reconstruction}
-	\end{figure}
-	
-	\begin{figure}[h]
-	\includegraphics[width=0.8\textwidth]{t_r_distr_00.eps}
-	\centering
-	\caption{ Distribution of drift time $t_{drift}$ as function of track position $r_{track}$ relatively to the tube center} 
-	\label{fig:t_r_distr_00}
-	\end{figure}
 	
 	Калібровочну криву будемо знаходити з апроксимації розподілу $t_{drift}(r)$ Рис.\ref{fig:t_r_distr_00}.
 	
-	
-	Instead of using the average value of the drift time residuals, a fit to the distribution
-of unbiased drift time residuals is performed in a narrow range around
-the peak. This allows to reduce the contribution of incorrectly assigned hits
+	Instead of using the average value of the drift time residuals, a fit to the distribution of unbiased drift time residuals is performed in a narrow range around the peak. This allows to reduce the contribution of incorrectly assigned hits
 
 	Для ясності опишемо дану процедуру поетапно
 	\begin{enumerate}
-	\item Оскільки TR розподіл симетричний Рис \ref{fig:t_r_distr_00}, то для підвищення статистики будемо аналізувати їх "суму".
+	\item Оскільки TR розподіл симетричний відносно $r_{track} =0$ Рис.~\ref{fig:t_r_distr_00}, то для підвищення статистики будемо аналізувати їх "суму".
 	\item з TR розподілу рис.\ref{fig:t_r_distr_00} будуємо структурну діаграму шляхом розбиття даних на секції вздовж $r_{track}$ (ось Х) і знаходимо середнє для таких вибірок.
 	\item як видно з рис.\ref{fig:t_r_distr_00} в симуляціях є досить багато шуму - точки поза головним "стержнем" розподілу. Тому для більш точних результатів в побудові RT залежності цього шуму слід позбавитися. Як варіант пропоную наступний критерій: вважати шумами всі точки, які знаходяться на відстані більше $2 \sigma $ від середнього вибірки для кожної із секцій від першої ітерації.
 	\item для "відфільтрованих" даних повторюємо пункт №2;
@@ -386,10 +444,20 @@ $0 < t_{drift} < 150 ns$ and $|r| < 4.9mm$ }
 		\item $a_2 = 0.448 \pm 0.002$
 	\end{itemize}
 	
-	\subsubsection{Precision of track reconstruction}
-	Похибкою вимірювання положення треку будемо називати різницю між дійсним положенням треку $r_{track}$ and reconstructed $r_{rec}$. Дану точку відобразим на графіку з відхиленням по осі Y та дійсним положенням треку по осі X. Для більшої наглядності ситуації з розподілом точок на графіку зобразимо цю ж інформацію у вагляді діаграми густини точок а також у виляді труктурної діаграми для  оцінки абсолютної похибки.
+	\subsubsection{Precision of track reconstruction}	
+
+	\subsubsection{ How precision of track reconstruction depend on wire displacement }
+	Для початку задамося питанням "як точність реконструкції треків залежить 	від положення дроту (точніше від його відхилення від центрального положення).
 	
-	Варто зазначити, калібровочна крива не проходить через точку $(0;0)$, то значення часу дрейфу ліворуч від кривої будемо співставляти центральний трек (такий, що проходить через центр дрейфової трубки $r=0$). Схоже правило застосовується для сигналів з часом дрейфу більшим за діапазон охоплений калібровочною кривою - таким сигналам $r_{reconstructed}$ присвоюється значення $r_{tube} = 4.9mm$.
+	Відомо, що робочі зразки дрейфових трубок будуть працювати в горизонтальному положенні. Зважаючи, що під дією гравітаційного поля дріт в трубці буде прогинатися вниз, можна з певною достовірністю стверджувати про подальше положення дроту, вже після підведення напруги в трубці.
+	
+	Так виконаємо оцінку залежності точності вимірювання координати в трубці  по зміні часового розподілу.
+	
+	
+	\subsubsection{Evaluation of track reconstruction precision}
+	Похибкою вимірювання положення треку будемо називати різницю між дійсним положенням треку $r_{track}$ and reconstructed $r_{rec}$. Дану точку відобразим на графіку з відхиленням по осі Y та дійсним положенням треку по осі X. Для більшої наглядності ситуації з розподілом точок на графіку зобразимо цю ж інформацію у вигляді діаграми густини точок а також у виляді труктурної діаграми для  оцінки абсолютної похибки.
+	
+	Варто зазначити, калібровочна крива не проходить через точку $(0;0)$, то ж значення часу дрейфу ліворуч від кривої будемо співставляти центральний трек (такий, що проходить через центр дрейфової трубки $r=0$). Схоже правило застосовується для сигналів з часом дрейфу більшим за діапазон охоплений калібровочною кривою - таким сигналам $r_{reconstructed}$ присвоюється значення $r_{tube} = 4.9mm$.
 	
 	\begin{figure}[h]
 	\centering
