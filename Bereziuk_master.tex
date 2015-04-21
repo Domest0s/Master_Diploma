@@ -23,7 +23,7 @@
 	 \linenumbers
 	\maketitle
 	\newpage
-	\section{ План}
+	\section{План}
 	\begin{itemize}
 		\item Розраховано калібувальну криву, для реконструкції позиції треків відносно центру дрейфової трубку для MIP(minimum ionising particles - мінімум іонізуючих частнок) на прикладі мюонів з енергією 1 ГеВ (знаходиться обернена залежність $r(t)$ від розподілу "час дрейфу $t$ як функція положення $r$ треку відносно проводу").\par
 		\item Провів симуляцію 50 тисяч треків через дрейфову трубку випадковим чином з рівномірним розподілом. По аналізу сигналу кожного треку було визначено час дрейфу електронів і реконструйовано розподіл позиціонування кожного треку. По отриманим даним було побувано діаграми густини розподілу відхилення $r_{real} - r_{reconstructed}$ як функція від $r_{real}$.
@@ -101,9 +101,16 @@
 	
 	Charged particle  create elector-ion pairs wile traverse the drift tube. Electrons under affecting the electric field drift to the wire anode \ref{fig:track_reconstruction}. During the travel they increase their energy and invoke avalanche. Therefore they produce a measurable signal.
 	
-%	Figure \ref{fig:track_reconstruction} shows the schematic view of a particle passing the straw and producing ionization clusters along its path inside the straw. 
-	  After the ionization is produced the electrons drift to the wire due to the electrical field between the wire and the tube wall. Electrons ionize gas molecules due to the high electric field around the wire, especially near the wire when the electric becomes very strong.  Subsequently readout electronics process the signal induced on the wire.
-	  The signal is registered if it passes a threshold value (Fig. \ref{fig:signal_example}). A variation of the signal height introduces a variation in the time when the signal passes the threshold and is considered to be the main contribution to the STRAW tracker resolution.
+%	Figure \ref{fig:track_reconstruction} shows the schematic view of a particle passing the straw and producing ionization clusters along its path inside the straw.
+	  Initial electrons drift to the wire due to the electrical field between the wire and the tube wall. Electrons ionize gas molecules due to the high electric field around the wire, especially near the wire when the electric becomes very strong.  Subsequently readout electronics process the signal induced on the wire.
+	  
+%	 Передбачається, що часові характеристки сигналу будуть визначатися саме метедом порогу -- тригерування  сигналу дискримінатором.
+	The event registers if signal reach some a threshold voltage (Fig. \ref{fig:signal_example}). So the value of threshold is a key factor on the way of searching optimal setting for signal processing procedure.
+	
+	We have to set threshold as low as possible but enough far from noise to achieve highest value of relation true/false detected track and tube efficiency.
+
+		 
+	A variation of the signal height introduces a variation in the time when the signal passes the threshold and is considered to be the main contribution to the STRAW tracker resolution.
 	
 	\begin{figure}[h]
 	\begin{tikzpicture}
@@ -181,104 +188,168 @@ from the track to the wire, $r_{track}$, and radius of the straw, $r_{tube} = 2.
 %	Робочою частинкою, що прошиває об’єм трубки в симуляціях взято мюон $mu$ з енергією $1GeV$. Приклад треків від такої частинки видно на Рис. \ref{fig:electron_ion_track},\ref{fig:electron_ion_track_sag}. Зеленим кольором позначено точки локалізації кластерів іонізації визваної частинкою.
 	
 	\subsection{ Leakage noise}
+	Every time we deal with different kind of noise. Basically it is noise from  leakage current from the readout electronics.
+
+	As will be discussed further we analyse not the current invoked by particle but the output voltage from amplifier. In GARFIELD we able convolute input current $I(t)$ with electronic response function (\ref{eq:responce_function}): 
+	\begin{equation}
+	f_{resp} =  ... 
+	\label{eq:responce_function}
+	\end{equation}		
+	Convolution smooth input current. Experiments that used to drift tubes (such as \ref{}(advise of Iouri Guz)) say that the noise should have gauss distribution with RMS equal to a amplitude of signal from 2000 electron in the tube(\textcolor{red}{This part should be clarified more precisely. Would be good to include some results from noise measurements from STRAW tube samples}. In fig.\ref{fig:signal_example} you can see deposition from noise marked by blue line.
 	
-		
+%	До сигналу від треку також необхідно додати шум паразитичного струму. завжди присутній в зчитувальному каналі front-end електроніки. Шум вибирався таким, щоб наближено дорівнював типовому. Вважаючи, що шум розподілений за розподілом пуассона, RMS розподілу шуму вибирався на рівні максимального значення вихідної напруги від 2000 електронів. На практиці шум дуже залежить від реалізації детектора, тому передчасно судити дуже важко. З виходом перших екземплярів дрейфових трубок потрібної конфігураці та відповідного набору front-end електроніки можна буде виміряти шумові характеристики каналів. Однак наразі в нас не лишається ішого шляху як задати шум у вигляді описаному вище.
+
+	On the figure fig.\ref{fig:signal_example} The time stamp $Time=0$ correspond to the time muon cross tube. The convolution function smooths and spreads input current. It mean that the output voltage in GARFIELD does not contain part of signal before hit event time stamp. 
+
+%	На Рис. \ref{fig:signal_example} моментом часу $Time=0$ відповідає момент утворення первинних електрон-іонних пар від акту взаємодії мюона з атомами газу. Такий акт з великою точністю можна вважати миттєвим. Проте на експерименті такого фіксатора часу не буде. Тож в даних симуляціях відсутність передісторії сигналу погано вплине на точністю реконструкції, особливо якщо в схемі зчитування присутні інтегруючі ланки. В нашому випадку, це лише покращить кінцевий результат(точність реконструкції треків), так як все ще лишається імовірність того, що шум в колі все ще може перевищити порогове значення дискримінатора.
 	
-	До сигналу від треку також необхідно додати шум паразитичного струму. завжди присутній в зчитувальному каналі front-end електроніки. Шум вибирався таким, щоб наближено дорівнював типовому. Вважаючи, що шум розподілений за розподілом пуассона, RMS розподілу шуму вибирався на рівні максимального значення вихідної напруги від 2000 електронів. На практиці шум дуже залежить від реалізації детектора, тому передчасно судити дуже важко. З виходом перших екземплярів дрейфових трубок потрібної конфігураці та відповідного набору front-end електроніки можна буде виміряти шумові характеристики каналів. Однак наразі в нас не лишається ішого шляху як задати шум у вигляді описаному вище.
-	 
-	На Рис. \ref{fig:signal_example} моментом часу $Time=0$ відповідає момент утворення первинних електрон-іонних пар від акту взаємодії мюона з атомами газу. Такий акт з великою точністю можна вважати миттєвим. Проте на експерименті такого фіксатора часу не буде. Тож в даних симуляціях відсутність передісторії сигналу погано вплине на точністю реконструкції, особливо якщо в схемі зчитування присутні інтегруючі ланки. В нашому випадку, це лише покращить кінцевий результат(точність реконструкції треків), так як все ще лишається імовірність того, що шум в колі все ще може перевищити порогове значення дискримінатора.
-	
-	Передбачається, що часові характеристки сигналу будуть визначатися саме метедом порогу -- тригерування  сигналу дискримінатором.
-	
-	\begin{figure}
+	\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.7\textwidth]{signal_noise_threshold.eps}
-	\caption{ Приблизний сигнал(напруга) на виході з формувача зчитувальної електроніки(жовта лінія). Складова шуму позначена синьою лінією. Зелена лінія відповідає напрузі 4 середніх квадратичних відхилень розподілу шуму. (Зазнач, що по осі Y величина суть напруга, проте домножена на сталий коефіцієнт, далекий від правди $\sim \frac{1}{Gain}$)}
+	\caption{ Example of output signal $V(t)$ after convolution(front-end electronics) from central track(yellow line). The noise component of the same signal depicted by separate blue line. Grin dashed line is a threshold for trigering drift time and equal to $5\sigma$ of noise distribution.}
+%	Приблизний сигнал(напруга) на виході з формувача зчитувальної електроніки(жовта лінія). Складова шуму позначена синьою лінією. Зелена лінія відповідає напрузі 5 середніх квадратичних відхилень розподілу шуму. (Зазнач, що по осі Y величина суть напруга, проте домножена на сталий коефіцієнт, далекий від правди $\sim \frac{1}{Gain}$)
 	\label{fig:signal_example}
 	\end{figure}
 	
-	
-	
 	\subsection{ STRAW efficiency}
-	The number of produced ionization clusters directly affects the hit efficiency profile. \cite{kozlinskiy} Smaller ionization length increase hit efficiency, as more ionization clusters are produced.
 	
-	Взаємодія зарядженої частинки з молекулами газової суміші всередині STRAW tube має імовірнісний характер. Тож можуть виникати ситуції коли частинка, що прошиває drift tube не утворить жодного іон-електронного кластеру в об’ємі трубки. Даний ефект особливо наглядно спостерігати в областях трубки де довжина треку через об’єм трубки зовсім невеликий. Фактично це  треки, що проходять біля краю трубки.
+	The interaction of charge particle with gas molecules nave probabilistic nature. For short distance tracks(somewhere at the tube periphery) the probability of tracks that do not produce any electron/ion pair becomes significantly high.
+		
+	The number of produced ionization clusters directly affects the hit efficiency profile. \cite{kozlinskiy} Smaller ionization length increase hit efficiency because of more ionization clusters per length unit are producing. In GARFIELD we can easily calculate amount of clusters per track. In fig. \ref{fig:cluster_distrib} you can see a distribution of number of clusters per central track for our STRAW tube. It mean that straw efficiency will be lower at the tube wall( see fig. \ref{}).
+		
+%	Взаємодія зарядженої частинки з молекулами газової суміші всередині STRAW tube має імовірнісний характер. Тож можуть виникати ситуції коли частинка, що прошиває drift tube не утворить жодного іон-електронного кластеру в об’ємі трубки. Даний ефект особливо наглядно спостерігати в областях трубки де довжина треку через об’єм трубки зовсім невеликий. Фактично це  треки, що проходять біля краю трубки.
 	
-	\begin{figure}
-	\includegraphics[width=\textwidth]{periffEff}
-	\caption{Ефективність реєстрації треків в області периферії трубки від рівномірного опромінення 50 тис. треків( $\dfrac{50k~events}{100 bin}  = 500 \dfrac{eventst}{bin}$)}
+	
+	\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{periffEff}
 	\label{fig:efficiency}
+	\caption{ Straw tube efficiency. Result of homogeneous penetrating periphery of tube by 50k events(scaled down by factor of 5. $\dfrac{50k~events}{100 bin}  \approx 500 \dfrac{eventst}{bin}$). \textcolor{red}{NOTE: We have some wrong calculation for this plot. Especially I'm going to make new plot with 100 binning with 500 track. And as wad detected we have some mistakes in calculation. I have to replace this plot next update} }
+%	Ефективність реєстрації треків в області периферії трубки від рівномірного опромінення 50 тис. треків
+	\end{figure}	
+	
+	\begin{figure}[h!]
+		\centering
+		\subfloat[electrons per cluster]{
+			\includegraphics[width=0.45\textwidth]{el_per_cluster} 
+			\label{fig:el_per_cluster} }%
+		\qquad
+		\subfloat[number of clusters per central track]{
+			\includegraphics[width=0.45\textwidth]{cluster_distrib} 
+			\label{fig:cluster_distrib} }%
+		\caption{ \textcolor{red}{ There are big amount of graphs. So I'm trying to pair it. ere we can write something if needed. Some common description of (a) and (b) figures?} }
 	\end{figure}
 	
-	Як видно з Рис. \ref{fig:efficiency} ефективність реєстрації сягає майже 100\% за виключенням пристінкових областей, де ефективність падає за рахунок зменшення області пробігу частинки.
+	From the figure \ref{fig:efficiency} we can conclude that the efficiency of tube is $100\%$ almost in whole region covered by tube except pre wall region which is quite small. Increasing the gas mixture density or increasing the tube radius for the same gas density can increase tube efficiency. Have to check this in feature studies.
 	
-	Також наводимо розподіл кількості електрон-іонних пар для центрального треку(тобиш той що проходить через центр трубки) Рис. \ref{fig:n_cluster_distr}. Тож враховуючи що з частотою кластерів, порядку $\sim 3 \frac{cluster}{mm}$ можна стверджувати, що ефективність реєстрації треків у STRAW tube буде високою і близькою до 100\%, що й наглядно показано на рис. \ref{fig:efficiency}.
 	
-	Hа практиці, даний показник зазвичай гірший приблизно вдвічі(на прикладі експерименту NA62 \cite{}
+%	Як видно з Рис. \ref{fig:efficiency} ефективність реєстрації сягає майже 100\% за виключенням пристінкових областей, де ефективність падає за рахунок зменшення області пробігу частинки.
+	
+%	Також наводимо розподіл кількості електрон-іонних пар для центрального треку(тобиш той що проходить через центр трубки) Рис. \ref{fig:n_cluster_distr}. Тож враховуючи що з частотою кластерів, порядку $\sim 3 \frac{cluster}{mm}$ можна стверджувати, що ефективність реєстрації треків у STRAW tube буде високою і близькою до 100\%, що й наглядно показано на рис. \ref{fig:efficiency}.
+	
+%	Hа практиці, даний показник зазвичай гірший приблизно вдвічі(на прикладі експерименту NA62 \cite{}
 	 
-	 \begin{figure}[h]
-	 \includegraphics[width=\textwidth]{cluster_distrib}
-	 \caption{ Розподіл кількості кластерів на діагональний трек через дрейфову трубку.}
-	 \label{fig:n_cluster_distr}
-	 \end{figure} 
-		 
-
-
+	\section{Gain}
 	
+	If multiplication occurs, the increase of the number of electrons per path $ds$ is given by
+	
+	\begin{equation}
+		dN = N \alpha ds
+		\label{eq:diffGain}
+	\end{equation}
+	
+	The coefficient $\alpha$ is determined by the excitation and ionization cross sections of the electrons that have acquired sufficient energy in the field. It also depends on the various transfer mechanism and electric field E and increases with the field because the ionization cross-section goes up from threshold as the collision energy $\varepsilon$ increases. As we can suppose the coefficient $\alpha$ is of big amount of parameters.
+	
+	The amplification factor $G$ on a wire(that is more interesting for us) is given by integrating (\ref{eq:diffGain}) between the point $s_{min}$ where the field is just sufficient to start the avalanche and the wire radius $a$:
+	
+	\begin{equation}
+	G = N/N_0 = exp \int\limits_{s_{min}}^{a} \alpha(s) ds
+	\end{equation}
+	
+	GARFIELD can provide us by amplification factor $G$ for any point of the tube(because  $G$ is coordinate dependent magnitude). The amplification factor is equal almost in whole tube space except neighbourhood near the wire because electric field  becomes significantly high only near the wire (see figs \ref{fig:elFieldCentered}, \ref{fig:elField1mmShifted}). When the wire is shifted from the center of the cube the electric field in area close to the wire is the same as in centered state. So the amplification factor $G$ is quite similar in both cases.
+	
+	\begin{figure}[h!] 
+		\centering
+		\subfloat[electric field for centered wire]{
+			\includegraphics[width=0.45\textwidth]{fieldCentered} 
+			\label{fig:elFieldCentered} }%
+		\qquad
+		\subfloat[electric field for $1 mm$ shifted wire]{
+			\includegraphics[width=0.45\textwidth]{field_10Sag}
+			\label{fig:elField1mmShifted} }%
+		\caption{Electric field intensity map for different wire position in the cube calculated in GARFIELD software. Conditions for those plots are described in table \ref{table:straw_par} }
+	\end{figure}
+	
+	Implementation of gain value calculation is not so reliable in GARFIELD(especially fortran version). So we can reach better results using Garfield++ (which is newer and take into consideration more effects).
+	
+%	На базі оцінки форми сигналу та амплітуди вихідного струму каналу STRAW трубки проектується відповідна front-end електроніка. Коефіцієнт газового підсилення залежить від складових газової суміші, тиску, температури і поля в якому рухаються електрони/іони і розвиваються електрон-іонні лавини.
+	
+%	Власне імплементація скрипту для розрахунку коефіцієнта підсилення у програмному пакеті Garfield вимагає від нас знання параметрів ефекту пеннінга для \cite{} для розглядуваної газової суміші.
+	
+%	Приведемо графік залежності коефіцієнту підсилення сигналу для суміші газу зазначеної в таблиці \ref{table:straw_par} від напруги на дроті STRAW трубки.
+
+	On the Fig.~\ref{fig:gain-voltage-dendence} you can see that the gain $G(V)$ have precisely exponential dependence. This is frankly does not inspire confidence. The difference can be up to 100\% (us Rob Veenhof\cite{garfield} said).
+	
+%	Як видно, з Рис.~\ref{gain_trought_voltage} він носить точно експоненціальний характер, що, чесно кажучи не викликає особливої довіри, хоча напевне є з певною точністю справедливим. 
+	
+%	Попри це механізм розрахунку коефіцієнту підсилення в програмному пакеті Garfield реалізований недостатньо якісно, в тому сенсі, що на момент написання пакету Garfield (fortran версії) процес газового підсилення був вивчений не достатньо добре. Використання програмного пакету Garfield++ може вирішити цю проблему, так як написаний пізніше і дозволяє отримати значно точніші і достовірніші дані. Зі слів Rob Veenhof точність може різнитися в РАЗИ.
+	
+%	Дана перспектива може бути виконана в майбутньому як частина даної дипломної роботи.
+	
+%	Наразі маємо можливість побудувати залежність залежності коефіцієнту газового підсилення електромагнітної лавини в газі(gas gain). Для оцінки коефіцієнту підсилення 
+	
+	\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{gain_1450_2050V}
+	\label{fig:gain-voltage-dendence}	
+	\caption{Dependence of the gain of the voltage applied to the wire. The rest of STRAW tube settings you can find in table \ref{table:straw_par}}
+%	Графік залежності коефіцієнту підсилення сигналу в трубці(gain) в залежності від прикладеної до дроту напруги. Параметри системи описані в таблиці №\ref{table:straw_par}}
+	\end{figure}
 	
 	\section{ Wire sagging}
-	Lets estimate wire sagging in this section. This is very important section because of track reconstruction algorithm depend on it.
+	Easy to predict that the shifting of the wire invoke distorting an electric field and drift path for electrons/ions inside the tube(see fig.\ref{fig:electron_ion_track} and fig.\ref{fig:electron_ion_track_sag}). So the rt-relation for track reconstruction directly depend on the wire position in the tube. rt-relation lose it's previous symmetry(see next sections). 
 	
-	We estimate significant wire sagging(by comparison to the tube radius) because of wire affecting by gravitation plus electric field attract wire to the tube.
-	The variation of wire tension should be taken into account as high affect factor. You can see a profile of wire sagging for wire in $5m$ straw and 1750V voltage Рис.\ref{fig:sagProfile}.
+	\begin{figure}[h!]
+		\centering
+		\subfloat[wire in the center of the tube]{
+			\includegraphics[width=0.45\textwidth]{tracksAndClusters00Sag.eps} 
+			\label{fig:electron_ion_track} }%
+		\qquad
+		\subfloat[sagging $1.5 mm$]{
+			\includegraphics[width=0.45\textwidth]{tracksAndClusters15Sag.eps} 
+			\label{fig:electron_ion_track_sag} }%
+		\caption{ An example of tracks from the on the tube for different position of the wire from GARFIELD simulations. Initial clusters marker by green. Drift lines for electrons marked by yellow, ions -- red lines.}
+%		Приклад траекторії руху електронів та іонів в дрейфовій трубці в результаті проходження зарядженої частинки в горизонтальному напрямку(перпендикулярно до напрямку провисання трубки в площині поперечного перерізу дрейфової трубки}			
+	\end{figure}
+	
+	The direction of sagging is unpredictable when the wire is centered and the straw has vertical orientation. Impact of gravitation field into the wire does not make any effect in this state. But we can avoid this ambiguity by setting straws horizontally. This condition is necessary to make track reconstruction possible.
+	
+	We estimate significant wire sagging(by comparison to the tube radius) because of wire attracts to the tube under affecting of gravitation and electric field force.
+	
+	
+%	Під дією сильного електричного поля дріт(анод $V_{wire}\cong1750 V$) притягується до стінок трубки (катод $V_{tube}=0V$) і так зване провисання досягає значних розмірів $\sim1.5mm$ при радіусі трубки всього $4.9 mm$.
+	
+	You can see a profile of wire sagging of $5m$ length wire in $1cm$ diameter straw tube and 1750V voltage on the fig.\ref{fig:sagProfile} calculated in GARFIELD software \cite{garfield}.
 	
 	\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\textwidth]{sagProfileFit.eps}
-	\caption{Wire sag profile for straw described in table~\ref{table:straw_par} affected by electric and gravitation filed calculated in Garfield }
+	\caption{Wire sag profile under electric and gravitation field calculated in GARFIELD. All options for this straw system are described in table~\ref{table:straw_par}.}
 	%Профіль провисання проводу в дрейфовій трубці довжиною 5 метрів під дією електричного та гравітаційного полів розрaхований у програмному пакеті Garfield
-	
 	\label{fig:sagProfile}
 	\end{figure}	
+		
+	The calibration of STRAW tube with sagged wire is more difficult by comparison to the mode without sagging. 
 	
-	Це ускладнює роботу з дрейфовими трубками, так як в залежності від зміщення трубки від центрального положення змінюється і час дрейфу. Це ускладнює процес реконструкції треків, і вимагає додаткових кроків в процесі реконструкції треків. При чому потрібно зважати на той обсяг інформації який ми можемо витягти з дрейової трубки в робочому стані. Адже не всі методи зостосовні до калібровки трубки в лабораторних умовах можуть бути виконані на практиці при в зібраному детекторі.
+	Variation of wire tension, wire radius should be taken into account as high affect factor for sag value.
 	
-	Під дією сильного електричного поля дріт(анод $V_{wire}\cong1750 V$) притягується до стінок трубки (катод $V_{tube}=0V$) і так зване провисання досягає значних розмірів $\sim1.5mm$ при радіусі трубки всього $4.9 mm$. 
+%	Це ускладнює роботу з дрейфовими трубками, так як в залежності від зміщення трубки від центрального положення змінюється і час дрейфу. Це ускладнює процес реконструкції треків, і вимагає додаткових кроків в процесі реконструкції треків. При чому потрібно зважати на той обсяг інформації який ми можемо витягти з дрейової трубки в робочому стані. Адже не всі методи зостосовні до калібровки трубки в лабораторних умовах можуть бути виконані на практиці при в зібраному детекторі.
 
-	Одним із головних припущень в даній задачі є вибір конфігурації трубок. Припустимо, що трубка є відносно ідеальна: не прогинається під дією гравітації та без викривлень в результаті дефектів при виробництві чи процесі встановленні на робоче місце, або ж якихось інших факторів). Коли трубка знаходиться у вертикальному положенні(тобо у стані, коли гравітаційне поле не впливає на початкове позиціонування дроту в трубці) напрям провисання дроту передбачити неможливо - він повністю залежить від дефектів трубки при збірці та позиціонуванні дроту при фіксації на торцях, якщо всі всі інші поля відсутні.
-	
-	Проте в горизонтальному положенні трубок гравітаційного поля має бути достатньо, щоб задати напрям провисання трубок строго по напрямку гравітаційного поля $\vec{g}$. Таким чином неоднозначність конфігурації трубки зникає.
-	\begin{figure}[h]
-		\centering
-		\subfloat[Дріт без зміщення]{
-			\includegraphics[width=0.45\textwidth]{tracksAndClusters00Sag.eps} 
-			\label{fig:electron_ion_track} }%
-		\qquad
-		\subfloat[Зміщення $1.5 mm$]{
-			\includegraphics[width=0.45\textwidth]{tracksAndClusters15Sag.eps} 
-			\label{fig:electron_ion_track_sag} }%
-		\caption{ Приклад траекторії руху електронів та іонів в дрейфовій трубці в результаті проходження зарядженої частинки в горизонтальному напрямку(перпендикулярно до напрямку провисання трубки в площині поперечного перерізу дрейфової трубки}			
-	\end{figure}
+%	Одним із головних припущень в даній задачі є вибір конфігурації трубок. Припустимо, що трубка є відносно ідеальна: не прогинається під дією гравітації та без викривлень в результаті дефектів при виробництві чи процесі встановленні на робоче місце, або ж якихось інших факторів). Коли трубка знаходиться у вертикальному положенні(тобо у стані, коли гравітаційне поле не впливає на початкове позиціонування дроту в трубці) напрям провисання дроту передбачити неможливо - він повністю залежить від дефектів трубки при збірці та позиціонуванні дроту при фіксації на торцях, якщо всі всі інші поля відсутні.
+			
+%	Проте в горизонтальному положенні трубок гравітаційного поля має бути достатньо, щоб задати напрям провисання трубок строго по напрямку гравітаційного поля $\vec{g}$. Таким чином неоднозначність конфігурації трубки зникає.
 	 
-	\section{Gain}
-	На базі оцінки форми сигналу та амплітуди вихідного струму каналу STRAW трубки проектується відповідна front-end електроніка. Коефіцієнт газового підсилення залежить від складових газової суміші, тиску, температури і поля в якому рухаються електрони/іони і розвиваються електрон-іонні лавини.
 	
-	Власне імплементація скрипту для розрахунку коефіцієнта підсилення у програмному пакеті Garfield вимагає від нас знання параметрів ефекту пеннінга для \cite{} для розглядуваної газової суміші.
-	
-	Приведемо графік залежності коефіцієнту підсилення сигналу для суміші газу зазначеної в таблиці \ref{table:straw_par} від напруги на дроті STRAW трубки.  Як видно, з Рис.~\ref{gain_trought_voltage} він носить точно експоненціальний характер, що, чесно кажучи не викликає особливої довіри, хоча напевне є з певною точністю справедливим. 
-	
-	Попри це механізм розрахунку коефіцієнту підсилення в програмному пакеті Garfield реалізований недостатньо якісно, в тому сенсі, що на момент написання пакету Garfield (fortran версії) процес газового підсилення був вивчений не достатньо добре. Використання програмного пакету Garfield++ може вирішити цю проблему, так як написаний пізніше і дозволяє отримати значно точніші і достовірніші дані. Зі слів Rob Veenhof точність може різнитися в РАЗИ.
-	
-	Дана перспектива може бути виконана в майбутньому як частина даної дипломної роботи.
-	
-	Наразі маємо можливість побудувати залежність залежності коефіцієнту газового підсилення електромагнітної лавини в газі(gas gain). Для оцінки коефіцієнту підсилення 
-	
-	\begin{figure}[h]
-	\centering
-	 \includegraphics[width=\textwidth]{gain_1450_2050V}
-	\caption{ Графік залежності коефіцієнту підсилення сигналу в трубці(gain) в залежності від прикладеної до дроту напруги. Параметри системи описані в таблиці №\ref{table:straw_par}}
-	\label{fig:gain_trought_voltage}
-	\end{figure}
 	
 	\section{ Sag estimation}
 	

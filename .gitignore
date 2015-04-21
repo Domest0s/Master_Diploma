@@ -4,3 +4,5 @@ img/*.pdf
 *.aux
 *.log
 *.gz
+*.dvi
+
