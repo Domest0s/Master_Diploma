@@ -5,4 +5,4 @@ img/*.pdf
 *.log
 *.gz
 *.dvi
-
+*.blg
