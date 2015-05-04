@@ -382,14 +382,13 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 	
 	\section{Track reconstruction}
 	
-	The time between the track hit time stamp and the signal rising edge is a measure for {\it drift time} of these electrons. The relation between the   {\it drift time} and  the distance from the track to the center of the tube(wire while no sag for centered wire) is called {\it drift time - distance relation} or {\it rt-relation}.
+	The time between the track hit time stamp and the signal rising edge is a measure of {\it drift time} of these electrons. The relation between the   {\it drift time} and  the distance from the track to the center of the tube(wire while no sag for centered wire) is called {\it drift time - distance relation} or {\it tr-relation}.
 	
 	The drift time $t$ is a function of track position relative to the wire(so it's means the track position) and electric field along the drift trajectory.
 	
-	Assumed that the working  position  for straws will be parallel to the particle bunch, and  acceptance of particle spreading will not be significantly big. So tracks will be collinear each other within every separate unit STRAW tube.
+	Assumed that the working  position  for straws will be parallel to the particle bunch, and  acceptance of particle spreading will not be significantly big. So tracks will be collinear each other within every separate  STRAW tube unit.
 	
-	Summing the above mentioned we have one dimension task -- reconstruct tracks on vertical axis\footnote{An example of single track reconstruction which explains the approximate procedure of reconstruction you can see on Fig.\ref{fig:track_reconstruction}}
-	(see example outcome rt-distribution $t = t(r,s=0)$ in Fig.\ref{fig:t_r_distr_00} ) even the wire sagging. Sagging will be always down thanks to gravitation force $\vec{g}$.
+	Summing the above mentioned we have one dimension task -- reconstruct tracks on vertical axis\footnote{An example of single track reconstruction which explains the approximate procedure of reconstruction you can see on Fig.\ref{fig:track_reconstruction}}	(see examples of outcome tr-distribution $t = t(r,s=0)$ in Fig.\ref{fig:t_r_distr_00} and Fig.\ref{fig:tr_distr_15})  even the wire sagging. Sagging will be always down thanks to gravitation force $\vec{g}$.
 	
 	\begin{figure}[h!]
 		\centering
@@ -419,12 +418,11 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 	\end{equation}
 	
 	
-	\subsection{ How drift time resolution depend on wire offset?}
+	\subsection{How drift time resolution depend on wire offset?}
 	
 	Distorting of electric field inside the tube invoked by wire displacement from the center position will make an effect on drift time. Here we are going to estimate magnitude of drift time change.
 	
 	As was noted above we make a binning  for our data along the $r_{track}$(fig. \ref{fig:t_r_distr_00}, \ref{fig:tr_distr_15}). The resolution at every bin  is RMS of every bit digram (fig.\ref{fig:driftTimeResolutionEvo}).
-
 	
 	\begin{figure}[h!]
 		\centering
@@ -457,9 +455,15 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 	
 	\subsection{Finding of rt-relation}
 	
-	The rt-relation depict relation between drift time and track position. So we can easily find this law. The idea is to find the best fit of give data to achieve higher resolution and avoid systematic errors.
+	The rt-relation depict relation between drift time and track position. The idea is to find the best fit of give data to achieve higher resolution and avoid systematic errors.
 	
-	The problem that we have to minimize influence of noise while fit. One suppose that the noise have approximately homogeneous distribution of points that locates below the main line of distribution. Consequently we can filter it by fitting only points from regions with local point density higher that some threshold value. Another way is to make a binning our distribution along the track position and fit every 1-D histogram by Gaussian. Nevertheless our data contain very small amount of "non-track" points.
+	The problem that we have to minimize influence of noise while fit. One suppose that the noise have approximately homogeneous distribution of points that locates below the main line of distribution. Consequently we can filter it by fitting only points from regions with local point density higher that some threshold value. Another way is to make a binning our distribution along the track position and fit every 1-D histogram by Gaussian. The fit points of Gaussian mean values by fit function.    
+	
+	Nevertheless our data contain very small amount of "non-track" points.
+	
+	TR-relation is asymmetry relatively to the $r=0$ almost in all cases except wire in the center of the tube. Therefore we have to calibrate for every of branches. It means we need to find two track positions for every of drift time value and reject one of them in further data processing stages.
+	
+	In previous section we found way to measure wire sag profile. So we can use this trick in present stage for separating data into ``right'' and ``left'' branch. Every of branches we will calibrate separately.
 	
 	Lets suppose we can fit every of tr-diagram by pair of analytic fit function (\ref{eq:trRelation}):
 	\begin{equation}
@@ -482,98 +486,36 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 	\end{equation}
 	where $t_{min} = min (t_{drift}(r_{track}))$, $r_{track} = \overline{(-r_{tube},r_{tube})}$. Respectively tracks with drift time higher than maximum of fit function range artificially counts as tracks with near tangents to the tube position $r_{track} = \pm r_{tube}$  (because efficiency decreases near the tube wall down to $20\%$).
 	
-	\subsection{How precision of track reconstruction depend on wire position(wire displacement)}		
+	\subsection{Track reconstruction precision}
 	
-	\subsection{Джерела похибок}
+	Obviously precision is head factor when during we decide design of detector.
 	
-	\begin{itemize}
-		\item Природна складова похибки визвана розподілом кластерів іонізованих атомів вздовж треку MIP-частинки.\par
-		\item Похибка пов’язана безпосереньо з дрейфом електронів та йонів в трубці. Залежить від параметрів електричного поля та складової газу в трубці.
-		\item Похибка пов’язана з ефектами поширення заряду від електромагнітної лавини в дроті.
-		\item Фактори електроніки -- функція відгуку електроніки.
-	\end{itemize}
+	The STRAW tube tracker should be as light as possible to avoid multiple scattering on structural components of detector. But design should be changed within reason if precision suffers from this\footnote{Especially design with no sagging works well for experiment NA62 \cite{}. But they have more than 2 times shorter  straw when tube have insert in the middle of the tube. So sagging becomes negligible in this case.}.
 	
-	Instead of using the average value of the drift time residuals, a fit to the distribution of unbiased drift time residuals is performed in a narrow range around the peak. This allows to reduce the contribution of incorrectly assigned hits
-
-	Для ясності опишемо дану процедуру поетапно
-	\begin{enumerate}
-	\item Оскільки TR розподіл симетричний відносно $r_{track} =0$ Рис.~\ref{fig:t_r_distr_00}, то для підвищення статистики будемо аналізувати їх "суму".
-	\item з TR розподілу рис.\ref{fig:t_r_distr_00} будуємо структурну діаграму шляхом розбиття даних на секції вздовж $r_{track}$ (ось Х) і знаходимо середнє для таких вибірок.
-	\item як видно з рис.\ref{fig:t_r_distr_00} в симуляціях є досить багато шуму - точки поза головним "стержнем" розподілу. Тому для більш точних результатів в побудові RT залежності цього шуму слід позбавитися. Як варіант пропоную наступний критерій: вважати шумами всі точки, які знаходяться на відстані більше $2 \sigma $ від середнього вибірки для кожної із секцій від першої ітерації.
-	\item для "відфільтрованих" даних повторюємо пункт №2;
-	\item Апроксимуємо точки середнього з вибірок функцією (\ref{eq:fit_tr})
-	\begin{equation}
-		y = e^{a_0 +a_1x}
-		\label{eq:fit_tr}
-	\end{equation}
-	\item Знаходимо RT відношення як оберенену до (\ref{eq:fit_tr})  функцію. Результат зображено червоною лінією на рис. \ref{fig:calibration_00}
-	\end{enumerate}
+	How precision of track reconstruction depends on wire position(wire displacement)?
 	
-	
-	В даному випадку калібровочною кривою буде однозначна відповідність між часом дрейфу і радіусом дотичного кола.
-	
-	Для знаходження кривої $r(t)$ складемо дві гілки розподілу Рис. \ref{fig:t_r_distr_00} (праворуч і ліворуч нуля),	
-	 інвертуємо розподіл $t_{drift}(r_{track}) \longrightarrow r_{track}(t_{drift})$ і виконаємо підгонку розподілу функцією виду (\ref{eq:calibration_func}).
-	
-	\begin{equation}
-		\label{eq:calibration_func}
-		r(t) = a_1 log(t) + a_2
-	\end{equation}
-	
-	\begin{figure}[h]
-	\includegraphics[width=0.7\textwidth]{rt_calibration.eps}
-	\centering
-	\caption{ RT-ralation(calibration line, figured in red color) between drift time $t_{drift}$ and distance from the  track $r_{track}$ .  The fit is performed in the range of
-$0 < t_{drift} < 150 ns$ and $|r| < 4.9mm$ }
-	\label{fig:calibration_00}
-	\end{figure}
-	
-	Далі наводимо параметри калібровочної кривої як результат фітування розподілу $t_{drift}(r)$ Рис. \ref{fig:calibration_00} 
-	
-	\begin{itemize}
-		\item $a_1 = 2.231 \pm 0.008$
-		\item $a_2 = 0.448 \pm 0.002$
-	\end{itemize}
-	
-	\subsubsection{Precision of track reconstruction}	
-
-	\subsubsection{ How precision of track reconstruction depend on wire displacement }
-	Для початку задамося питанням "як точність реконструкції треків залежить 	від положення дроту (точніше від його відхилення від центрального положення).
-	
-	Відомо, що робочі зразки дрейфових трубок будуть працювати в горизонтальному положенні. Зважаючи, що під дією гравітаційного поля дріт в трубці буде прогинатися вниз, можна з певною достовірністю стверджувати про подальше положення дроту, вже після підведення напруги в трубці.
-	
-	Так виконаємо оцінку залежності точності вимірювання координати в трубці  по зміні часового розподілу.
-	
-	
-	\subsubsection{Evaluation of track reconstruction precision}
-	Похибкою вимірювання положення треку будемо називати різницю між дійсним положенням треку $r_{track}$ and reconstructed $r_{rec}$. Дану точку відобразим на графіку з відхиленням по осі Y та дійсним положенням треку по осі X. Для більшої наглядності ситуації з розподілом точок на графіку зобразимо цю ж інформацію у вигляді діаграми густини точок а також у виляді труктурної діаграми для  оцінки абсолютної похибки.
-	
-	Варто зазначити, калібровочна крива не проходить через точку $(0;0)$, то ж значення часу дрейфу ліворуч від кривої будемо співставляти центральний трек (такий, що проходить через центр дрейфової трубки $r=0$). Схоже правило застосовується для сигналів з часом дрейфу більшим за діапазон охоплений калібровочною кривою - таким сигналам $r_{reconstructed}$ присвоюється значення $r_{tube} = 4.9mm$.
-	
-	\begin{figure}[h]
-	\centering
-		\subfloat[Distribution of  $r_{track} - r_{rec}$ value]{
-			\includegraphics[width=0.45\textwidth]{difference_map_00.eps} 
-			\label{fig:precision_00} }%
+	\begin{figure}[h!]
+		\centering
+		\subfloat[reconstructed track position $r_{rec}$ as function of true track position $r_{track}$]{
+			\includegraphics[width=0.4\textwidth]{reconstructed_points} 
+			\label{fig:reconstructed_points} }%
 		\qquad
-		\subfloat[projection of (a) along ]{
-			\includegraphics[width=0.45\textwidth]{delta_structed.eps} 
-			\label{fig:delta_sructed_00} }%
-		\caption{Distribution of Розподіл різниці між дійсним і реконструйованим положенням треку в трубці $\bigtriangleup_{r_{track} - r_{rec}}$ від 49500 подій. Структурна діаграма розподілу точок у вападку строго центрального положення дроту дрейфової трубки}
+		\subfloat[$r_{track} - r_{reconstructed}$ as function of $r_{track}$]{
+			\includegraphics[width=0.5\textwidth]{diffRecTrue09_points} 
+			\label{fig:diffRecTrue09_points} }%
+		\caption{Distributions of matching of track position to their reconstructed value.}
 	\end{figure}
 	
-	Як видно з простого аналізу діаграми Рис. \ref{fig:precision_00} \ref{fig:delta_sructed_00} точність реконструкції позиції треків лежить в діапазоні $(0.1 \dots 0.2) mm$. 
+	\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{precisionCompare_0_9}
+	\label{fig:precisionCompare09}
+	\caption{Comparison of track reconstruction precision for two wire position. Value of precision at every point means RMS of data sample near corresponding track position $r$. Red line corresponds to the centered wire position, green line -- to the $0.9 mm$ sagged wire  position.}
+	\end{figure}
 	
-	\subsection{Випадок зміщеного дроту}
-	Знаходження калібровочної кривої, якщо її так можна назвати, для випадку зміщеного дроту дещо відрізняється від описаного вище центрального випадку. Це пов’язано з несиметричністю розподілу ``час дрейфу - положення треку'' Рис. \ref{fig:tr_distr_15}. Тож необхідно знайте не одну, а дві калібровочні криві, причому необхідно розділення даних(на гілки більшу-меншу) що неможливо без попередньої оціки величини зміщення дроту від центрального положення.
+	As you can see on figure \ref{fig:precisionCompare09} there are no significant difference of track reconstruction precision between two mode of wire location despite of the increasing drift time for displaced wire position(with almost factor of two).	 The highest resolution($\sim 0.1 mm$) near the tube wall and worst value $\sim0.6mm$ is near the wire because the clustering effect. Higher gas pressure should resolve this problem.
 	
-
-	
-	Як видно з Рис \ref{fig:tr_distr_15} фігура розподілу змінилася не значно, а лише зсунулася на стале значення, рівне зміщенню дроту.
-	
-	Використаємо цю хитрість для розбиття даних на дві частини - дві гілки в RT розподілі. Від так ми можемо для  кожної гілки знайти свою власну калібровочну криву.
-	
-	\subsection{ Порівняння розподілів для центрального та зміщеного позицій дроту в трубці}	
+	\subsection{Порівняння розподілів для центрального та зміщеного позицій дроту в трубці}
 	Наведемо порівнняння гістограм для центрального та зміщеного позицій дроту для вибірки треків в околі дроту та на відстані 2 мм від нього.
 	
 	\begin{figure}[h!]
