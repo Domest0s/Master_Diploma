@@ -2,7 +2,15 @@
 \usepackage{amsmath}
 \usepackage[utf8x]{inputenc}
 \usepackage{color}
+
 \usepackage{tikz}
+\usepackage{circuitikz}
+\usetikzlibrary{circuits}
+\usetikzlibrary{circuits.ee}
+\usetikzlibrary{circuits.ee.IEC}
+\usetikzlibrary{circuits.logic.IEC}
+
+
 \usepackage{graphicx}
 \usepackage{subfig}
 \usepackage{tikz-cd}
@@ -13,6 +21,9 @@
 \usepackage[ukrainian]{babel}
 \author{Bereziuk~Ivan}
 \graphicspath{ {img/} }
+
+\def\mean#1{\left< #1 \right>}
+
 
 \title{ Дипломна робота \\
 %		Науковий керівник: Олег Анатолійович Безшийко \\
@@ -208,6 +219,7 @@ On the figure fig.\ref{fig:signal_example} The time stamp $Time=0$ correspond to
 	
 	\begin{equation}
 	G = N/N_0 = exp \int\limits_{s_{min}}^{a} \alpha(s) ds
+	\label{eq:gain}
 	\end{equation}
 	
 	GARFIELD can provide us by amplification factor $G$ for any point of the tube(because  $G$ is coordinate dependent magnitude). The amplification factor is equal almost in whole tube space except neighbourhood near the wire because electric field  becomes significantly high only near the wire (see figs \ref{fig:elFieldCentered}, \ref{fig:elField1mmShifted}). When the wire is shifted from the center of the cube the electric field in area close to the wire is the same as in centered state. So the amplification factor $G$ is quite similar in both cases.
@@ -419,7 +431,18 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 	
 	\textcolor{red}{Here i would like to put total plot of wire sag profile and compare reconstructed profile with true profile.}
 	
+	\subsection{Practical measurements of DT-distribution}
 	
+	We need second detector that can measure position of muon that hit STRAW tube. It can be Si strip(or pixel) sensor based detector or detector based on scintillation  with the same destination. 
+	
+	Each kind of detector have it's own advantages and disadvantages. The potential cell unit (strip of pixel) of Si detector will be smaller than in scintilator but also is match expensive. At the current stage we deal with $1cm$ diameter tubes. So scintilator is primal target. But it can shift to the Si sensors if scintilators will not provide satisfied precision.
+	
+	Preliminary chem of DT-measurements you can see on the picture fig \ref{fig:xxx}
+	
+	\begin{figure}
+		
+	\end{figure}		
+		
 	\section{Track reconstruction}
 	
 	The time between the track hit time stamp and the signal rising edge is a measure of {\it drift time} of these electrons. The relation between the   {\it drift time} and  the distance from the track to the center of the tube(wire while no sag for centered wire) is called {\it drift time - distance relation} or {\it tr-relation}.
@@ -555,6 +578,216 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 	
 	As you can see on figure \ref{fig:precisionCompare09} there are no significant difference of track reconstruction precision between two mode of wire location despite of the increasing drift time for displaced wire position(with almost factor of two).	 The highest resolution($\sim 0.1 mm$) near the tube wall and worst value $\sim0.6mm$ is near the wire because the clustering effect. Higher gas pressure should resolve this problem.
 		
+	\section{Mesurements}
+	За період перебування в ЦЕРНі було проведено виміри деяких важливих параметрів дрейфової трубки.	Хоча довжина тестової трубки сягала порядку 50 см в довжину, це не завадило провести виміри там де довжина трубки не грає ролі.
+	
+	Трубка виготовлена в м. Дубна і поміщена у відповідну механіку яка включає в себе кріплення трубки, має канали для циркуляції і газової суміші в трубці, конектори для підведення землі до стінок трубки та високої напруги до дроту. 
+	Вся система не може похвастатися компактністю, тому уникнути "паразитичних" ємностей, хоча би на шляху до підсилювача уникнути не вдалося. Про міру впливу даного недоліку зараз мова не йде, так як нема з чим порівнювати - конструкція тестового стенду нерозбірна.
+	
+	Схема підведення, циркуляції і контролю газу в трубці зображена на рисунку \ref{fig:gasFlowScheme}.
+	
+	\begin{figure}[!h]
+	\centering
+	\begin{tikzpicture}
+		\node[inner sep=0pt] (ballon) at (1.8,0)
+			{\includegraphics[width=.2\textwidth]{ballon.jpg}};
+%		\draw[very thick] (1.2,2.5) -- (2,2.5);
+%		\draw[very thick] (2.5,2.5) circle [radius=0.5];
+%		\node[] at (2.5,2.5) {$\nearrow$};
+		\draw[very thick] (3,2.5) -- (5.5,2.5);
+		\draw[thick](4-.2,3) -- (4+.2,2) -- (4-.2,2) -- (4+.2,3) -- (4-.2,3);
+		\node[below] at (4,2) {flowmeter1\footnote{flowmeter $V\ddot{o}gtim~V100$}};
+		
+		\draw (5.6,2.5) ellipse (.1 and .2);
+		\draw (5.6,2.7)-- (8,2.7);
+		\draw (8,2.5) ellipse (.1 and .2);
+		\draw (8,2.3) -- (5.6,2.3);
+		\node [below] at (6.6,2.3) {tube};
+		
+		\draw[very thick] (8,2.5) -- (11,2.5);
+		
+		\draw[thick](10-.2,3)--(10+.2,2)--(10-.2,2)--(10+.2,3)--(10-.2,3);
+		\node[below] at (10,2) {flowmeter2};
+		
+		\draw[very thick] (8.5,2.5)--(8.5,.5);
+		
+		\draw(8.5,0) circle [radius=0.5];
+		\node at (8.5,0) {P};
+		\node[left] at (8,0) {pressuremeter};
+		
+		\draw[very thick] (11,2.5) -- (11,.5);
+		\draw(11,0) circle [radius=0.5];
+		\node at (11,0) {Xxx};
+		\node[below] at (11,-.5) {oil vessel};
+		
+		\draw[very thick] (11.5,0) -- (12.5,0) -- (12.5,1);
+		\node[above] at (12.5,1) {atmosphere};
+	\end{tikzpicture}
+	\caption{Gas circulation scheme and circuit of connection of flow control through the drift tube}
+	\label{fig:gasFlowScheme}	
+	\end{figure}		
+	
+	
+	Електронна схема підключення дрейфової трубки зображена на рис. \ref{}.
+	
+	\tikzset{circuit declare symbol = ammeter}
+	\tikzset{set ammeter graphic ={draw,generic circle IEC, minimum size=5mm, info=center:A}}
+
+	\begin{figure}[!h]
+	\begin{tikzpicture}[circuit ee IEC]
+		\draw (0,0) rectangle (2,2);
+		\node[left] at (2,0.5) {-};
+		\node[left] at (2,1.5) {+};
+		\node[] at (1,1) {HV};
+		\draw (1.5,.5) to [ground={pos=1}] (1.5,-0.5);		
+		
+		\draw (2,1.5) to [resistor={ohm sloped=10M}] (6,1.5);
+		\node [contact] at (2.5,1.5) {};
+		\node [contact] at (6,1.5) {};
+		
+		\draw (2,0.5) to[ammeter] (6,.5);
+		\node [contact] at (2.5,.5) {};
+		\node [contact] at (4.5,.5) {};
+		
+		\draw (5,.5) to [ground={pos=1}] (5,-0.5);
+		
+		\draw[very thick] (6,2.5) -- (10,2.5);
+		\draw[very thick] (6,1.5) ellipse (0.3 and 1);
+		\draw[very thick] (6,0.5) -- (10,0.5);
+		\draw[very thick,shade] (10,1.5) ellipse (0.3 and 1);
+		\draw[very thick, dashed, gray] (6,1.5) -- (10,1.5);
+		
+		\node [contact] at (10.5,1.5) {};
+		\draw (10.3,1.5) to [capacitor={farad sloped=1n}] (11.5,1.5);
+		
+		\draw (12.5,1) node[op amp,yscale=-1] (opamp2) {};
+		\draw (11.3,.5) to [ground={pos=1}] (11.3,-0.5);
+		
+%	amplifier with describing		
+%		\draw (3,0) node[op amp,yscale=-1] (opamp2) {}
+%			(opamp2.+) node[left ] {$v_+$}
+%  			(opamp2.-) node[left ] {$v_-$};
+		
+		\node [contact] at (13.7,1) {};
+		\node[right] at (13.7,1) {Out};
+	\end{tikzpicture}
+	\caption{Електронна схема підключення тестового зразка дрейфової трубки}
+	\label{fig:electricCircuit}	
+	\end{figure}
+	
+	Ось така досить проста дослідна схема для дослідження зразка трубки.
+	
+	В нашій наявності було джерело $Fe^{55}$  яке чудово підходить для калібровки дрейфової трубки. $Fe^{55}$ в нашому випадку виступає джерелом фотонів з майже моноенергетичним спектром з енергією 5.9 keV.
+	
+	Першим і найбільш важливим параметром, який необхідно виміряти за допомогою даної установки буде коефіцієнт підсилення сигналу в трубці $G$ (\ref{eq:gain}).
+	
+	Ідея полягає в тому, щоб виміряти заряд, що протікає через в електричному колі трубки. Будемо дотримуватися тієї точки зору, що струм через амперметр  (see fig.~\ref{fig:electricCircuit}) за відсутності радіоактивного $I_0$ джерела буде сталий з часом. Цей струм може мати місце в результаті струмів витоку в колі або ж фактом реєстрації трубкою фонових частинок(наприклад атмосферних мюонів). Тож за наявності джерела $Fe^{55}$ весь надлишковий струм $\bigtriangleup I = I-I_0$ в колі  дрейфової трубки буде пов’язаний лише з реєстрацією гамма-квантів джерела $Fe^{55}$.
+	
+	З іншої сторони $\bigtriangleup I$  можна виразити через початкову кількість електронів та коефіцієнт газового підсилення (\ref{eq:IGainN0}):
+	
+	\begin{equation}
+	\bigtriangleup I = G N_0 e;
+	\label{eq:IGainN0}
+	\end{equation}
+	тут $G$ - коефіцієнт газового підсилення; $N_0$ - кількість початкових електрон-іонних пар за одну секнду, е - заряд електрона.
+	
+	
+	В свою чергу
+	\begin{equation}
+	N_0 = R \mean{n} = R \sum_n n p(n) \approx R \int_0^\infty n p(n) dn;
+	\end{equation}
+	
+	Тут $p(n)$ - імовірність того, що фотон з енергією 5.9 КеВ провзаємодівши з атомом аргону утворить $n$ електрон іонних пар, R - частоса реєстрації сигналів [Hz] так як нам потрібно знайти кількість електрон-іонних пар за час 1с.
+	
+	Розрахунок розподілу $p(n)$ подано на рисунку \ref{fig:n_probability}. Як видно з рисунку в розподілі $p(n)$ присутньо 2 піки: основний фотопік, та менший escape peak. Escape peak for argon is known to be 3.2 keV less
+than the primary peak An escape peak is formed by a number of photon interactions in the gas resulting in one primary ionization electron and a re-emitted X-ray with a long mean free path.
+	
+	\begin{figure}[!h]
+	\caption{ Розподіл - розподіл актів взаємодії фотонів енергії 5.9 кеВ з газом Аргону по кількості первинних електронів, утворених в об’ємі дрейфової трубки}
+	\label{fig:n_probability}
+	\end{figure}
+	
+	
+	Для обрахунку сигналу спершу розглянемо специфіку взамодії гамма-квантів з енергією 5.9 КеВ з Аргоном. 
+	
+	 
+	
+	\begin{table}[!h]
+	\centering
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		pressure [bar] & Rate [Hz] & Voltage [V] & Current [nA]  \\
+		\hline
+		1 (0.856 a.o.) & 4857 & 1600 & $1.72\pm 0.22$  \\
+		\hline
+		= & = & 1650 & $2.81 \pm 0.13$ \\
+		\hline
+		= & = & 1700 & $4.54 \pm 0.23$ \\
+		\hline
+		= & = & 1750 & $7.36 \pm 0.33$ \\
+		\hline
+		= & = & 1800 & $11.40 \pm 0.55$\\
+		\hline
+		= & = & 1850 & $16.91 \pm 0.85$\\
+		\hline
+		= & = & 1900 & $24.11 \pm 1.05$\\
+		\hline
+		& & & \\
+		\hline
+		1.1 (0.906 a.u.) & 5263 & 1600 & $1.00 \pm 0.18$  \\
+		\hline
+		= & = &  1650 & $1.62 \pm 0.09 $ \\
+		\hline
+		= & = &  1700 & $2.60 \pm 0.12 $ \\
+		\hline
+		= & = &  1750 & $4.12 \pm 0.16 $ \\
+		\hline
+		= & = &  1800 & $6.54 \pm 0.29 $ \\
+		\hline
+		= & = &  1850 & $10.13 \pm 0.39 $ \\
+		\hline
+		= & = &  1900 & $15.02 \pm 0.69 $ \\
+		\hline
+		& & & \\
+		\hline
+		1.2 (0.951 a.u.) & & 1600 & $0.65 \pm 0.06 $  \\
+		\hline
+		= &  &  1650 & $1.04 \pm 0.07 $ \\
+		\hline
+		= &  &  1700 & $1.62 \pm 0.08  $ \\
+		\hline
+		= & 5409 &  1750 & $2.56 \pm 0.12 $ \\
+		\hline
+		= &  &  1800 & $4.05 \pm 0.17 $ \\
+		\hline
+		= &  &  1850 & $6.34 \pm 0.25 $ \\
+		\hline
+		= &  &  1900 & $9.60 \pm 0.40 $ \\
+		\hline
+		& & & \\
+		\hline
+		1.3 (0.998 a.u.) & & 1600 & $0.42 \pm 0.04 $  \\
+		\hline
+		= &  &  1650 & $0.66 \pm 0.05 $ \\
+		\hline
+		= &  &  1700 & $1.02 \pm 0.06 $ \\
+		\hline
+		= & 5023 &  1750 & $1.60 \pm 0.13$ \\
+		\hline
+		= &  &  1800 & $2.50 \pm 0.12 $ \\
+		\hline
+		= &  &  1850 & $3.89 \pm 0.18 $ \\
+		\hline
+		= &  &  1900 & $5.98 \pm 0.24 $ \\
+		\hline
+		
+	\end{tabular}
+	\caption{short tube measurements. Threshold equal to 32 mV. }
+	\label{table:GainMeasurements}
+	\end{table}		
+	
+		
+	
 \newpage
 \begin{thebibliography}{00}
 	\bibitem{garfield} http://garfield.web.cern.ch/garfield
