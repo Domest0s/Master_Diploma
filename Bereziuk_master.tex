@@ -18,6 +18,8 @@
 
 \usepackage{lineno}
 
+\usepackage{url}
+
 \usepackage[ukrainian]{babel}
 \author{Bereziuk~Ivan}
 \graphicspath{ {img/} }
@@ -387,7 +389,7 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 			\includegraphics[width=0.45\textwidth]{chi2_07} 
 			\label{fig:chi2for07} }%
 		\qquad
-		\subfloat[ Distribution of wire offset reconstruction from 180 series 5k events each. 50k events for $core$ template histograms. True bias is $0.063 mm$. 1 bin = 0.1 mm.]{
+		\subfloat[ Distribution of wire offset reconstruction from 180 series 5k events each. 50k events for $core$ template histograms. True bias is $0.63 mm$. 1 bin = 0.1 mm.]{
 			\includegraphics[width=0.45\textwidth]{chi_063_5k} 
 			\label{fig:chi_063_5k} }%
 		\caption{Wire position(displacement) reconstruction}			
@@ -582,7 +584,8 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 	За період перебування в ЦЕРНі було проведено виміри деяких важливих параметрів дрейфової трубки.	Хоча довжина тестової трубки сягала порядку 50 см в довжину, це не завадило провести виміри там де довжина трубки не грає ролі.
 	
 	Трубка виготовлена в м. Дубна і поміщена у відповідну механіку яка включає в себе кріплення трубки, має канали для циркуляції і газової суміші в трубці, конектори для підведення землі до стінок трубки та високої напруги до дроту. 
-	Вся система не може похвастатися компактністю, тому уникнути "паразитичних" ємностей, хоча би на шляху до підсилювача уникнути не вдалося. Про міру впливу даного недоліку зараз мова не йде, так як нема з чим порівнювати - конструкція тестового стенду нерозбірна.
+	
+	Вся система не може похвастатися компактністю, тому уникнути "паразитичних" ємностей в місцях де їх не має бути не вдалося. Про міру впливу даного недоліку зараз мова не йде, так як нема з чим порівнювати - конструкція тестового стенду, що включає всі кріплення та фіксації трубки нерозбірна.
 	
 	Схема підведення, циркуляції і контролю газу в трубці зображена на рисунку \ref{fig:gasFlowScheme}.
 	
@@ -617,14 +620,14 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 		
 		\draw[very thick] (11,2.5) -- (11,.5);
 		\draw(11,0) circle [radius=0.5];
-		\node at (11,0) {Xxx};
-		\node[below] at (11,-.5) {oil vessel};
+		\node at (11,0) {B};
+		\node[below] at (11,-.5) {Bubbler};
 		
 		\draw[very thick] (11.5,0) -- (12.5,0) -- (12.5,1);
 		\node[above] at (12.5,1) {atmosphere};
 	\end{tikzpicture}
 	\caption{Gas circulation scheme and circuit of connection of flow control through the drift tube}
-	\label{fig:gasFlowScheme}	
+	\label{fig:gasFlowScheme}
 	\end{figure}		
 	
 	
@@ -649,7 +652,7 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 		\node [contact] at (2.5,.5) {};
 		\node [contact] at (4.5,.5) {};
 		
-		\draw (5,.5) to [ground={pos=1}] (5,-0.5);
+%		\draw (5,.5) to [ground={pos=1}] (5,-0.5);
 		
 		\draw[very thick] (6,2.5) -- (10,2.5);
 		\draw[very thick] (6,1.5) ellipse (0.3 and 1);
@@ -663,7 +666,7 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 		\draw (12.5,1) node[op amp,yscale=-1] (opamp2) {};
 		\draw (11.3,.5) to [ground={pos=1}] (11.3,-0.5);
 		
-%	amplifier with describing		
+%	amplifier with describing
 %		\draw (3,0) node[op amp,yscale=-1] (opamp2) {}
 %			(opamp2.+) node[left ] {$v_+$}
 %  			(opamp2.-) node[left ] {$v_-$};
@@ -677,7 +680,7 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 	
 	Ось така досить проста дослідна схема для дослідження зразка трубки.
 	
-	В нашій наявності було джерело $Fe^{55}$  яке чудово підходить для калібровки дрейфової трубки. $Fe^{55}$ в нашому випадку виступає джерелом фотонів з майже моноенергетичним спектром з енергією 5.9 keV.
+	В нашій наявності було джерело $Fe^{55}$  яке підходить для калібровки дрейфової трубки. $Fe^{55}$ в нашому випадку виступає джерелом фотонів з майже моноенергетичним спектром з енергією 5.9 keV.
 	
 	Першим і найбільш важливим параметром, який необхідно виміряти за допомогою даної установки буде коефіцієнт підсилення сигналу в трубці $G$ (\ref{eq:gain}).
 	
@@ -689,28 +692,35 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 	\bigtriangleup I = G N_0 e;
 	\label{eq:IGainN0}
 	\end{equation}
-	тут $G$ - коефіцієнт газового підсилення; $N_0$ - кількість початкових електрон-іонних пар за одну секнду, е - заряд електрона.
+	тут $G$ - коефіцієнт газового підсилення; $N_0$ - кількість початкових електрон-іонних пар за одну секнду, е - заряд електрона в Кл.
 	
-	
-	В свою чергу
+	В свою чергу $N_0$ можна виразити як.
 	\begin{equation}
 	N_0 = R \mean{n} = R \sum_n n p(n) \approx R \int_0^\infty n p(n) dn;
 	\end{equation}
 	
 	Тут $p(n)$ - імовірність того, що фотон з енергією 5.9 КеВ провзаємодівши з атомом аргону утворить $n$ електрон іонних пар, R - частоса реєстрації сигналів [Hz] так як нам потрібно знайти кількість електрон-іонних пар за час 1с.
 	
-	Розрахунок розподілу $p(n)$ подано на рисунку \ref{fig:n_probability}. Як видно з рисунку в розподілі $p(n)$ присутньо 2 піки: основний фотопік, та менший escape peak. Escape peak for argon is known to be 3.2 keV less
-than the primary peak An escape peak is formed by a number of photon interactions in the gas resulting in one primary ionization electron and a re-emitted X-ray with a long mean free path.
+	Розрахунок розподілу $p(n)$ в GARFIELD подано на рисунку \ref{fig:n_probability}. Як видно з рисунку в розподілі $p(n)$ присутньо 2 піки: основний фотопік, та менший escape peak. Escape peak for argon is known to be 3.2 keV less than the primary peak. An escape peak is formed by a number of photon interactions in the gas resulting in one primary ionization electron and a re-emitted X-ray with a long mean free path.
 	
 	\begin{figure}[!h]
-	\caption{ Розподіл - розподіл актів взаємодії фотонів енергії 5.9 кеВ з газом Аргону по кількості первинних електронів, утворених в об’ємі дрейфової трубки}
+	\centering
+	\includegraphics[width=0.7\textwidth]{fe55neGamma}
+	\caption{ Розподіл актів взаємодії фотонів енергії 5.9 кеВ з газом Аргону від кількості первинних електронів, утворених в об’ємі дрейфової трубки}
 	\label{fig:n_probability}
 	\end{figure}
 	
+	Все виглядає досить просто. На виході з підсилювача \ref{fig:electricCircuit} сигнал подається на дискримінатор з порогом спрацьовування виставленим на рівні достатньому для реєтрації сигналів але достньо високим, щоб шум не зараховувався. Сигнал з дискримінатора у вигляді прямокутного сигналу подається на лічильних, який спрацьовує по зростаючому фронту. Така схема має малий мертвий час порядку $XXX$, тому для частоти сигналів $R \sim 5000 \frac{events}{second} \approx 200 \frac{\mu s}{event}$ кількість незарахованих сигналів буде нищівно мала.
 	
-	Для обрахунку сигналу спершу розглянемо специфіку взамодії гамма-квантів з енергією 5.9 КеВ з Аргоном. 
+	Для першої оцінки коефіцієнту підсилення ми припускаємо про таку собі суперпозицію лавин і лінійну маштабованість амплітуди кінцевого сигналу від кількості початкових електронів(далі ми покажемо що це не так).
 	
-	 
+	З розподілу на рис.\ref{fig:n_probability} знаходимо $\mean{n} = 197.87$ для середньої кількість первинних електронів від акту взаємодії фотону енергії $5.9 keV$ з атомами газу  $Ar70\%+CO_230\%$.
+	
+	Результати вимірювань представимо у вигляді таблиці \ref{table:GainMeasurements}
+	
+%	Для обрахунку сигналу спершу розглянемо специфіку взамодії гамма-квантів з енергією 5.9 КеВ з Аргоном. 
+	
+	
 	
 	\begin{table}[!h]
 	\centering
@@ -786,8 +796,94 @@ than the primary peak An escape peak is formed by a number of photon interaction
 	\label{table:GainMeasurements}
 	\end{table}		
 	
-		
 	
+	
+		\begin{table}[!h]
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|l|}
+		\hline
+		Gain(no cor) & P [bar](U[V]) & HV [V] & Thr [mV]&  I [nA] & RMS [nA] & Rate [Hz]  \\
+		\hline
+		11138 & 1.0(0.857) & 1600 & &  -1.7700 & 0.0919 & = \\
+		\hline
+		18196 & 1.0(0.857) & 1650 & &  -2.8915 & 0.1598 & = \\
+		\hline
+		29255 & 1.0(0.857) & 1700 & 32 & -4.6490 & 0.2328 & 4965.9 \\
+		\hline
+		47012 & 1.0(0.858) & 1750 & & -7.4707 & 0.4380 & = \\
+		\hline
+		73159 & 1.0(0.857) & 1800 & & -11.6257 & 0.5630 & = \\
+		\hline
+		
+		& & & & & & \\
+		\hline
+		
+		9885 & 1.1(0.906) & 1650 & & -1.6921 & 0.1099 & = \\
+		\hline
+		15747 & 1.1(0.905)& 1700 & & -2.6955 & 0.13381 & = \\
+		\hline
+		25275 & 1.1(0.905)& 1750 & 32 & -4.3263 & 0.1975 & 5349.0 \\
+		\hline
+		39887 & 1.1(0.906)& 1800 & & -6.8274 & 0.2841 & = \\
+		\hline
+		61359 & 1.1(0.906)& 1850 & & -10.5028 & 0.4567 & = \\
+		\hline
+		
+		& & & & & & \\
+		\hline
+		
+		9260 & 1.2(0.951) & 1700  & & -1.6921 & 0.1053 & = \\
+		\hline
+		14536 & 1.2(0.951) & 1750 & & -2.6562 & 0.1274 & = \\
+		\hline
+		22991 & 1.2(0.951) & 1800 & 32 & -4.2012 & 0.1900 & 5710 \\
+		\hline
+		35777 & 1.2(0.951) & 1850 & & -6.5376 & 0.2880 & = \\
+		\hline
+		54684 & 1.2(0.951) & 1900 & & -9.9924 & 0.5284 & = \\
+		\hline
+		
+		& & & & & & \\
+		\hline
+		
+		5444& 1.3(0.998) & 1700 & & -1.03 & 0.06 & = \\
+		\hline
+		$8351$ & 1.3(0.998) & 1750 & & -1.58 & 0.14 & = \\
+		\hline
+		13267 & 1.3(0.998) & 1800 & & -2.51 & 0.12 & = \\
+		\hline
+		20615 & 1.3(0.998) & 1850 & 32 & -3.90 & 0.15 & 5987 \\
+		\hline
+		31716 &  1.3(0.998) & 1900 & & -6.00 & 0.29 & = \\
+		\hline
+		48102 & 1.3(0.998) & 1950 & & -9.10 & 0.38 & =\\
+		\hline
+		69987 & 1.3(0.998) & 2000 & & -13.24 & 0.50 & = \\
+		\hline 
+		100751 & 1.3(0.998) & 2050 & & -19.06 & 0.78 & = \\
+		\hline
+	\end{tabular}
+	\caption{Table 2 }
+	\label{table:GainTotal}
+	\end{table}	
+	\subsection{ Поправка на кучність просторового заряду}
+	Тестове джерело $fe^{55}$ є джерелом гама квантів енергії $\sim 5.9 keV$ які в разі фотоефекту  з атомами газу аргону утворюють $\sim 200$	 іон-електронних пар. Під дією сильного електричного поля між анодом і катодом така хмара електронів починає дрейфувати в напрямку дроту. Будь який просторовий заряд утворює своє власне е/м поле чим викривлює зовнішнє. В результаті парціальні лавини на окремj первинний електрон хмари утворює лавину мершого розміру порівняно з одиничним електроном(як нприклад від іонізації мюооном).
+	
+	Даний ефект був спостережений на практиці.
+	
+	Кожних сигнал на виході з підсилювача відрізняється за амплітудою в залежності від кількості первинних електронів що спровокувала його. То ж цілком справедливо на в експериментальному спектрі сигналів побачити два горби подібно до розрахованого в GARFIELD спектру $p(n)$.
+	
+	
+	
+\newpage
+\section{Додаток}
+
+\subsection{pressure meter}
+Для вимірювання тиску в дрейфовій трубці використвувався датчик тиску(pressure transmitters) від компанії SensorTechnics$^{\textregistered}$. На приладі зазначено ідентифікаційний код ID:CTE9005AQ4, по якому було знайдено відповідну документацію від виробника \cite{presTransmitDatasheet}.
+
+	Згідно до документації та маркування, даний прилад розрахований на вимірювання тиску в діапазоні від 0...5 bar
+
+
 \newpage
 \begin{thebibliography}{00}
 	\bibitem{garfield} http://garfield.web.cern.ch/garfield
@@ -795,6 +891,8 @@ than the primary peak An escape peak is formed by a number of photon interaction
 	\bibitem{kozlinskiy}  thesis Kozlinskiy.pdf 
 	
 	\bibitem{NA62_TDR} NA62 Technical Design Report from December 2010. 
+	
+	\bibitem{presTransmitDatasheet} DataSheet for Pressure transmitters for corrosive liquids and gases CTE/CTU9000 series. \url{http://www.first-sensor.com/cms/upload/datasheets/DS_Standard-CTE-CTU9000_E_11509.pdf}
 	
 \end{thebibliography}
 	
