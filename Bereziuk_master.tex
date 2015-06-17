@@ -288,13 +288,21 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 	\section{Mesurements}
 	\label{sec:Mesurements}	
 	
-	За період перебування в ЦЕРНі було проведено виміри деяких важливих параметрів дрейфової трубки.	Хоча довжина тестової трубки сягала порядку 50 см в довжину, це не завадило провести виміри там де довжина трубки не грає ролі.
+	We made measurements of some important drift tube parameters. We had tube of $\sim 50cm$ length. But despite of short tube length we made there the length of the tube is not important.
 	
-	Трубка виготовлена в м. Дубна і поміщена у відповідну механіку яка включає в себе кріплення трубки, має канали для циркуляції і газової суміші в трубці, конектори для підведення землі до стінок трубки та високої напруги до дроту. 
+	The tube was manufactured in Dubna(Russian Federation) and was placed into the appropriate  mechanics which include tube fixing, channels for supply of gas mixture, connector for grounding to the tube walls and connector for High Voltage (HV) supply.
 	
-	Вся система не може похвастатися компактністю, тому уникнути "паразитичних" ємностей в місцях де їх не має бути не вдалося. Про міру впливу даного недоліку зараз мова не йде, так як нема з чим порівнювати - конструкція тестового стенду, що включає всі кріплення та фіксації трубки нерозбірна.
+	The whole system is not compact, therefore we could not avoid the parasitic capacities. Now we will not go into details about it, as we have nothing to compare with because the system is non-separable.
+
+	The scheme of gas supply, circulation and control in the tube is shown in the Fig.\ref{fig:gasFlowScheme}.
+	 	
+%	За період перебування в ЦЕРНі було проведено виміри деяких важливих параметрів дрейфової трубки.	Хоча довжина тестової трубки сягала порядку 50 см в довжину, це не завадило провести виміри там де довжина трубки не грає ролі.
 	
-	Схема підведення, циркуляції і контролю газу в трубці зображена на рисунку \ref{fig:gasFlowScheme}.
+%	Трубка виготовлена в м. Дубна і поміщена у відповідну механіку яка включає в себе кріплення трубки, має канали для циркуляції і газової суміші в трубці, конектори для підведення землі до стінок трубки та високої напруги до дроту. 
+	
+%	Вся система не може похвастатися компактністю, тому уникнути "паразитичних" ємностей в місцях де їх не має бути не вдалося. Про міру впливу даного недоліку зараз мова не йде, так як нема з чим порівнювати - конструкція тестового стенду, що включає всі кріплення та фіксації трубки нерозбірна.
+	
+%	Схема підведення, циркуляції і контролю газу в трубці зображена на рисунку \ref{fig:gasFlowScheme}.
 	
 	\begin{figure}[!h]
 	\centering
@@ -337,8 +345,9 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 	\label{fig:gasFlowScheme}
 	\end{figure}		
 	
+	The electric scheme of the drift tube connection is shown in the Fig.\ref{fig:electricCircuit}.
 	
-	Електронна схема підключення дрейфової трубки зображена на рис. \ref{fig:electricCircuit}.
+%	Електронна схема підключення дрейфової трубки зображена на рис. \ref{fig:electricCircuit}.
 	
 	\tikzset{circuit declare symbol = ammeter}
 	\tikzset{set ammeter graphic ={draw,generic circle IEC, minimum size=5mm, info=center:A}}
@@ -381,49 +390,77 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 		\node [contact] at (13.7,1) {};
 		\node[right] at (13.7,1) {Out};
 	\end{tikzpicture}
-	\caption{Електронна схема підключення тестового зразка дрейфової трубки}
+	\caption{The electric scheme of the drift tube connection }
+	%\caption{Електронна схема підключення тестового зразка дрейфової трубки}
 	\label{fig:electricCircuit}	
 	\end{figure}
 	
-	Ось така досить проста дослідна схема для дослідження зразка трубки.
+	As it is seen above, the scheme is very simple.
 	
-	В нашій наявності було джерело $Fe^{55}$  яке підходить для калібровки дрейфової трубки. $Fe^{55}$ в нашому випадку виступає джерелом фотонів з майже моноенергетичним спектром з енергією 5.9 keV.
+	For our research we used a source $Fe^{55}$ witch is suitable for a drift tube calibration. In our case $Fe^{55}$ serves as a photon source with almost monochromatic spectra with energy 5.9 keV.
 	
-	Першим і найбільш важливим параметром, який необхідно виміряти за допомогою даної установки буде коефіцієнт підсилення сигналу в трубці $G$ (\ref{eq:gain}).
+	The most important parameter witch we have to measure a Gain $G$ (\ref{eq:gain}).
 	
-	Ідея полягає в тому, щоб виміряти заряд, що протікає через в електричному колі трубки за одиницю часу і по ньому знайти коефіцієнт газового підсилення. Будемо дотримуватися тієї точки зору, що струм через амперметр  (see fig.~\ref{fig:electricCircuit}) за відсутності радіоактивного $I_0$ джерела буде сталий з часом. Цей струм може мати місце в результаті струмів витоку в колі або ж фактом реєстрації трубкою фонових частинок(наприклад атмосферних мюонів). Тож за наявності джерела $Fe^{55}$ весь надлишковий струм $\bigtriangleup I = I-I_0$ в колі  дрейфової трубки буде пов’язаний лише з реєстрацією гамма-квантів джерела $Fe^{55}$.
+	The idea is to measure a charge that goes thought the tube electric circuit per unit of time and then find a Gain.  We assume that a current $I_0$ though the ampere meter(see fig.~\ref{fig:electricCircuit}) is constant when the radioactive source is absent. The current  is non-zero when the tube detects background particles(for example atmospheric muon flux) or when  a leakage current is present. Therefore, with the presence of a source $Fe^{55}$ all surplus of the current $\bigtriangleup I = I-I_0$ in the drift tube circuit occurs because of gamma ray detection.
 	
-	З іншої сторони $\bigtriangleup I$  можна виразити через початкову кількість електронів та коефіцієнт газового підсилення (\ref{eq:IGainN0}):
+	On the other hand, we can white $\bigtriangleup I$ in terms of initial amount of electrons and Gain in the following form :
+	
+	
+%	Ось така досить проста дослідна схема для дослідження зразка трубки.
+	
+%	В нашій наявності було джерело $Fe^{55}$  яке підходить для калібровки дрейфової трубки. $Fe^{55}$ в нашому випадку виступає джерелом фотонів з майже моноенергетичним спектром з енергією 5.9 keV.
+	
+%	Першим і найбільш важливим параметром, який необхідно виміряти за допомогою даної установки буде коефіцієнт підсилення сигналу в трубці $G$ (\ref{eq:gain}).
+	
+%	Ідея полягає в тому, щоб виміряти заряд, що протікає через електричне коло трубки за одиницю часу і по ньому знайти коефіцієнт газового підсилення. Будемо дотримуватися тієї точки зору, що струм через амперметр  (see fig.~\ref{fig:electricCircuit}) за відсутності радіоактивного $I_0$ джерела буде сталий з часом. Цей струм може мати місце в результаті струмів витоку в колі або ж фактом реєстрації трубкою фонових частинок(наприклад атмосферних мюонів). Тож за наявності джерела $Fe^{55}$ весь надлишковий струм $\bigtriangleup I = I-I_0$ в колі  дрейфової трубки буде пов’язаний лише з реєстрацією гамма-квантів джерела $Fe^{55}$.
+	
+%	З іншої сторони $\bigtriangleup I$  можна виразити через початкову кількість електронів та коефіцієнт газового підсилення (\ref{eq:IGainN0}):
 	
 	\begin{equation}
-	\bigtriangleup I = G N_0 e;
+	\bigtriangleup I = G N_0 e,
 	\label{eq:IGainN0}
 	\end{equation}
-	тут $G$ - коефіцієнт газового підсилення; $N_0$ - кількість початкових електрон-іонних пар за одну секнду, е - заряд електрона в Кл.
 	
-	В свою чергу $N_0$ можна виразити як:
+	where $G$ -- Gain; $N_0$ - number of initial electron-ion pairs per second; e - charge of electron in C.
+	
+	On the other hand we can express $N_0$ as:
+%	тут $G$ - коефіцієнт газового підсилення; $N_0$ - кількість початкових електрон-іонних пар за одну секнду, е - заряд електрона в Кл.
+	
+%	В свою чергу $N_0$ можна виразити як:
 	\begin{equation}
 	N_0 = R \cdot \mean{n} = R \cdot\sum_n n p(n) \approx R \int_0^\infty n p(n) dn;
 	\end{equation}
-	
-	Тут $p(n)$ - імовірність того, що фотон з енергією 5.9 КеВ провзаємодівши з атомом аргону утворить $n$ електрон іонних пар, R - частоса реєстрації сигналів [Hz] так як нам потрібно знайти кількість електрон-іонних пар за час 1с.
-	
-	Розрахунок розподілу $p(n)$ в GARFIELD подано на рисунку \ref{fig:n_probability}. Як видно з рисунку в розподілі $p(n)$ присутньо 2 піки: основний фотопік, та менший escape peak. Escape peak for argon is known to be 3.2 keV less than the primary peak. An escape peak is formed by a number of photon interactions in the gas resulting in one primary ionization electron and a re-emitted X-ray with a long mean free path.
+
+	where  $p(n)$ is a probability that the photon with energy 5.9 keV after interaction with argon atom will create $n$ electron-ion pairs; R is a rate [Hz], as we need to find the amount of electron-ion pairs per one second.
+
+	The calculation of the distribution 	$p(n)$  in GARFIELD is shown in Fig.\ref{fig:n_probability}. In the figure we can the two peaks: the main photopeak and the smaller escape peak. 
+%	Тут $p(n)$ - імовірність того, що фотон з енергією 5.9 КеВ провзаємодівши з атомом аргону утворить $n$ електрон іонних пар, R - частоса реєстрації сигналів [Hz] так як нам потрібно знайти кількість електрон-іонних пар за час 1с.	
+%	Розрахунок розподілу $p(n)$ в GARFIELD подано на рисунку \ref{fig:n_probability}. Як видно з рисунку в розподілі $p(n)$ присутньо 2 піки: основний фотопік, та менший escape peak. 
+	The escape peak for argon is known to be 3.2 keV less than the primary peak. An escape peak is formed by a number of photon interactions in the gas resulting in one primary ionization electron and a re-emitted X-ray with a long mean free path.
 	
 	\begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.7\textwidth]{fe55neGamma}
-	\caption{ Розподіл актів взаємодії фотонів енергії 5.9 кеВ з газом Аргону від кількості первинних електронів, утворених в об’ємі дрейфової трубки}
+	\caption{ p(n) distribution}
+%	\caption{ Розподіл актів взаємодії фотонів енергії 5.9 кеВ з газом Аргону від кількості первинних електронів, утворених в об’ємі дрейфової трубки}
 	\label{fig:fe55_n_probability}
 	\end{figure}
 	
-	Постановка експерименту виглядає досить примітивно. На виході з підсилювача (див рис.\ref{fig:electricCircuit}) сигнал подається на дискримінатор з порогом спрацьовування виставленим на рівні достатньому для реєтрації сигналів але достньо високим, щоб шум не зараховувався. Сигнал з дискримінатора у вигляді прямокутного сигналу подається на лічильних, який спрацьовує по зростаючому фронту. Така схема має малий мертвий час порядку $0.5 \mu s$, тому для частоти сигналів $R \sim 5000 \frac{events}{second} \approx 200 \frac{\mu s}{event}$ кількість незарахованих сигналів буде нищівно мала.
+	The realisation of a measurement is very simple.  On the output of amplifier(see Fig.\ref{fig:electricCircuit}) the signal goes to the discriminator with  trigger threshold on the level enough for a signal detection and big enough for noise neglecting. The signal from discriminator goes into counter in rectangle form. The counter triggering for the rising edge. This scheme has a small dead time $~0.5 \mu s$, therefore for the signal frequency of $R \sim 5000 \frac{events}{second} \approx 200 \frac{\mu s}{event}$ the amount of non counted signal is negligibly small.
 	
-	Для першої оцінки коефіцієнту підсилення ми припускаємо про таку собі суперпозицію лавин і лінійну маштабованість амплітуди кінцевого сигналу від кількості початкових електронів(далі ми покажемо що це не так).
+	For the first gain estimation we assume about avalanche superposition and linear amplitude dependence of final signal on the amount of initial electrons(later we will show that this is not true).
 	
-	З розподілу на рис.\ref{fig:fe55_n_probability} знаходимо $\mean{n} = 197.87$ для середньої кількість первинних електронів від акту взаємодії фотону енергії $5.9 keV$ з атомами газу  $Ar70\%+CO_230\%$.
+	From the distribution in Fig.\ref{fig:fe55_n_probability} we can find $\mean{n} = 197.87$ for average amount of primary electron because of photon(5.9keV) interaction with atoms of a gas $Ar70\%+CO_230\%$.
 	
-	Результати вимірювань представимо у вигляді таблиці \ref{table:GainTotal}. Криві коефіцієнту підсилення G(V) для ряду значень тиску зображено на рис.
+	The results of measurements are shown in the table \ref{table:GainTotal}. The Gain curves G(V) for several pressure values are shown in the Fig.\ref{fig:Gain_multy}.
+		
+%	Постановка експерименту виглядає досить примітивно. На виході з підсилювача (див рис.\ref{fig:electricCircuit}) сигнал подається на дискримінатор з порогом спрацьовування виставленим на рівні достатньому для реєтрації сигналів але достньо високим, щоб шум не зараховувався. Сигнал з дискримінатора у вигляді прямокутного сигналу подається на лічильних, який спрацьовує по зростаючому фронту. Така схема має малий мертвий час порядку $0.5 \mu s$, тому для частоти сигналів $R \sim 5000 \frac{events}{second} \approx 200 \frac{\mu s}{event}$ кількість незарахованих сигналів буде нищівно мала.
+	
+%	Для першої оцінки коефіцієнту підсилення ми припускаємо про таку собі суперпозицію лавин і лінійну маштабованість амплітуди кінцевого сигналу від кількості початкових електронів(далі ми покажемо що це не так).
+	
+%	З розподілу на рис.\ref{fig:fe55_n_probability} знаходимо $\mean{n} = 197.87$ для середньої кількість первинних електронів від акту взаємодії фотону енергії $5.9 keV$ з атомами газу  $Ar70\%+CO_230\%$.
+	
+%	Результати вимірювань представимо у вигляді таблиці \ref{table:GainTotal}. Криві коефіцієнту підсилення G(V) для ряду значень тиску зображено на рис.
 	
 %	Для обрахунку сигналу спершу розглянемо специфіку взамодії гамма-квантів з енергією 5.9 КеВ з Аргоном.
 	
@@ -493,29 +530,43 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 		\hline
 		
 	\end{tabular}
-	\caption{Виміри коефіцієнту підсилення трубки}
+	\caption{Gain measurements}
+%	\caption{Виміри коефіцієнту підсилення трубки}
 	\label{table:GainTotal}
 	\end{table}
 	
 	\begin{figure}[!h]
 	\centering
 	\includegraphics[width=1.0\textwidth]{gain_multyGraph}
-	\caption{ Експериментальні криві коефіцієнту підсилення для набору значень тиску в дрейфовій трубці}
+	\caption{Gain experimental curves for several values of gas pressure in the drift tube.}
+%	\caption{ Експериментальні криві коефіцієнту підсилення для набору значень тиску в дрейфовій трубці}
+	\label{fig:Gain_multy}
 	\end{figure}
 		
 	
+	\subsection{Experimental spectra from the source Fe55}
+%	\subsection{ експериментальний спектр від джерела Fe55}
+		
+	$Fe^{55}$  is a source of gamma-rays with energy of 5.9 keV. In practice we expect to see 2 peaks according to the simulation (see Fig.\ref{fig:fe55_n_probability})
+
+	Before spectra measurements we first have to get a match between a certain signal and the amplitude on the output of the drift tube. In our case such a quantity is an integral from a signal on during the time of a signal.
 	
-	\subsection{ експериментальний спектр від джерела Fe55}
+	The amplified signal from the output of the amplifier is sent in parallel through the linear splitter to the discriminator and delay system. With the signal from discriminator the sampling signal and busy signal is formed. During the busy signal the analysing system does not accept the signal from the drift tube (this is a dead time for this detector system). The delayed signal from the amplifier integrates during the sampling signal and then digitalizes with 10-bit ADC. After digitalizing the signal is sent through the optical channel to PC, where the data is recorded into separate ROOT-file.
 	
-	$Fe^{55}$ - по суті є джерелом гама-квантів з енергією 5.9 КеВ. На практиці  очікуємо побачити 2 піки відповідно до симуляції(дивись рис. \ref{fig:fe55_n_probability}).
+	The stages {\it sampling + storing} are time-consuming and a dead time in this case is bigger than an average time interval between events in the tube(with current detector system) therefore is a big probability to miss detecting an event.
 	
-	Для того, щоб вести мову про спектр спершу необхідно кожному сигналу привести у відповідність число яке лінійно залежало би від амплітуди сигналу на виході з трубки. В нашому випадку такою величиною є інтеграл від сигналу вздовж часу порядку протяжності сигналу.
+	The sampling stage is built in such a way to calibrate for pedestal shelf voltage from the integrator. On the final histogram it will look as a small peak. We will calibrate exactly with regard to it. The second control point is a gamma-ray 5.9 keV photo peak from the source $Fe^{55}$.
 	
-	Підсилений сигнал на виході з підсилювача через через лінійний розгалуджувач  паралельно пускається на дискримінатор та систему затримки. З сигналу від дискримінатора формується сигнал для вибірки сигналу, а також сигнал busy, впродовж якого аналізуча система не приймає сигнал(по суті це є мертвим часом даної детекторної установки). Затриманий сигнал від підсилювача інтегрується протягомі sampling signal і оцифровуєтсья 10 бітним АЦП. Оцифрований сигнал через оптичний канал посилається на ПК де дані гістограмуються в окремий root-файл.
 	
-	Процес sampling + storing досить часо затратний, і мертвий час в даному випадку є більший за середню відстань між подіями в трубці, тому є велика імовірність пропустити події.
+%	$Fe^{55}$ - по суті є джерелом гама-квантів з енергією 5.9 КеВ. На практиці  очікуємо побачити 2 піки відповідно до симуляції(дивись рис. \ref{fig:fe55_n_probability}).
 	
-	Етап самплінгу побудований таким чином, що дозволяє відкалібрувати сигнал для випадку відсутності сигналу в трубці. На кінцевій гістограмі це виливаєтсья в маленький пік. Відносно нього ми і будемо калібруватися. Другою реперною точкою в нас буде фотопік від gamma квантів 5.9 КеВ джерела $Fe^{55}$.
+%	Для того, щоб вести мову про спектр спершу необхідно кожному сигналу привести у відповідність число яке лінійно залежало би від амплітуди сигналу на виході з трубки. В нашому випадку такою величиною є інтеграл від сигналу вздовж часу порядку протяжності сигналу.
+	
+%	Підсилений сигнал на виході з підсилювача через через лінійний розгалуджувач  паралельно пускається на дискримінатор та систему затримки. З сигналу від дискримінатора формує сигнал для вибірки сигналу, а також сигнал busy, впродовж якого аналізуча система не приймає сигнал(по суті це є мертвим часом даної детекторної установки). Затриманий сигнал від підсилювача інтегрується протягомі sampling signal і оцифровуєтсья 10 бітним АЦП. Оцифрований сигнал через оптичний канал посилається на ПК де дані гістограмуються в окремий root-файл.
+	
+%	Процес sampling + storing досить часо затратний, і мертвий час в даному випадку є більший за середню відстань між подіями в трубці, тому є велика імовірність пропустити події.
+	
+%	Етап самплінгу побудований таким чином, що дозволяє відкалібрувати сигнал для випадку відсутності сигналу в трубці. На кінцевій гістограмі це виливаєтсья в маленький пік. Відносно нього ми і будемо калібруватися. Другою реперною точкою в нас буде фотопік від gamma квантів 5.9 КеВ джерела $Fe^{55}$.
 	
 	\begin{table}[!h]
 	\centering
@@ -532,26 +583,40 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 		escape peak & & $97.99 \pm 0.03$ \\
 		\hline
 	\end{tabular}
-	\caption{ Координати центрів піків на симуляціях(в одиницях кількості електронів на подію) та спектр зі спектрометра (вихід 12 бітного АЦП)}
+	\caption{ The coordinate of centers of the peaks}	
+%	\caption{ Координати центрів піків на симуляціях(в одиницях кількості електронів на подію) та спектр зі спектрометра (вихід 12 бітного АЦП)}
 	\end{table}
 	
-	\subsection{ Поправка на кучність просторового заряду}
-	Тестове джерело $fe^{55}$ є джерелом гама квантів енергії $\sim 5.9 keV$ які в разі фотоефекту  з атомами газу аргону утворюють $\sim 200$	 іон-електронних пар. Під дією сильного електричного поля між анодом і катодом така хмара електронів починає дрейфувати в напрямку дроту. Будь який просторовий заряд утворює своє власне е/м поле чим викривлює зовнішнє. В результаті парціальні лавини на окремj первинний електрон хмари утворює лавину першого розміру порівняно з одиничним електроном(як наприклад від іонізації мюооном).
+	\subsection{ Space charge effect}
 	
-	Даний ефект був спостережений на практиці.
+	Photons from $Fe^{55}$ of energy 5.9 keV create $\sim 200$ electron-ion pairs as a result of photoeffect with $Ar70\%+CO_230\%$ gas mixture. As we have a strong electric field between anode and cathode such electron cloud starts to drift toward a wire. The external field distorts as any space charge creates its own e/m field. As a result, partial avalanches per initial electron of a cloud creates an avalanche of size smaller than from a single-electron cloud(as in case muon ionisation).
+	Such an effect indeed was observed.
 	
-	Кожних сигнал на виході з підсилювача відрізняється за амплітудою в залежності від кількості первинних електронів що спровокувала його. То ж цілком справедливо на в експериментальному спектрі сигналів побачити два горби подібно до розрахованого в GARFIELD спектру $p(n)$.
+	Each signal at the output of amplifier differs by amplitude in dependence of initial electron number. Therefore, according to the calculated in GARFIELD spectra $p(n)$, it is expected to see two peaks in experimental spectra.
+		
+%	Тестове джерело $fe^{55}$ є джерелом гама квантів енергії $\sim 5.9 keV$ які в разі фотоефекту  з атомами газу аргону утворюють $\sim 200$	 іон-електронних пар. Під дією сильного електричного поля між анодом і катодом така хмара електронів починає дрейфувати в напрямку дроту. Будь який просторовий заряд утворює своє власне е/м поле чим викривлює зовнішнє. В результаті парціальні лавини на окремий первинний електрон хмари утворює лавину мершого розміру порівняно з одиничним електроном(як наприклад від іонізації мюооном).
+	
+%	Даний ефект був спостережений на практиці.
+	
+%	Кожних сигнал на виході з підсилювача відрізняється за амплітудою в залежності від кількості первинних електронів що спровокувала його. То ж цілком справедливо на в експериментальному спектрі сигналів побачити два горби подібно до розрахованого в GARFIELD спектру $p(n)$.
 	
 	
 \newpage
 \section{Додаток}
 
 \subsection{pressure meter}
-Для вимірювання тиску в дрейфовій трубці використовувався датчик тиску(pressure transmitters) від компанії SensorTechnics$^{\textregistered}$. На приладі зазначено ідентифікаційний код ID:CTE9005AQ4, по якому було знайдено відповідну документацію від виробника \cite{presTransmitDatasheet}.
 
-	Згідно до документації та маркування, даний прилад розрахований на вимірювання тиску в діапазоні від $0 \dots 5~bar$. Проте безпосередньо на самому манометрі вказаний діапазон $0\dots 3,5~bar$. Тож для використання даного приладу ми вдалися до додаткової калібровки.
+	For the pressure measurement inside of drift tube we used pressure transmitters from SensorTechnics$^{\textregistered}$. The devise is marked by ID:CTE9005AQ4, so we used appropriate datasheet  from the manufacturer \cite{presTransmitDatasheet}.
 	
-	Для досягнення даної цілі було використано 2 контрольні точки: показник струму для атмосферного тиску в даний момент, і струм для вакууму. Для досягнення вакууму була використана помпа що понижувала тиск до значення $<0.001~bar$ що можна вважати за вакуум.
+	According to datasheet and marking, this pressure transmitter is designed for pressure measurements in the interval $0 \dots 5~bar$. But on the transmitter is marked an interval $0\dots 3,5~bar$. So to be able to use this devise, we additionally calibrated it.
+	
+	For this purpose we used two control points: the output current value for atmospheric pressure at that point (727 mmHg) and a current for a vacuum. To get a vacuum we used a pump which decreases a pressure to the value  $<0.001~bar$ which we consider as a vacuum.
+	
+%	Для вимірювання тиску в дрейфовій трубці використовувався датчик тиску(pressure transmitters) від компанії SensorTechnics$^{\textregistered}$. На приладі зазначено ідентифікаційний код ID:CTE9005AQ4, по якому було знайдено відповідну документацію від виробника \cite{presTransmitDatasheet}.
+
+%	Згідно до документації та маркування, даний прилад розрахований на вимірювання тиску в діапазоні від $0 \dots 5~bar$. Проте безпосередньо на самому манометрі вказаний діапазон $0\dots 3,5~bar$. Тож для використання даного приладу ми вдалися до додаткової калібровки.
+	
+%	Для досягнення даної цілі було використано 2 контрольні точки: показник струму для атмосферного тиску в даний момент, і струм для вакууму. Для досягнення вакууму була використана помпа що понижувала тиск до значення $<0.001~bar$ що можна вважати за вакуум.
 	
 	\begin{table}[!h]
 	\centering
@@ -567,7 +632,8 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 	\end{tabular}
 	\end{table}
 	
-	Таким чином залежність напруги що знімається на резистрорі $100\Omega$ залежить від тиску по закону:
+	Therefore the voltage dependence taken on a resistor 	$100\Omega$ depends on a pressure as:
+%	Таким чином залежність напруги що знімається на резистрорі $100\Omega$ залежить від тиску по закону:
 	\begin{equation}
 	V = 4.05 + 0.453 \cdot P[bar]
 	\end{equation}

@@ -8,4 +8,6 @@ track_reconstruction/*.pdf
 *.gz
 *.dvi
 *.out
+*.bbl
+*.toc
 *.blg
