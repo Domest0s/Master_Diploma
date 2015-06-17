@@ -547,9 +547,9 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 	\subsection{Experimental spectra from the source Fe55}
 %	\subsection{ експериментальний спектр від джерела Fe55}
 		
-	$Fe^{55}$  is a source of gamma-rays with energy of 5.9 keV. In practice we expect to see 2 peaks according to the simulation (see Fig.\ref{fig:fe55_n_probability})
-
-	Before spectra measurements we first have to get a match between a certain signal and the amplitude on the output of the drift tube. In our case such a quantity is an integral from a signal on during the time of a signal.
+	$Fe^{55}$  is a source of gamma-rays with energy of 5.9 keV. Each signal at the output of amplifier differs by amplitude in dependence of initial electron number. Therefore, according to the calculated in GARFIELD spectra $p(n)$ (see Fig.\ref{fig:fe55_n_probability}), it is expected to see two peaks in experimental spectra.
+	
+	For spectra measurements we first have to get a match between a certain signal and the amplitude on the output of the drift tube. In our case such a quantity is an integral from a signal on during the time of a signal.
 	
 	The amplified signal from the output of the amplifier is sent in parallel through the linear splitter to the discriminator and delay system. With the signal from discriminator the sampling signal and busy signal is formed. During the busy signal the analysing system does not accept the signal from the drift tube (this is a dead time for this detector system). The delayed signal from the amplifier integrates during the sampling signal and then digitalizes with 10-bit ADC. After digitalizing the signal is sent through the optical channel to PC, where the data is recorded into separate ROOT-file.
 	
@@ -557,6 +557,13 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 	
 	The sampling stage is built in such a way to calibrate for pedestal shelf voltage from the integrator. On the final histogram it will look as a small peak. We will calibrate exactly with regard to it. The second control point is a gamma-ray 5.9 keV photo peak from the source $Fe^{55}$.
 	
+	\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{expFitted1750}
+	
+	\caption{Experimental spectra from $Fe^{55}$.}
+	\label{fig:expFitted1750}
+	\end{figure}
 	
 %	$Fe^{55}$ - по суті є джерелом гама-квантів з енергією 5.9 КеВ. На практиці  очікуємо побачити 2 піки відповідно до симуляції(дивись рис. \ref{fig:fe55_n_probability}).
 	
@@ -576,23 +583,30 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 		\hline
 		zero pedestal ($gauss~\mu \pm \bigtriangleup \mu)$ & $301.1 \pm 0.3 $ & 0\\
 		\hline
-		zero pedestal ($mean \pm RMS$) & $300.8 \pm 9.9$ & 0 \\
-		\hline
 		$5.9~keV$ & $2107.4 \pm 0.3$ & $210.42 \pm 0.01$ \\ 
 		\hline
-		escape peak & & $97.99 \pm 0.03$ \\
+		escape peak & $1253.3 \pm 0.9 $ & $97.99 \pm 0.03$ \\
 		\hline
 	\end{tabular}
-	\caption{ The coordinate of centers of the peaks}	
+	\caption{ Coordinates of peaks from Fig.\ref{fig:expFitted1750} and Fig.\ref{fig:fe55_n_probability}}
 %	\caption{ Координати центрів піків на симуляціях(в одиницях кількості електронів на подію) та спектр зі спектрометра (вихід 12 бітного АЦП)}
+	\label{table:peakPos}
 	\end{table}
 	
 	\subsection{ Space charge effect}
 	
 	Photons from $Fe^{55}$ of energy 5.9 keV create $\sim 200$ electron-ion pairs as a result of photoeffect with $Ar70\%+CO_230\%$ gas mixture. As we have a strong electric field between anode and cathode such electron cloud starts to drift toward a wire. The external field distorts as any space charge creates its own e/m field. As a result, partial avalanches per initial electron of a cloud creates an avalanche of size smaller than from a single-electron cloud(as in case muon ionisation).
-	Such an effect indeed was observed.
 	
-	Each signal at the output of amplifier differs by amplitude in dependence of initial electron number. Therefore, according to the calculated in GARFIELD spectra $p(n)$, it is expected to see two peaks in experimental spectra.
+	Such an effect indeed was observed. If we suppose a linear dependence of output signal amplitude from number of initial electrons a relative position for experimental peak should be located at(calibration relatively to the photopeak):
+	
+	\begin{equation}
+			channel_{escapePeak} = \frac{2107.4 - 301.1}{210.42} 98 + 301.1 = 1142.3 \ne 1253.3,
+	\end{equation}
+	
+	
+	
+	
+	    
 		
 %	Тестове джерело $fe^{55}$ є джерелом гама квантів енергії $\sim 5.9 keV$ які в разі фотоефекту  з атомами газу аргону утворюють $\sim 200$	 іон-електронних пар. Під дією сильного електричного поля між анодом і катодом така хмара електронів починає дрейфувати в напрямку дроту. Будь який просторовий заряд утворює своє власне е/м поле чим викривлює зовнішнє. В результаті парціальні лавини на окремий первинний електрон хмари утворює лавину мершого розміру порівняно з одиничним електроном(як наприклад від іонізації мюооном).
 	
