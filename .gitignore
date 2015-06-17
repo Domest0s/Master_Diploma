@@ -1,8 +1,11 @@
 img/*.pdf
+sag/*.pdf
+track_reconstruction/*.pdf
 *.user*
 *~
 *.aux
 *.log
 *.gz
 *.dvi
+*.out
 *.blg
