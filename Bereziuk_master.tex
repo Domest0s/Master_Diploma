@@ -1,18 +1,27 @@
-\documentclass[12pt,a4paper]{article}
-\textheight=230mm
-\textwidth=140mm
-\headsep=20mm
-\columnsep=5mm
+\documentclass[pdftex,14pt]{scrartcl}
+%dvips
+\setlength{\headheight}{1cm}
+\setlength{\evensidemargin}{0.5cm}
+\setlength{\oddsidemargin}{0.5cm}
+\setlength{\textheight}{25cm}
+\setlength{\textwidth}{16cm}
+\setlength{\parindent}{1cm}
+\setlength{\parskip}{0cm}
 
-\setlength{\hoffset}{-2cm}
-\setlength{\voffset}{-2cm}
-\topmargin=1.5cm
-\oddsidemargin=2cm
-\evensidemargin=1.5cm
-\textwidth=17cm
-\textheight=23cm
-\raggedbottom
-\sloppy
+%\documentclass[12pt,a4paper]{article}
+%\textheight=230mm
+%\textwidth=140mm
+%\headsep=20mm
+%\columnsep=5mm
+
+%\setlength{\hoffset}{-2cm}
+%\setlength{\voffset}{-2cm}
+%\topmargin=1.5cm
+%\oddsidemargin=2cm
+%\evensidemargin=1.5cm
+%\textwidth=17cm
+%\textheight=23cm
+
 
 %\DisemulatePackage{setspace}
 \usepackage{setspace}
@@ -39,8 +48,7 @@
 \usepackage{url}
 
 \usepackage[ukrainian]{babel}
-% словник англ /usr/share/myspell/dicts/en_GB.dic
-\author{Bereziuk~Ivan}
+\author{Березюк Іван}
 \graphicspath{ {img/} }
 
 \def\mean#1{\left< #1 \right>}
@@ -51,65 +59,92 @@
 		Науковий керівник(КЯФ): Олег Анатолійович Безшийко \\
 		}
 
+\newcommand{\thesistopicUA}
+{Розробка дизайну дрейфових трубок для детектору в експерименті SHiP}
+
+\newcommand{\thesistopicRU}
+{Ship bla-bla2}
+
+\newcommand{\thesistopicEN}
+{Design studies of a drift tube detector for SHiP experiment}
+
 \begin{document}
-	 \linenumbers
-	\maketitle
+%	 \linenumbers
+%	\maketitle
+
+	\input{title}
+	\input{title2}
+	\input{Annotation}	
 	\newpage
 	
+%	\input{title}
 %	\tableofcontents	
 		
 	\begin{spacing}{1}
 	\input{introduction/intro} 
 	\end{spacing}	
 
- \section{Subject of study}
+ \section{Предмет вивчення}
 	
-	With new requirements for new straw tracker we have important challenge for long straws. It is related to the fact of straw and wire will be subjected by gravitational and electrical forces and cause sagging. Because the straws are oriented horizontally (or almost, in case of stereo views), sagging is expected to cause in most drift tubes a downward deflection, which might be exploited
-when applying a correction.
+	З новими вимогами до STRAW трекера ми отримали важливу задачу, пов’язану з великою довижиною STRAW трубок. Оскільки дріт всередині трубки і сама трубка мають масу можуть розтягуватися, таким чином під дією гравітаційного і електромагнітного поля в середині трубки деформуватися. Очікується значні просідання дроту -- на величини великі порівняно з радіусом трубки. Проте, оскільки трубки будуть орієнтовані горизонтально (або ж майже горизонтально -- на величину стерео кута у U i V шарах), під дією гравітаційного поля напрям провисання дроту у всіх трубках очікується строго вниз. Ця однозначність для напрямку провисання дозволить використання даного дизайну. 
+	
+%	With new requirements for new straw tracker we have important challenge for long straws. It is related to the fact of straw and wire will be subjected by gravitational and electrical forces and cause sagging. Because the straws are oriented horizontally (or almost, in case of stereo views), sagging is expected to cause in most drift tubes a downward deflection, which might be exploited when applying a correction.
 
-	Undoubtedly the presence of sagging may complicate the data processing stage and somewhat worse accuracy of track reconstruction. Primary question we have to investigate "is acceptable sag-admitting design?" and "What a downgrade of precision for sag-admitting design?".
+	Без сумніву, провисання дроту ускладнить процес обробки даних отриманих від дрейфової трубки, вимагатиме особливої калібровки  і можливо понизить точність реконструкції треку. Але найперше питання в тому чи можливо використання в даному експерименті подібний дизайн трубки що допускає провисання? Яким буде погіршення точності реконструкції треків?
 	
-	Results of measurements on prototypes are discussed in Section \ref{sec:Mesurements}.
+	Помимо даного питання необхідно також визначити робочі характеристики дрейфової трубки, і якщо можливо підібрати найкращі параметри трубки для досягнення найвищих робочих показників. Всі ці питання послідовно розкриваються в даній роботі.
 	
-	
-	\section{Signal}	
-	Computer program Garfield \cite{garfield} is designed for detailed simulation of two- and three-dimensional drift chambers. So we will perform STRAW tube studies using this program.
-	
-	Charged particle  create electron-ion pairs wile traverse the drift tube. Electrons under affecting the electric field drift to the wire anode (see figure \ref{fig:track_reconstruction}). During the travel they increase their energy and invoke an avalanche. Therefore they produce a measurable signal.
+%	Undoubtedly the presence of sagging may complicate the data processing stage and somewhat worse accuracy of track reconstruction. Primary question we have to investigate "is acceptable sag-admitting design?" and "What a downgrade of precision for sag-admitting design?".
 
-	Initial electrons drift to the wire due to the electrical field between the wire and the tube wall. Electrons ionize gas molecules due to the high electric field around the wire, especially near the wire when the electric becomes very strong.  Subsequently readout electronics process the signal induced on the wire.
-	  
-	The event registers if signal reach some a threshold voltage (Fig. \ref{fig:signal_example}). So the value of threshold is a key factor on the way of searching optimal setting for signal processing procedure.
+		
+%	Results of measurements on prototypes are discussed in Section \ref{sec:Mesurements}.
+	
+	
+	\section{Сигнал від дрейфової трубки}
+	
+	Комп'ютерна програма Garfield \cite{garfield} спроектована для детальної симуляції двох- та трьохвимірних дрейфових трубок. Тож в даній роботі для дослідних симуляцій будемо користуватися даною програмою.
+	
+	Заряджені частинки під час проходження дрейфової трубки утворюють вздовж траєкторії руху іон-електронні пари. Електрони під дією електричного поля між стінкою трубки і дротом дрейфують в напрямку дроту-анода (схематичне зображення події в трубці дивися Рис.\ref{fig:track_reconstruction}). Таким чином набравши маючи достатньо кінетичної енергії електрони стикаються з атомами газу в трубці чим викликають іонізацію або ж збудження молекул. Таким чином електрони викликають електромагнітні лавини в придротовій області. Іони ж дрейфують в напрямку стінок трубки. Таким чином в колі трубки виникає струм, який подальше аналізується периферійною електронікою. 
+
+	В середовищі Garfield вихідним сигналом з дрейфової трубки є струм. Тож часові та амплітудні характеристики цього сигналу це те, що містить інформацію про "факт проходження частинки" через трубку і розташування треку в трубці. Факт реєстрації сигналу в трубкою здійснюється пороговим методом (дивись Рис.\ref{fig:signal_example}), тобто коли амплітуда вихідного з сигналу перевищує певне порогове значення.
+	
+%	The event registers if signal reach some a threshold voltage (Fig. \ref{fig:signal_example}). So the value of threshold is a key factor on the way of searching optimal setting for signal processing procedure.
+	
 	
 	\begin{table}[h]
 	\centering
-	\caption[Table caption text]{STRAW tube parameters }
+	\caption[Table caption text]{Параметри STRAW трубки}
 	\begin{tabular}{|l|l|p{8cm}|}
 		\hline
-		Parameter name & Value \\
+		Параметр & Значення \\
 		\hline
-		wire & $30\mu m$ gold-plated Tungsten\\
+		дріт & $30\mu m$ gold-plated Tungsten \\
 		\hline
-		straw length & $5m$ \\
+		Довжина трубки & $5m$ \\
 		\hline
-		Voltage & $1750 V$ \\
+		Напруга & $1750 V$ \\
 		\hline
-		inner tube radius & $9.8~mm$ \\
+		Внутрішній радіус трубки & $9.8~mm$ \\
 		\hline
-		wire medium density & $19.3 ~g/cm^3$ \\
+		Густина матеріалу & $19.3 ~g/cm^3$ \\
 		\hline
-		Wire tension& $\sim 90~g$ \\
+		Сила натягу дроту & $\sim 90~g$ \\
 		\hline
-		Working tube gas mixture & $Ar70\% ~CO_2 30\%$ \\
+		Робоча газова суміш & $Ar70\% ~CO_2 30\%$ \\
 		\hline
 	\end{tabular}
 	
 	\label{table:straw_par}
-	\end{table}		
+	\end{table}
 	
-	We have to set threshold as low as possible but enough above from noise level to achieve best rate of true/false detected tracks and highest track registration precision and efficiency.
+	Таким чином ми маємо виставити порогове значення на рівні достатньо низькому для того, щоб не пропускати слабкі сигнали і ефективність реєстрації трубки була якомога вищою, і заодно порогове значення має бути встановлено достатньо високо над рівнем шуму, щоб не реєструвати хибні треки.
 	
-	A variation of the signal height introduces a variation in the time when the signal passes the threshold and is considered to be the main contribution to the STRAW tracker resolution.
+%	We have to set threshold as low as possible but enough above from noise level to achieve best rate of true/false detected tracks and highest track registration precision and efficiency.
+
+	Разом з реєструванням факту проходження частинки через трубку заодно фіксується момент часу коли спрацьовує пороговий тригер. Маючи в арсеналі часову мітку коли трек пройшов крізь трубку або ж будь-яку іншу часову мітку рівновіддалену від даного моменту можемо визначити положення треку відносно положення дроту в трубці.
+	
+		
+%	A variation of the signal height introduces a variation in the time when the signal passes the threshold and is considered to be the main contribution to the STRAW tracker resolution.
 	
 	\begin{figure}[!h]
 	\centering
@@ -171,136 +206,179 @@ when applying a correction.
 	\node[] at (-0.3,1) {drift path};
 	
 	\end{tikzpicture} 
-	\caption{Schematic view of a particle passing the straw and producing
-ionization clusters(orange points). The ionization cluster electrons drift to the wire and induce the signal. The closest distance from the track to the wire, $r_{track}$, and radius of the straw, $r_{tube} = 2.45 mm$, are also indicated. }
+	\caption{Схематичне зображення факту проходження зарядженої частинки через дрейфову трубку. Місця утворення іон-електронних пар вздовж треку зображено оранжевими кружечками. $r_{track}$ - відстань від місцеположення найближчих кластерів до дроту. $r_{tube} = 4.9 mm$ - радіус трубки.}
+%	\caption{Schematic view of a particle passing the straw and producing ionization clusters(orange points). The ionization cluster electrons drift to the wire and induce the signal. The closest distance from the track to the wire, $r_{track}$, and radius of the straw, $r_{tube} = 2.45 mm$, are also indicated. }
 	\label{fig:track_reconstruction}
 	\end{figure}
 
-
-	In the track reconstruction software(GARFIELD \cite{garfield}) an effective TR-relation is used. It only describes the relation between the drift time and the distance from the track to the wire, which differs from the distance to the ionization cluster. The shape of the TR-relation is defined by the drift velocity of the ionization cluster inside the straw. The electric field increases towards the wire, leading to a non linear TR-relation. 
-
-	The drift time versus the unbiased distance distribution and the result of the fit are shown in Fig. \ref{fig:t_r_distr_00}. Noise hits under the main distribution, i.e. at earlier times, are due to primary or secondary particles ($\delta$-rays) passing the straw at a closer distance to the wire, consequently producing an earlier signal. Initial clusters along the track are marked by orange points on the figure.
-	
-	Muon $\mu$ was chosen as test particle for simulation with energy $1GeV$. You can see some of typical tracks from the $\mu$ through the tube Fig.\ref{fig:electron_ion_track},\ref{fig:electron_ion_track_sag}. 
-			
-	
-	\subsection{ Leakage noise}
-	Every time we deal with different kind of noise. Basically it is noise from  leakage current through readout electronics.
-
-	As will be discussed further we analyse not the current invoked by particle but the output voltage from amplifier. In GARFIELD we able convolute input current $I(t)$ with electronic response function (\ref{eq:responce_function}) \footnote{in this equation $t$ in nanoseconds} 
+	При аналізі сигналу потрібно вважати фактор електроніки. Підсилювач що використовується для отримання сигналу амплітуди зручної для аналізу на послідуючих аналізуючих ланкіх дещо викривлює сигнал. Зазвичай такі підсилювачі не чутливі до високочастотної компоненти вхідного сигналу (тому електронна компонента сигналу майже ігнорується електронікою а лишається лише іонна) і функція відгуку виглядає приблизно так:
 	
 	\begin{equation}
 	f_{resp} =  A\cdot(e^{-t/0.005} - e^{-t/0.030})
 	\label{eq:responce_function}
 	\end{equation}
-	
-	Noise is very important for every calculations and it makes bit impact on straw precision and straw efficiency. So we can't rely on results until we receive signal and noise  from real STRAW tube prototypes.
-		
-	Convolution of input current make it smooth. Usually in typical conditions\footnote{as in table \ref{table:straw_par}} noise have gauss distribution with RMS equal to a amplitude of signal from 2000 electron in the tube - electric noise charge (ENC)\footnote{With testing of real 5 m long straws and ultimate examples of electronics we will measure real noise. But for now is only close to reality suggestion concerning whis.}	In fig.\ref{fig:signal_example} you can see deposition from noise marked by blue line.
 
-	On the Fig.\ref{fig:signal_example} The timestamp $Time=0$ correspond to the time muon hits a tube. The convolution function smooths and spreads input current. It mean that the output voltage in GARFIELD does not contain part of signal before hit event timestamp.
+	Тому на виході з підсилювача отримуємо сигнал (див. Рис.\ref{fig:signal_example}), що є згорткою вихідного з кола кола трубки струму та функції відгуку підсилювача (\ref{eq:responce_function}).
+	
+	В ролі тестової частинки для симуляції сигналів у програмному пакеті Garfield виберемо мюон $\mu$ з енергією $1GeV$. Для кожного треку будемо записувати позицію трека і час між хітом і тригеруванням сигналу пороговим методом. Будемо називати цей проміжок часу {\it часом дрейфу} \footnote{Дана назва є дуже зручною в даному контексті при роботі з даними, так як безпосередньо сам час дрейфу (час необхідний початковим іонам щоб дістатися анода-дроту) не реєструється, а лише похідна від нього величина, що відрізняється від часу дрейфу на деяку сталу}.
+	
+	Таким чином маючи на руках величину час дрейфу $t_{drift}$ можемо відновити положення треку $r_{track}$ в трубці. Типовий розподіл часу дрейфу як функції положення треку зображено на Рис.\ref{fig:t_r_distr_00}.
+	
+	
+%	In the track reconstruction software(GARFIELD \cite{garfield}) an effective TR-relation is used. It only describes the relation between the drift time and the distance from the track to the wire, which differs from the distance to the ionization cluster. The shape of the TR-relation is defined by the drift velocity of the ionization cluster inside the straw. The electric field increases towards the wire, leading to a non linear TR-relation. 
+
+%	The drift time versus the unbiased distance distribution and the result of the fit are shown in Fig. \ref{fig:t_r_distr_00}. Noise hits under the main distribution, i.e. at earlier times, are due to primary or secondary particles ($\delta$-rays) passing the straw at a closer distance to the wire, consequently producing an earlier signal. Initial clusters along the track are marked by orange points on the figure.
+	
+%	Muon $\mu$ was chosen as test particle for simulation with energy $1GeV$. You can see some of typical tracks from the $\mu$ through the tube Fig.\ref{fig:electron_ion_track},\ref{fig:electron_ion_track_sag}. 
+			
+	
+	\subsection{Паразитний струм}
+	
+	Для зображення реалістичної картини в наших симуляціях потрібно врахувати фактор наявності побічних паразитичних джерел, що можуть викривлювати сигнал і впливати на кінцевий результат.
+	В каналі периферії трубки очікується шумові паразитичні струми, що є наслідком неідеальності робочих елементів. 
+	
+	Зазвичай неможливо передбачити який вигляд матимуть шумові компоненти сигналу і їх необхідно вимірювати експериментально. Проте на даний момент в нас такої можливості немає, хоча б з тої причини що екземплярів електроніки, яка планується використовуватися для обробки сигналу від дрейфових трубок на даний час немає. Тож як перше наближення для спектру шумової компоненти сигналу було вибрано типове значення з експериментів минулих поколінь.
+	
+	Шум вибирався таким розподілом, щоб на виході з підсилювача "покадрово" мати розподіл гауса з параметром розподілу $\sigma$ рівним амплітуді сигналу від дрейфу 2000 електронів в напрямку від дроту до стінок трубки \footnote{ Поки що це здогадки, проте з наявністю перших екземплярів електроніки можна буде дати шумовій складовій реальну оцінку.}
+	
+	На Рис.\ref{fig:signal_example} шумовий внесок в сигнал позначено синьою лінією.
+	
+	Також слід зазначити той факт, що програмний пакет Garfield в результаті події видає сигнал $I(t)$ що бере свій початок ($t=0$) від моменту утворення первинних іон-електронних кластерів вздовж треку частинки. Відсутність передісторії може вплинути на вихідний сигнал хоч і не значно.
+		
+%	As will be discussed further we analyse not the current invoked by particle but the output voltage from amplifier. In GARFIELD we able convolute input current $I(t)$ with electronic response function (\ref{eq:responce_function}) \footnote{in this equation $t$ in nanoseconds} 
+	
+%	Noise is very important for every calculations and it makes bit impact on straw precision and straw efficiency. So we can't rely on results until we receive signal and noise  from real STRAW tube prototypes.
+		
+%	Convolution of input current make it smooth. Usually in typical conditions\footnote{as in table \ref{table:straw_par}} noise have gauss distribution with RMS equal to a amplitude of signal from 2000 electron in the tube - electric noise charge (ENC)\footnote{With testing of real 5 m long straws and ultimate examples of electronics we will measure real noise. But for now is only close to reality suggestion concerning whis.}	In fig.\ref{fig:signal_example} you can see deposition from noise marked by blue line.
+	
+%	On the Fig.\ref{fig:signal_example} The timestamp $Time=0$ correspond to the time muon hits a tube. The convolution function smooths and spreads input current. It mean that the output voltage in GARFIELD does not contain part of signal before hit event timestamp.
 
 	\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\textwidth]{signal_noise_threshold.eps}
-	\caption{ Example of output signal $V(t)$ after convolution(front-end electronics) from central track(yellow line). The noise component of the same signal depicted by separate blue line. Grin dashed line is a threshold for trigering drift time and equal to $5\sigma$ of noise distribution.}
+	\caption{Приклад симуляції вихідного сигналу V(t) як згортки сигнал + шум з функцією відгуку підсилювача (жовта лінія). Шумова компонента цього ж сигналу зображена синьою лінією окремо. Зелена штрихована лінія позначає порогову напругу для тригерування сигналу, що рівна $5\sigma$ від розподілу шуму. }
+%	\caption{ Example of output signal $V(t)$ after convolution(front-end electronics) from central track(yellow line). The noise component of the same signal depicted by separate blue line. Grin dashed line is a threshold for trigering drift time and equal to $5\sigma$ of noise distribution.}
 	\label{fig:signal_example}
 	\end{figure}
 	
-	\subsection{ STRAW efficiency}
+	\subsection{Ефективність реєстрації STRAW трубки}
 	
-	The interaction of charge particle with gas molecules have probabilistic nature. For short distance tracks(somewhere near the tube wall) the probability of tracks that do produce zero electron/ion pair becomes significantly high.
-		
-	The number of produced ionization clusters directly affects the hit efficiency profile. \cite{kozlinskiy} Smaller ionization length increase hit efficiency because of more ionization clusters per length unit are producing. In GARFIELD we can easily calculate amount of clusters per track. In fig. \ref{fig:cluster_distrib} you can see a distribution of number of clusters per central track for our STRAW tube. It mean that straw efficiency will be lower near the tube wall(see Fig.\ref{fig:efficiency}).
+	Взаємодія зарядженої частинки з молекулами газу носить імовірнісний характер. Для коротких треків (десь поблизу стінки трубки) ймовірність не утворити жодної електрон-іонної пари стає високою.
+	
+	Середня кількість іон-електронних кластерів на одиницю довжини треку визначає ефективність реєстрації. \cite{kozlinskiy} Менша іонізаційна довжина збільшує ефективність із-за більш частого утворення кластерів. В Garfield можна розрахувати  таку статистику. На Рис.\ref{fig:cluster_distrib}  зображено розподіл кількості кластерів для центрального треку для дрейфової трубки з описаними вище параметрами. Зі зменшенням довжини треку в трубці(ближче до периферії трубки) ефективність реєстрації треків буде знижуватиметься(див. Рис.\ref{fig:efficiency}).
+	
+%	The interaction of charge particle with gas molecules have probabilistic nature. For short distance tracks(somewhere near the tube wall) the probability of tracks that do produce zero electron/ion pair becomes significantly high.
+	
+%	The number of produced ionization clusters directly affects the hit efficiency profile. \cite{kozlinskiy} Smaller ionization length increase hit efficiency because of more ionization clusters per length unit are producing. In GARFIELD we can easily calculate amount of clusters per track. In fig. \ref{fig:cluster_distrib} you can see a distribution of number of clusters per central track for our STRAW tube. It mean that straw efficiency will be lower near the tube wall(see Fig.\ref{fig:efficiency}).
 		
 
 	\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.8\textwidth]{periffEff}
-	
-	\caption{ Straw tube efficiency. Result of homogeneous penetrating periphery of tube by 50k events(scaled down by factor of 5. $\dfrac{50k~events}{100 bin}  = 500 \dfrac{eventst}{bin}$).}
+	\caption{ Ефективність реєстрації в пристінковій області трубки. Розрахунок зроблений в програмі Garfield. Даний розподіл - це результат однорідного рівномірного опромінення пристінкової області трубки потоком 50тис. мюонів. $\dfrac{50k~events}{100 bin}  = 500 \dfrac{eventst}{bin}$)}
+%	\caption{ Straw tube efficiency. Result of homogeneous penetrating periphery of tube by 50k events(scaled down by factor of 5. $\dfrac{50k~events}{100 bin}  = 500 \dfrac{eventst}{bin}$).}
 %	Ефективність реєстрації треків в області периферії трубки від рівномірного опромінення 50 тис. треків
 	\label{fig:efficiency}
 	\end{figure}	
 	
 	\begin{figure}[h!]
 		\centering
-		\subfloat[electrons per cluster]{
+		\subfloat[кількість електронів на кластер]{
 			\includegraphics[width=0.45\textwidth]{el_per_cluster} 
 			\label{fig:el_per_cluster} }%
 		\qquad
-		\subfloat[number of clusters per central track]{
+		\subfloat[кількість кластерів на трек]{
 			\includegraphics[width=0.45\textwidth]{cluster_distrib} 
 			\label{fig:cluster_distrib} }%
-			\caption{ Statistics info from GARFIELD about track from $1GeV~ \mu$. Tube described in table \ref{table:straw_par}}
+			\caption{ Статистика з Garfield зв’язана з реєстрацією мюона енергії 1 GeV в дрейфовій трубці (див. Табл.\ref{table:straw_par}).}
+			%\caption{ Statistics info from GARFIELD about track from $1GeV~ \mu$. Tube described in table \ref{table:straw_par}}
 	\end{figure}
 	
-	From the Fig.\ref{fig:efficiency} we can conclude that the efficiency of tube is $100\%$ almost in whole region covered by tube except pre wall region which is quite small. Increasing the gas mixture density or increasing the tube radius for the same gas density can increase tube efficiency.
+	З Рис.\ref{fig:efficiency}  можна зробити висновок, що ефективність реєстрації трубки рівна майже $100\%$  по всій області трубки окрім пристінкової області. Підвищення тиску газу в трубці скоріш за все підвищить ефективність реєстрації, проте й викличе інші проблеми.
+	
+%	From the Fig.\ref{fig:efficiency} we can conclude that the efficiency of tube is $100\%$ almost in whole region covered by tube except pre wall region which is quite small. Increasing the gas mixture density or increasing the tube radius for the same gas density can increase tube efficiency.
 	
 		 
-	\section{Gain}
+	\section{ Коефіцієнт газового підсилення}
 	
-	Lets look on avalanche process in the tube. If multiplication occurs, the increasing of the number of electrons per path $ds$ is given by
+	В цьому розділі буде вестися мова про процеси підсилення сигналу в трубці, про електромагнітні зливи. Якщо присутнє розмноження, то збільшення числа електронів на відрізок часу $ds$ дається виразом:
+	
+%	Lets look on avalanche process in the tube. If multiplication occurs, the increasing of the number of electrons per path $ds$ is given by
 	
 	\begin{equation}
 		dN = N \alpha ds
 		\label{eq:diffGain}
 	\end{equation}
+
+	Коефіцієнт $\alpha$  визначається з характеристик збудження і іонізації атомів, перерізів взаємодії електронів з атомами при достатній енергії та інших ефектів. Це також залежить від характеру поширення електронів і електромагнітного поля. $\alpha$ зростає зі збільшенням напруженості електричного поля і набуває суттєвих значень лише для полів достатньо сильних, достатніх для надання електрону прискорення між зіткненнями  з атомами достатнього для іонізації атомів. Тож можемо припустити, що коефіцієнт $\alpha$  залежить від великої кількості параметрів.
 	
-	The coefficient $\alpha$ is determined by the excitation and ionization cross sections of the electrons that have acquired sufficient energy in the field. It also depends on the various transfer mechanism and electric field E and increases with the field because the ionization cross-section goes up from threshold as the collision energy $\varepsilon$ increases. As we can suppose the coefficient $\alpha$ is of big amount of parameters.
+	Інтегральний коефіцієнт  підсилення $G$ є більш цікавий для нас в даній задачі, отримується з рівняння (\ref{eq:diffGain}) шляхом інтегрування (\ref{eq:diffGain}) по траєкторії руху:
 	
-	The amplification factor $G$ on a wire(that is more interesting for us) is given by integrating (\ref{eq:diffGain}) between the point $s_{min}$ where the field is just sufficient to start the avalanche and the wire radius $a$:
+%	The coefficient $\alpha$ is determined by the excitation and ionization cross sections of the electrons that have acquired sufficient energy in the field. It also depends on the various transfer mechanism and electric field E and increases with the field because the ionization cross-section goes up from threshold as the collision energy $\varepsilon$ increases. As we can suppose the coefficient $\alpha$ is of big amount of parameters.
+	
+%	The amplification factor $G$ on a wire(that is more interesting for us) is given by integrating (\ref{eq:diffGain}) between the point $s_{min}$ where the field is just sufficient to start the avalanche and the wire radius $a$:
 	
 	\begin{equation}
 	G = N/N_0 = exp \int\limits_{s_{min}}^{a} \alpha(s) ds
 	\label{eq:gain}
 	\end{equation}
 	
-	GARFIELD can provide us by amplification factor $G$ for any point of the tube(because  $G$ is coordinate dependent magnitude). The amplification factor is equal almost in whole tube space except neighbourhood near the wire because electric field  becomes significantly high only near the wire (see figs \ref{fig:elFieldCentered}, \ref{fig:elField1mmShifted}). When the wire is shifted from the center of the cube the electric field in area close to the wire is the same as in centered state. So the amplification factor $G$ is quite similar in both cases.
+	Тут 	$s_{min}$ це точка простору в якій електричне поле стає достатньо високим для розвитку іонізаційних процесів, $a$ радіус дроту до якого прискорюється електрон.
+	
+	Програмний пакет GARFIELD дозволяє знайти коефіцієнт підсилення $G$ для будь-якої точки простору($G$ - це координатно залежна величина). Проте коефіцієнт підсилення є приблизно однаковий у всьому об’ємі трубки, окрім придротової області трубки, так як власне в цій області і розвиваються лавини. На рисунках \ref{fig:elFieldCentered}, \ref{fig:elField1mmShifted} показано напруженість електричного поля в поперечному перерізі трубки. Як можна помітити, електричне поле в області дроту не змінюється, тож коефіцієнт газового підсилення $G$ також однаковий для випадку зміщеного дроту і центрованого дроту. 
+	
+%	GARFIELD can provide us by amplification factor $G$ for any point of the tube(because  $G$ is coordinate dependent magnitude). The amplification factor is equal almost in whole tube space except neighbourhood near the wire because electric field  becomes significantly high only near the wire (see figs \ref{fig:elFieldCentered}, \ref{fig:elField1mmShifted}). When the wire is shifted from the center of the cube the electric field in area close to the wire is the same as in centered state. So the amplification factor $G$ is quite similar in both cases.
 	
 	\begin{figure}[!h] 
 		\centering
-		\subfloat[electric field for centered wire]{
+		\subfloat[центрований дріт]{
 			\includegraphics[width=0.45\textwidth]{fieldCentered} 
 			\label{fig:elFieldCentered} }%
 		\qquad
-		\subfloat[electric field for $1 mm$ shifted wire]{
+		\subfloat[дріт зміщений на $1 mm$ відносно центру трубки]{
 			\includegraphics[width=0.45\textwidth]{field_10Sag}
 			\label{fig:elField1mmShifted} }%
-		\caption{Electric field intensity map for different wire position in the cube calculated in GARFIELD software. Conditions for those plots are described in table \ref{table:straw_par} }
+		\caption{ Напруженість електричного поля для різних позицій дроту в трубці розрахована в Garfield. Параметри трубки, і напруга описані в Табл.\ref{table:straw_par}}
+		%\caption{Electric field intensity map for different wire position in the cube calculated in GARFIELD software. Conditions for those plots are described in table \ref{table:straw_par} }
 	\end{figure}
 	
-	Implementation of gain value calculation is not so reliable in GARFIELD(especially fortran version). Gain should be recalculated using Garfield++ (which is newer and take into consideration more effects).
+	Реалізація методу розрахунку коефіцієнту підсилення в Garfield не ідеальна. Вона дає очікуваний порядок значення $G$ проте є деякі розбіжності з експериментом( дивись Розділ \ref{sec:Mesurements}). Тож для отримання більш надійних симуляцій коефіцієнту підсилення і пов'язаних симуляцій в найближчому майбутньому пропонується провести повторні розрахунки в новішому програмному пакеті Garfield++ \cite{garfieldpp} (він новіший, враховує більше ефектів у газах, і розширену оболонкову модель атомів).
+	
+%	Implementation of gain value calculation is not so reliable in GARFIELD(especially fortran version). Gain should be recalculated using Garfield++ (which is newer and take into consideration more effects).
 	
 	\begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.7\textwidth]{gain_1450_2050V}	
-	\caption{Dependence of the gain of the voltage applied to the wire. The rest of STRAW tube settings correspond to table \ref{table:straw_par}. }
+	\includegraphics[width=0.7\textwidth]{gain_1450_2050V}
+	\caption{Залежність коефіцієнту газового підсилення від напруги на дроті. Решта параметрів трубки описано в Таблиці \ref{table:straw_par}.}
+	%\caption{Dependence of the gain of the voltage applied to the wire. The rest of STRAW tube settings correspond to table \ref{table:straw_par}. }
 	\label{fig:gainVoltage}	
 	\end{figure}
 
-	On the Fig.~\ref{fig:gainVoltage} you can see that the gain $G(V)$ have precisely exponential dependence. This is frankly does not inspire confidence. The difference can be up to 100\% (as Rob Veenhof - creator of GARFIELD \cite{garfield} said).
+	З рисунку Рис.\ref{fig:gainVoltage} можна помітити строго експоненціальну залежність коефіцієнту підсилення $G(V)$ від напруги на аноді. Це це вселяє особливої довіри. Таким чином розрахунки необхідно перерахувати на пакетах новіших\footnote{По очікуванням зі слів Rob Veenhof - автора програми GARFIELD \cite{garfield} розходження може бути в плоть до 100\%}.
+	
+%	On the Fig.~\ref{fig:gainVoltage} you can see that the gain $G(V)$ have precisely exponential dependence. This is frankly does not inspire confidence. The difference can be up to 100\% (as Rob Veenhof - creator of GARFIELD \cite{garfield} said).
 	
 	\include{sag/sag}
+	
 	\include{track_reconstruction/track_reconstruction}	
 	
 		
 	\section{Mesurements}
 	\label{sec:Mesurements}	
 	
-	We made measurements of some important drift tube parameters. We had tube of $\sim 50cm$ length. But despite of short tube length we made there the length of the tube is not important.
+%	We made measurements of some important drift tube parameters. We had tube of $\sim 50cm$ length. But despite of short tube length we made there the length of the tube is not important.
 	
-	The tube was manufactured in Dubna(Russian Federation) and was placed into the appropriate  mechanics which include tube fixing, channels for supply of gas mixture, connector for grounding to the tube walls and connector for High Voltage (HV) supply.
+%	The tube was manufactured in Dubna(Russian Federation) and was placed into the appropriate  mechanics which include tube fixing, channels for supply of gas mixture, connector for grounding to the tube walls and connector for High Voltage (HV) supply.
 	
-	The whole system is not compact, therefore we could not avoid the parasitic capacities. Now we will not go into details about it, as we have nothing to compare with because the system is non-separable.
+%	The whole system is not compact, therefore we could not avoid the parasitic capacities. Now we will not go into details about it, as we have nothing to compare with because the system is non-separable.
 
-	The scheme of gas supply, circulation and control in the tube is shown in the Fig.\ref{fig:gasFlowScheme}.
+%	The scheme of gas supply, circulation and control in the tube is shown in the Fig.\ref{fig:gasFlowScheme}.
 	 	
-%	За період перебування в ЦЕРНі було проведено виміри деяких важливих параметрів дрейфової трубки.	Хоча довжина тестової трубки сягала порядку 50 см в довжину, це не завадило провести виміри там де довжина трубки не грає ролі.
+	За період перебування в ЦЕРНі було проведено виміри деяких важливих параметрів дрейфової трубки.	Хоча довжина тестової трубки сягала порядку 50 см в довжину, це не завадило провести виміри там де довжина трубки не грає ролі.
 	
-%	Трубка виготовлена в м. Дубна і поміщена у відповідну механіку яка включає в себе кріплення трубки, має канали для циркуляції і газової суміші в трубці, конектори для підведення землі до стінок трубки та високої напруги до дроту. 
+	Трубка виготовлена в м. Дубна була доставлена в ЦЕРН у відповідну механіку яка включає в себе кріплення трубки, має канали для циркуляції і газової суміші в трубці, конектори до заземлення стінок трубки та високої напруги до дроту.
 	
-%	Вся система не може похвастатися компактністю, тому уникнути "паразитичних" ємностей в місцях де їх не має бути не вдалося. Про міру впливу даного недоліку зараз мова не йде, так як нема з чим порівнювати - конструкція тестового стенду, що включає всі кріплення та фіксації трубки нерозбірна.
+	Вся система не може похвастатися компактністю, тому уникнути "паразитичних" ємностей в місцях де їх не має бути не вдалося. Про міру впливу даного недоліку зараз мова не йде, так як нема з чим порівнювати - конструкція тестового стенду, що включає всі кріплення та фіксації трубки нерозбірна.
 	
 %	Схема підведення, циркуляції і контролю газу в трубці зображена на рисунку \ref{fig:gasFlowScheme}.
 	
@@ -341,11 +419,13 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 		\draw[very thick] (11.5,0) -- (12.5,0) -- (12.5,1);
 		\node[above] at (12.5,1) {atmosphere};
 	\end{tikzpicture}
-	\caption{Gas circulation scheme and circuit of connection of flow control through the drift tube}
+	\caption{Схема циркуляції газу та контролю тиску, і потоку газу через трубку}
+	%\caption{Gas circulation scheme and circuit of connection of flow control through the drift tube}
 	\label{fig:gasFlowScheme}
 	\end{figure}		
 	
-	The electric scheme of the drift tube connection is shown in the Fig.\ref{fig:electricCircuit}.
+	Електрична схема підключення трубки показана на Рис.\ref{fig:electricCircuit}.
+%	The electric scheme of the drift tube connection is shown in the Fig.\ref{fig:electricCircuit}.
 	
 %	Електронна схема підключення дрейфової трубки зображена на рис. \ref{fig:electricCircuit}.
 	
@@ -390,79 +470,79 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 		\node [contact] at (13.7,1) {};
 		\node[right] at (13.7,1) {Out};
 	\end{tikzpicture}
-	\caption{The electric scheme of the drift tube connection }
-	%\caption{Електронна схема підключення тестового зразка дрейфової трубки}
+%	\caption{The electric scheme of the drift tube connection }
+	\caption{Електронна схема підключення тестового зразка дрейфової трубки.}
 	\label{fig:electricCircuit}	
 	\end{figure}
 	
-	As it is seen above, the scheme is very simple.
+%	As it is seen above, the scheme is very simple.
 	
-	For our research we used a source $Fe^{55}$ witch is suitable for a drift tube calibration. In our case $Fe^{55}$ serves as a photon source with almost monochromatic spectra with energy 5.9 keV.
+%	For our research we used a source $Fe^{55}$ witch is suitable for a drift tube calibration. In our case $Fe^{55}$ serves as a photon source with almost monochromatic spectra with energy 5.9 keV.
 	
-	The most important parameter witch we have to measure a Gain $G$ (\ref{eq:gain}).
+%	The most important parameter witch we have to measure a Gain $G$ (\ref{eq:gain}).
 	
-	The idea is to measure a charge that goes thought the tube electric circuit per unit of time and then find a Gain.  We assume that a current $I_0$ though the ampere meter(see fig.~\ref{fig:electricCircuit}) is constant when the radioactive source is absent. The current  is non-zero when the tube detects background particles(for example atmospheric muon flux) or when  a leakage current is present. Therefore, with the presence of a source $Fe^{55}$ all surplus of the current $\bigtriangleup I = I-I_0$ in the drift tube circuit occurs because of gamma ray detection.
+%	The idea is to measure a charge that goes thought the tube electric circuit per unit of time and then find a Gain.  We assume that a current $I_0$ though the ampere meter(see fig.~\ref{fig:electricCircuit}) is constant when the radioactive source is absent. The current  is non-zero when the tube detects background particles(for example atmospheric muon flux) or when  a leakage current is present. Therefore, with the presence of a source $Fe^{55}$ all surplus of the current $\bigtriangleup I = I-I_0$ in the drift tube circuit occurs because of gamma ray detection.
 	
-	On the other hand, we can white $\bigtriangleup I$ in terms of initial amount of electrons and Gain in the following form :
+%	On the other hand, we can white $\bigtriangleup I$ in terms of initial amount of electrons and Gain in the following form :
 	
 	
-%	Ось така досить проста дослідна схема для дослідження зразка трубки.
+	Як видно з рисунку схема для дослідження зразка трубки є досить проста.
 	
-%	В нашій наявності було джерело $Fe^{55}$  яке підходить для калібровки дрейфової трубки. $Fe^{55}$ в нашому випадку виступає джерелом фотонів з майже моноенергетичним спектром з енергією 5.9 keV.
+	В нашій наявності було джерело $Fe^{55}$  яке підходить для калібровки дрейфової трубки. $Fe^{55}$ в нашому випадку виступає джерелом фотонів з майже моноенергетичним спектром з енергією 5.9 keV.
 	
-%	Першим і найбільш важливим параметром, який необхідно виміряти за допомогою даної установки буде коефіцієнт підсилення сигналу в трубці $G$ (\ref{eq:gain}).
+	Першим і найбільш важливим параметром, який необхідно виміряти за допомогою даної установки буде коефіцієнт підсилення сигналу в трубці $G$ (\ref{eq:gain}).
 	
-%	Ідея полягає в тому, щоб виміряти заряд, що протікає через електричне коло трубки за одиницю часу і по ньому знайти коефіцієнт газового підсилення. Будемо дотримуватися тієї точки зору, що струм через амперметр  (see fig.~\ref{fig:electricCircuit}) за відсутності радіоактивного $I_0$ джерела буде сталий з часом. Цей струм може мати місце в результаті струмів витоку в колі або ж фактом реєстрації трубкою фонових частинок(наприклад атмосферних мюонів). Тож за наявності джерела $Fe^{55}$ весь надлишковий струм $\bigtriangleup I = I-I_0$ в колі  дрейфової трубки буде пов’язаний лише з реєстрацією гамма-квантів джерела $Fe^{55}$.
+	Ідея полягає в тому, щоб виміряти заряд, що протікає через електричне коло трубки за одиницю часу і по ньому знайти коефіцієнт газового підсилення. Будемо дотримуватися тієї точки зору, що струм через амперметр  (see fig.~\ref{fig:electricCircuit}) за відсутності радіоактивного $I_0$ джерела буде сталий з часом. Цей струм може мати місце в результаті струмів витоку в колі або ж фактом реєстрації трубкою фонових частинок(наприклад атмосферних мюонів). Тож за наявності джерела $Fe^{55}$ весь надлишковий струм $\bigtriangleup I = I-I_0$ в колі  дрейфової трубки буде пов’язаний лише з реєстрацією гамма-квантів джерела $Fe^{55}$.
 	
-%	З іншої сторони $\bigtriangleup I$  можна виразити через початкову кількість електронів та коефіцієнт газового підсилення (\ref{eq:IGainN0}):
+	З іншої сторони $\bigtriangleup I$  можна виразити через початкову кількість електронів та коефіцієнт газового підсилення (\ref{eq:IGainN0}):
 	
 	\begin{equation}
 	\bigtriangleup I = G N_0 e,
 	\label{eq:IGainN0}
 	\end{equation}
 	
-	where $G$ -- Gain; $N_0$ - number of initial electron-ion pairs per second; e - charge of electron in C.
+%	where $G$ -- Gain; $N_0$ - number of initial electron-ion pairs per second; e - charge of electron in C.
 	
-	On the other hand we can express $N_0$ as:
-%	тут $G$ - коефіцієнт газового підсилення; $N_0$ - кількість початкових електрон-іонних пар за одну секнду, е - заряд електрона в Кл.
+%	On the other hand we can express $N_0$ as:
+	тут $G$ - коефіцієнт газового підсилення; $N_0$ - кількість початкових електрон-іонних пар за одну секнду, е - заряд електрона в Кл.
 	
-%	В свою чергу $N_0$ можна виразити як:
+%В свою чергу $N_0$ можна виразити як:
 	\begin{equation}
 	N_0 = R \cdot \mean{n} = R \cdot\sum_n n p(n) \approx R \int_0^\infty n p(n) dn;
 	\end{equation}
 
-	where  $p(n)$ is a probability that the photon with energy 5.9 keV after interaction with argon atom will create $n$ electron-ion pairs; R is a rate [Hz], as we need to find the amount of electron-ion pairs per one second.
+%	where  $p(n)$ is a probability that the photon with energy 5.9 keV after interaction with argon atom will create $n$ electron-ion pairs; R is a rate [Hz], as we need to find the amount of electron-ion pairs per one second.
 
-	The calculation of the distribution 	$p(n)$  in GARFIELD is shown in Fig.\ref{fig:n_probability}. In the figure we can the two peaks: the main photopeak and the smaller escape peak. 
-%	Тут $p(n)$ - імовірність того, що фотон з енергією 5.9 КеВ провзаємодівши з атомом аргону утворить $n$ електрон іонних пар, R - частоса реєстрації сигналів [Hz] так як нам потрібно знайти кількість електрон-іонних пар за час 1с.	
-%	Розрахунок розподілу $p(n)$ в GARFIELD подано на рисунку \ref{fig:n_probability}. Як видно з рисунку в розподілі $p(n)$ присутньо 2 піки: основний фотопік, та менший escape peak. 
+%	The calculation of the distribution 	$p(n)$  in GARFIELD is shown in Fig.\ref{fig:n_probability}. In the figure we can the two peaks: the main photopeak and the smaller escape peak. 
+	Тут $p(n)$ - імовірність того, що фотон з енергією 5.9 КеВ провзаємодівши з атомом аргону утворить $n$ електрон іонних пар, R - частоса реєстрації сигналів [Hz] так як нам потрібно знайти кількість електрон-іонних пар за час 1с.	
+	Розрахунок розподілу $p(n)$ в GARFIELD подано на рисунку \ref{fig:n_probability}. Як видно з рисунку в розподілі $p(n)$ присутньо 2 піки: основний фотопік, та менший escape peak. 
 	The escape peak for argon is known to be 3.2 keV less than the primary peak. An escape peak is formed by a number of photon interactions in the gas resulting in one primary ionization electron and a re-emitted X-ray with a long mean free path.
 	
 	\begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.7\textwidth]{fe55neGamma}
-	\caption{ p(n) distribution}
-%	\caption{ Розподіл актів взаємодії фотонів енергії 5.9 кеВ з газом Аргону від кількості первинних електронів, утворених в об’ємі дрейфової трубки}
+%	\caption{ p(n) distribution}
+	\caption{ Розподіл актів взаємодії фотонів енергії 5.9 кеВ з газом Аргону від кількості первинних електронів, утворених в об’ємі дрейфової трубки}
 	\label{fig:fe55_n_probability}
 	\end{figure}
 	
-	The realisation of a measurement is very simple.  On the output of amplifier(see Fig.\ref{fig:electricCircuit}) the signal goes to the discriminator with  trigger threshold on the level enough for a signal detection and big enough for noise neglecting. The signal from discriminator goes into counter in rectangle form. The counter triggering for the rising edge. This scheme has a small dead time $~0.5 \mu s$, therefore for the signal frequency of $R \sim 5000 \frac{events}{second} \approx 200 \frac{\mu s}{event}$ the amount of non counted signal is negligibly small.
+%	The realisation of a measurement is very simple.  On the output of amplifier(see Fig.\ref{fig:electricCircuit}) the signal goes to the discriminator with  trigger threshold on the level enough for a signal detection and big enough for noise neglecting. The signal from discriminator goes into counter in rectangle form. The counter triggering for the rising edge. This scheme has a small dead time $~0.5 \mu s$, therefore for the signal frequency of $R \sim 5000 \frac{events}{second} \approx 200 \frac{\mu s}{event}$ the amount of non counted signal is negligibly small.
 	
-	For the first gain estimation we assume about avalanche superposition and linear amplitude dependence of final signal on the amount of initial electrons(later we will show that this is not true).
+%	For the first gain estimation we assume about avalanche superposition and linear amplitude dependence of final signal on the amount of initial electrons(later we will show that this is not true).
 	
-	From the distribution in Fig.\ref{fig:fe55_n_probability} we can find $\mean{n} = 197.87$ for average amount of primary electron because of photon(5.9keV) interaction with atoms of a gas $Ar70\%+CO_230\%$.
+%	From the distribution in Fig.\ref{fig:fe55_n_probability} we can find $\mean{n} = 197.87$ for average amount of primary electron because of photon(5.9keV) interaction with atoms of a gas $Ar70\%+CO_230\%$.
 	
-	The results of measurements are shown in the table \ref{table:GainTotal}. The Gain curves G(V) for several pressure values are shown in the Fig.\ref{fig:Gain_multy}.
+%	The results of measurements are shown in the table \ref{table:GainTotal}. The Gain curves G(V) for several pressure values are shown in the Fig.\ref{fig:Gain_multy}.
 		
-%	Постановка експерименту виглядає досить примітивно. На виході з підсилювача (див рис.\ref{fig:electricCircuit}) сигнал подається на дискримінатор з порогом спрацьовування виставленим на рівні достатньому для реєтрації сигналів але достньо високим, щоб шум не зараховувався. Сигнал з дискримінатора у вигляді прямокутного сигналу подається на лічильних, який спрацьовує по зростаючому фронту. Така схема має малий мертвий час порядку $0.5 \mu s$, тому для частоти сигналів $R \sim 5000 \frac{events}{second} \approx 200 \frac{\mu s}{event}$ кількість незарахованих сигналів буде нищівно мала.
+	Постановка експерименту виглядає досить примітивно. На виході з підсилювача (див рис.\ref{fig:electricCircuit}) сигнал подається на дискримінатор з порогом спрацьовування виставленим на рівні достатньому для реєтрації сигналів але достньо високим, щоб шум не зараховувався. Сигнал з дискримінатора у вигляді прямокутного сигналу подається на лічильних, який спрацьовує по зростаючому фронту. Така схема має малий мертвий час порядку $0.5 \mu s$, тому для частоти сигналів $R \sim 5000 \frac{events}{second} \approx 200 \frac{\mu s}{event}$ кількість незарахованих сигналів буде нищівно мала.
 	
-%	Для першої оцінки коефіцієнту підсилення ми припускаємо про таку собі суперпозицію лавин і лінійну маштабованість амплітуди кінцевого сигналу від кількості початкових електронів(далі ми покажемо що це не так).
+	Для першої оцінки коефіцієнту підсилення ми припускаємо про таку собі суперпозицію лавин і лінійну маштабованість амплітуди кінцевого сигналу від кількості початкових електронів(далі ми покажемо що це не так).
 	
-%	З розподілу на рис.\ref{fig:fe55_n_probability} знаходимо $\mean{n} = 197.87$ для середньої кількість первинних електронів від акту взаємодії фотону енергії $5.9 keV$ з атомами газу  $Ar70\%+CO_230\%$.
+	З розподілу на рис.\ref{fig:fe55_n_probability} знаходимо $\mean{n} = 197.87$ для середньої кількість первинних електронів від акту взаємодії фотону енергії $5.9 keV$ з атомами газу  $Ar70\%+CO_230\%$.
 	
-%	Результати вимірювань представимо у вигляді таблиці \ref{table:GainTotal}. Криві коефіцієнту підсилення G(V) для ряду значень тиску зображено на рис.
+	Результати вимірювань представимо у вигляді таблиці \ref{table:GainTotal}. Криві коефіцієнту підсилення G(V) для ряду значень тиску зображено на рис.
 	
-%	Для обрахунку сигналу спершу розглянемо специфіку взамодії гамма-квантів з енергією 5.9 КеВ з Аргоном.
+	Для обрахунку сигналу спершу розглянемо специфіку взамодії гамма-квантів з енергією 5.9 КеВ з Аргоном.
 	
 	\begin{table}[!h]
 	\centering
@@ -530,114 +610,134 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 		\hline
 		
 	\end{tabular}
-	\caption{Gain measurements}
-%	\caption{Виміри коефіцієнту підсилення трубки}
+%	\caption{Gain measurements}
+	\caption{Виміри коефіцієнту підсилення трубки}
 	\label{table:GainTotal}
 	\end{table}
 	
 	\begin{figure}[!h]
 	\centering
 	\includegraphics[width=1.0\textwidth]{gain_multyGraph}
-	\caption{Gain experimental curves for several values of gas pressure in the drift tube.}
-%	\caption{ Експериментальні криві коефіцієнту підсилення для набору значень тиску в дрейфовій трубці}
+%	\caption{Gain experimental curves for several values of gas pressure in the drift tube.}
+	\caption{ Експериментальні криві коефіцієнту підсилення для набору значень тиску в дрейфовій трубці}
 	\label{fig:Gain_multy}
 	\end{figure}
 		
 	
-	\subsection{Experimental spectra from the source Fe55}
-%	\subsection{ експериментальний спектр від джерела Fe55}
+%	\subsection{Experimental spectra from the source Fe55}
+	\subsection{ Експериментальний спектр від джерела Fe55}
 		
-	$Fe^{55}$  is a source of gamma-rays with energy of 5.9 keV. Each signal at the output of amplifier differs by amplitude in dependence of initial electron number. Therefore, according to the calculated in GARFIELD spectra $p(n)$ (see Fig.\ref{fig:fe55_n_probability}), it is expected to see two peaks in experimental spectra.
+%	$Fe^{55}$  is a source of gamma-rays with energy of 5.9 keV. Each signal at the output of amplifier differs by amplitude in dependence of initial electron number. Therefore, according to the calculated in GARFIELD spectra $p(n)$ (see Fig.\ref{fig:fe55_n_probability}), it is expected to see two peaks in experimental spectra.
 	
-	For spectra measurements we first have to get a match between a certain signal and the amplitude on the output of the drift tube. In our case such a quantity is an integral from a signal on during the time of a signal.
+%	For spectra measurements we first have to get a match between a certain signal and the amplitude on the output of the drift tube. In our case such a quantity is an integral from a signal on during the time of a signal.
 	
-	The amplified signal from the output of the amplifier is sent in parallel through the linear splitter to the discriminator and delay system. With the signal from discriminator the sampling signal and busy signal is formed. During the busy signal the analysing system does not accept the signal from the drift tube (this is a dead time for this detector system). The delayed signal from the amplifier integrates during the sampling signal and then digitalizes with 10-bit ADC. After digitalizing the signal is sent through the optical channel to PC, where the data is recorded into separate ROOT-file.
+%	The amplified signal from the output of the amplifier is sent in parallel through the linear splitter to the discriminator and delay system. With the signal from discriminator the sampling signal and busy signal is formed. During the busy signal the analysing system does not accept the signal from the drift tube (this is a dead time for this detector system). The delayed signal from the amplifier integrates during the sampling signal and then digitalizes with 10-bit ADC. After digitalizing the signal is sent through the optical channel to PC, where the data is recorded into separate ROOT-file.
 	
-	The stages {\it sampling + storing} are time-consuming and a dead time in this case is bigger than an average time interval between events in the tube(with current detector system) therefore is a big probability to miss detecting an event.
+%	The stages {\it sampling + storing} are time-consuming and a dead time in this case is bigger than an average time interval between events in the tube(with current detector system) therefore is a big probability to miss detecting an event.
 	
-	The sampling stage is built in such a way to calibrate for pedestal shelf voltage from the integrator. On the final histogram it will look as a small peak. We will calibrate exactly with regard to it. The second control point is a gamma-ray 5.9 keV photo peak from the source $Fe^{55}$.
+%	The sampling stage is built in such a way to calibrate for pedestal shelf voltage from the integrator. On the final histogram it will look as a small peak. We will calibrate exactly with regard to it. The second control point is a gamma-ray 5.9 keV photo peak from the source $Fe^{55}$.
+	
+	
+	
+	$Fe^{55}$ - по суті є джерелом гама-квантів з енергією 5.9 КеВ. На практиці  очікуємо побачити 2 піки відповідно до симуляції(дивись рис. \ref{fig:fe55_n_probability}).
+	
+	Для того, щоб вести мову про спектр спершу необхідно кожному сигналу привести у відповідність число яке лінійно залежало би від амплітуди сигналу на виході з трубки. В нашому випадку такою величиною є інтеграл від сигналу вздовж часу порядку протяжності сигналу.
+	
+	Підсилений сигнал на виході з підсилювача через через лінійний розгалуджувач  паралельно пускається на дискримінатор та систему затримки. З сигналу від дискримінатора формує сигнал для вибірки сигналу, а також сигнал busy, впродовж якого аналізуча система не приймає сигнал(по суті це є мертвим часом даної детекторної установки). Затриманий сигнал від підсилювача інтегрується протягомі sampling signal і оцифровуєтсья 10 бітним АЦП. Оцифрований сигнал через оптичний канал посилається на ПК де дані гістограмуються в окремий root-файл.
+	
+	Процес sampling + storing досить часо затратний, і мертвий час в даному випадку є більший за середню відстань між подіями в трубці, тому є велика імовірність пропустити події.
+	
+	Етап самплінгу побудований таким чином, що дозволяє відкалібрувати сигнал для випадку відсутності сигналу в трубці. На кінцевій гістограмі це виливаєтсья в маленький пік. Відносно нього ми і будемо калібруватися. Другою реперною точкою в нас буде фотопік від gamma квантів 5.9 КеВ джерела $Fe^{55}$.
 	
 	\begin{figure}
 	\centering
 	\includegraphics[width=0.7\textwidth]{expFitted1750}
-	
-	\caption{Experimental spectra from $Fe^{55}$.}
+	\caption{ Експериментальний спектр від $Fe^{55}$ в одиницях каналів АЦП}
+%	\caption{Experimental spectra from $Fe^{55}$.}
 	\label{fig:expFitted1750}
 	\end{figure}
-	
-%	$Fe^{55}$ - по суті є джерелом гама-квантів з енергією 5.9 КеВ. На практиці  очікуємо побачити 2 піки відповідно до симуляції(дивись рис. \ref{fig:fe55_n_probability}).
-	
-%	Для того, щоб вести мову про спектр спершу необхідно кожному сигналу привести у відповідність число яке лінійно залежало би від амплітуди сигналу на виході з трубки. В нашому випадку такою величиною є інтеграл від сигналу вздовж часу порядку протяжності сигналу.
-	
-%	Підсилений сигнал на виході з підсилювача через через лінійний розгалуджувач  паралельно пускається на дискримінатор та систему затримки. З сигналу від дискримінатора формує сигнал для вибірки сигналу, а також сигнал busy, впродовж якого аналізуча система не приймає сигнал(по суті це є мертвим часом даної детекторної установки). Затриманий сигнал від підсилювача інтегрується протягомі sampling signal і оцифровуєтсья 10 бітним АЦП. Оцифрований сигнал через оптичний канал посилається на ПК де дані гістограмуються в окремий root-файл.
-	
-%	Процес sampling + storing досить часо затратний, і мертвий час в даному випадку є більший за середню відстань між подіями в трубці, тому є велика імовірність пропустити події.
-	
-%	Етап самплінгу побудований таким чином, що дозволяє відкалібрувати сигнал для випадку відсутності сигналу в трубці. На кінцевій гістограмі це виливаєтсья в маленький пік. Відносно нього ми і будемо калібруватися. Другою реперною точкою в нас буде фотопік від gamma квантів 5.9 КеВ джерела $Fe^{55}$.
 	
 	\begin{table}[!h]
 	\centering
 	\begin{tabular}{|l|r|l|}
 		\hline
-		point of reference & channel & electrons per cluster(simulations)\\
+		контрольна точка & канал & к-сть електронів на подію(симуляція) \\
 		\hline
-		zero pedestal ($gauss~\mu \pm \bigtriangleup \mu)$ & $301.1 \pm 0.3 $ & 0\\
+		п'єдестал ($gauss~\mu \pm \bigtriangleup \mu)$ & $301.1 \pm 0.3 $ & 0\\
 		\hline
 		$5.9~keV$ & $2107.4 \pm 0.3$ & $210.42 \pm 0.01$ \\ 
 		\hline
 		escape peak & $1253.3 \pm 0.9 $ & $97.99 \pm 0.03$ \\
 		\hline
 	\end{tabular}
-	\caption{ Coordinates of peaks from Fig.\ref{fig:expFitted1750} and Fig.\ref{fig:fe55_n_probability}}
-%	\caption{ Координати центрів піків на симуляціях(в одиницях кількості електронів на подію) та спектр зі спектрометра (вихід 12 бітного АЦП)}
+%	\caption{ Coordinates of peaks from Fig.\ref{fig:expFitted1750} and Fig.\ref{fig:fe55_n_probability}}
+	\caption{ Координати центрів піків на симуляціях(в одиницях кількості електронів на подію) та спектр зі спектрометра (вихід 12 бітного АЦП)}
 	\label{table:peakPos}
 	\end{table}
 	
-	\subsection{ Space charge effect}
+	\subsection{Ефект просторового заряду}
 	
-	Photons from $Fe^{55}$ of energy 5.9 keV create $\sim 200$ electron-ion pairs as a result of photoeffect with $Ar70\%+CO_230\%$ gas mixture. As we have a strong electric field between anode and cathode such electron cloud starts to drift toward a wire. The external field distorts as any space charge creates its own e/m field. As a result, partial avalanches per initial electron of a cloud creates an avalanche of size smaller than from a single-electron cloud(as in case muon ionisation).
+%	Photons from $Fe^{55}$ of energy 5.9 keV create $\sim 200$ electron-ion pairs as a result of photoeffect with $Ar70\%+CO_230\%$ gas mixture. As we have a strong electric field between anode and cathode such electron cloud starts to drift toward a wire. The external field distorts as any space charge creates its own e/m field. As a result, partial avalanches per initial electron of a cloud creates an avalanche of size smaller than from a single-electron cloud(as in case muon ionisation).
 	
-	Such an effect indeed was observed. If we suppose a linear dependence of output signal amplitude from number of initial electrons a relative position for experimental peak should be located at(calibration relatively to the photopeak):
+%	Such an effect indeed was observed. If we suppose a linear dependence of output signal amplitude from number of initial electrons a relative position for experimental peak should be located at(calibration relatively to the photopeak):
+	
+	
+	Тестове джерело $fe^{55}$ є джерелом гама квантів енергії $\sim 5.9 keV$ які в разі фотоефекту  з атомами газу аргону утворюють $\sim 200$	 іон-електронних пар. Під дією сильного електричного поля між анодом і катодом така хмара електронів починає дрейфувати в напрямку дроту. Будь який просторовий заряд утворює своє власне е/м поле чим викривлює зовнішнє. В результаті парціальні лавини на окремий первинний електрон хмари утворює лавину мершого розміру порівняно з одиничним електроном(як наприклад від іонізації мюооном).
+	
+	Даний ефект був спостережений на практиці.
+
+	Такі висновки були отримані  з міркувань лінійного підсилення сигналу підсилювачем.
+	
+%	Кожних сигнал на виході з підсилювача відрізняється за амплітудою в залежності від кількості первинних електронів що спровокувала його. То ж цілком справедливо на в експериментальному спектрі сигналів побачити два горби подібно до розрахованого в GARFIELD спектру $p(n)$.
+
+	Відкалібрувавшись з таблиці \ref{table:peakPos} на фотопік - положення піку вильоту не збігається з очікуваннями.
 	
 	\begin{equation}
 			channel_{escapePeak} = \frac{2107.4 - 301.1}{210.42} 98 + 301.1 = 1142.3 \ne 1253.3,
 	\end{equation}
 	
 	
+	\section{ Висновки}
 	
+	В даній роботі було показано, що реконструкція положення треку в горизонтально розташованій дрейфовій трубці, яка допускає провисання дроту є можливим. Точність реконструкції треків, перпендикулярних до напряму провисання дроту для випадку зміщеного дроту така ж як і  у випадку центрованого дроту.
 	
-	    
+	Розрахунки коефіцієнту газового підсилення в програмному пакеті GARFIELD менші в $\sim 2.5$ рази за значення отримані експериментально для прототипу трубки. Симуляції коефіцієнту підсилення необхідно перерахувати в пакеті Garfield++. 
+	
+	Була розроблена методика знаходження профілю провисання дроту, яка необхідна для калібровки дрейфових трубок, що базується на порівнянні розподілів часу дрейфу для кожної з секцій дрейфової трубки. Точність визначення положення дроту з використанням цього методу краще як 50мкм але може бути значно поліпшений з використанням комплексного підходу для реконструкції одразу повного профілю провисання дроту.
+	
+	На прототипі дрейфової трубки були проведені виміри коефіцієнту газового підсилення в трубці в області робочих напруг і тисків. 
+	
+	При калібровці дрейфової трубки з використанням радоактивного джерела фотонів $Fe^{55}$ спостерігався ефект просторового заряду.
+	
+\section{ Подяка}
+
+	Передусім хочу висловити подяку Боярському Олексію(Boyarsky Alexey) та Шапошнікову Михайлові(Mikhail Shaposhnikov) за надання можливості виконувати магістерську роботу в ЦЕРНі.
+	Висловлюю величезну подяку науковому керівнику Massimiliano  Ferro-Luzzi за сприяння і всебічну допомогу у виконанні дипломної роботи, а також Rob Veenhof за допомогу при роботі в пакеті GARFIELD. У вимірюваннях з дрейфовою трубкою разом зі мною приймали участь Юрій Гус та Сергій Мовчан які допомагали мені в розумінні фізичних ефектів і ознайомленні з експериментальним технічним устаткуванням. Висловлюю подяку своєму керівнику від КЯФ Безшийко Олег Анатолійовичу за допомогу з дипломною роботою та вирішенням організаційних питань.
+	Особливу подяку висловлюю Яригіній Оксані за моральну підтримку і допомогу в роботі над текстом.
 		
-%	Тестове джерело $fe^{55}$ є джерелом гама квантів енергії $\sim 5.9 keV$ які в разі фотоефекту  з атомами газу аргону утворюють $\sim 200$	 іон-електронних пар. Під дією сильного електричного поля між анодом і катодом така хмара електронів починає дрейфувати в напрямку дроту. Будь який просторовий заряд утворює своє власне е/м поле чим викривлює зовнішнє. В результаті парціальні лавини на окремий первинний електрон хмари утворює лавину мершого розміру порівняно з одиничним електроном(як наприклад від іонізації мюооном).
-	
-%	Даний ефект був спостережений на практиці.
-	
-%	Кожних сигнал на виході з підсилювача відрізняється за амплітудою в залежності від кількості первинних електронів що спровокувала його. То ж цілком справедливо на в експериментальному спектрі сигналів побачити два горби подібно до розрахованого в GARFIELD спектру $p(n)$.
-	
-	
 \newpage
 \section{Додаток}
 
-\subsection{pressure meter}
+\subsection{Датчик тиску}
 
-	For the pressure measurement inside of drift tube we used pressure transmitters from SensorTechnics$^{\textregistered}$. The devise is marked by ID:CTE9005AQ4, so we used appropriate datasheet  from the manufacturer \cite{presTransmitDatasheet}.
+%	For the pressure measurement inside of drift tube we used pressure transmitters from SensorTechnics$^{\textregistered}$. The devise is marked by ID:CTE9005AQ4, so we used appropriate datasheet  from the manufacturer \cite{presTransmitDatasheet}.
 	
-	According to datasheet and marking, this pressure transmitter is designed for pressure measurements in the interval $0 \dots 5~bar$. But on the transmitter is marked an interval $0\dots 3,5~bar$. So to be able to use this devise, we additionally calibrated it.
+%	According to datasheet and marking, this pressure transmitter is designed for pressure measurements in the interval $0 \dots 5~bar$. But on the transmitter is marked an interval $0\dots 3,5~bar$. So to be able to use this devise, we additionally calibrated it.
 	
-	For this purpose we used two control points: the output current value for atmospheric pressure at that point (727 mmHg) and a current for a vacuum. To get a vacuum we used a pump which decreases a pressure to the value  $<0.001~bar$ which we consider as a vacuum.
+%	For this purpose we used two control points: the output current value for atmospheric pressure at that point (727 mmHg) and a current for a vacuum. To get a vacuum we used a pump which decreases a pressure to the value  $<0.001~bar$ which we consider as a vacuum.
 	
-%	Для вимірювання тиску в дрейфовій трубці використовувався датчик тиску(pressure transmitters) від компанії SensorTechnics$^{\textregistered}$. На приладі зазначено ідентифікаційний код ID:CTE9005AQ4, по якому було знайдено відповідну документацію від виробника \cite{presTransmitDatasheet}.
+	Для вимірювання тиску в дрейфовій трубці використовувався датчик тиску(pressure transmitters) від компанії SensorTechnics$^{\textregistered}$. На приладі зазначено ідентифікаційний код ID:CTE9005AQ4, по якому було знайдено відповідну документацію від виробника \cite{presTransmitDatasheet}.
 
-%	Згідно до документації та маркування, даний прилад розрахований на вимірювання тиску в діапазоні від $0 \dots 5~bar$. Проте безпосередньо на самому манометрі вказаний діапазон $0\dots 3,5~bar$. Тож для використання даного приладу ми вдалися до додаткової калібровки.
+	Згідно до документації та маркування, даний прилад розрахований на вимірювання тиску в діапазоні від $0 \dots 5~bar$. Проте безпосередньо на самому манометрі вказаний діапазон $0\dots 3,5~bar$. Тож для використання даного приладу ми вдалися до додаткової калібровки.
 	
-%	Для досягнення даної цілі було використано 2 контрольні точки: показник струму для атмосферного тиску в даний момент, і струм для вакууму. Для досягнення вакууму була використана помпа що понижувала тиск до значення $<0.001~bar$ що можна вважати за вакуум.
+	Для досягнення даної цілі було використано 2 контрольні точки: показник струму для атмосферного тиску в даний момент, і струм для вакууму. Для досягнення вакууму була використана помпа що понижувала тиск до значення $<0.001~bar$ що можна вважати за вакуум.
 	
 	\begin{table}[!h]
 	\centering
 	\caption{ Control points for calibration of pressure transmitter.}
 	\begin{tabular}{|l|l|}
 		\hline
-		pressure [bar] & voltage[V] \\
+		тиск [bar] & напруга [V] \\
 		\hline
 		<0.001 & 0.405\\
 		\hline
@@ -646,8 +746,8 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 	\end{tabular}
 	\end{table}
 	
-	Therefore the voltage dependence taken on a resistor 	$100\Omega$ depends on a pressure as:
-%	Таким чином залежність напруги що знімається на резистрорі $100\Omega$ залежить від тиску по закону:
+%	Therefore the voltage dependence taken on a resistor 	$100\Omega$ depends on a pressure as:
+	Таким чином залежність напруги що знімається на резистрорі $100\Omega$ залежить від тиску по закону:
 	\begin{equation}
 	V = 4.05 + 0.453 \cdot P[bar]
 	\end{equation}
@@ -660,9 +760,9 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 \begin{thebibliography}{00}
 	\bibitem{garfield} http://garfield.web.cern.ch/garfield
 
-	\bibitem{kozlinskiy} thesis Kozlinskiy.pdf 
+	\bibitem{kozlinskiy}Outer Tracker calibration and open charm production cross section measurement at LHCb. Kozlinskiy A.V. 2013. 
 	
-	\bibitem{ship_TP} Technical Proposal from 8 april 2015: arXiv:1504.04956v1	
+	\bibitem{ship_TP} SHiP Technical Proposal from 8 april 2015: arXiv:1504.04956v1	
 	
 	\bibitem{NA62_TDR} F. Hahn, F. Ambrosino, A. Ceccucci, H. Danielsson, N. Doble, F. Fantechi, A. Kluge, C. Lazzeroni, M. Lenti, G. Ruggiero, M. Sozzi, P. Valente, and R. Wanke. NA62: Technical Design Document. Technical Report NA62-10-07, CERN, Geneva
 	
@@ -670,6 +770,15 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 	
 	\bibitem{EoI} W. Bonivento, A. Boyarsky, H. Dijkstra, U. Egede, M. Ferro-Luzzi, B. Goddard, A. Golutvin, D. Gorbunov, R. Jacobsson, J. Panman, M. Patel, O. Ruchayskiy, T. Ruf, N. Serra, M. Shaposhnikov, and D. Treille. Proposal to Search for Heavy Neutral Leptons at the SPS. Technical Report CERN-SPSC-2013-024. SPSC-EOI-010, CERN, Geneva (Oct, 2013).
 	
-\end{thebibliography}
+	\bibitem{garfieldpp} Garfield++ is a toolkit for the detailed simulation of particle detectors that use gas and semi-conductors as sensitive medium. http://garfieldpp.web.cern.ch/garfieldpp/
+
 	
+	\bibitem{wouter} Time Calibration of Hera-B the Outer Tracker Chambers in a Cosmic Ray Setup  at NIKHEFF, W. Hulsbergen, O. Steinkamp,  G. van Apeldorn, M. Brruinsma and W. Ruckstuhl. January 2000.
+	
+	\bibitem{Particle_Detection} Particle Detection with Drift Chambers, Walter Blum, Werner Riegler, Luigi Rolandi. 2008 Springer-Verlag Berlin Heidelberg
+	
+	\bibitem{escape_peak} GASEOUS DETECTORS FUNDAMENTS, Fabio Sauli, CERN Geneva Switzerland, 2011.
+	
+	\bibitem{escape2} Thermal Stretching of GEM Foils and Characterization of Triple-GEM Detectors  for Uses in Astronomy, Bryant Benson, april, 2011.
+\end{thebibliography}
 \end{document}
