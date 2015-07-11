@@ -30,9 +30,9 @@
 \usepackage[utf8x]{inputenc}
 \usepackage{color}
 
-\usepackage{tikz}
+\usepackage{tikz} 
 \usepackage{circuitikz}
-\usetikzlibrary{circuits}
+\usetikzlibrary{circuits} 
 \usetikzlibrary{circuits.ee}
 \usetikzlibrary{circuits.ee.IEC}
 \usetikzlibrary{circuits.logic.IEC}
@@ -44,6 +44,7 @@
 \usetikzlibrary{decorations.pathmorphing}
 
 \usepackage{lineno}
+\usepackage{comment}
 
 \usepackage{url}
 
@@ -60,13 +61,13 @@
 		}
 
 \newcommand{\thesistopicUA}
-{Розробка дизайну дрейфових трубок для детектору в експерименті SHiP}
+{Початкова розробка дизайну дрейфових трубок для детектору в експерименті SHiP}
 
 \newcommand{\thesistopicRU}
-{Ship bla-bla2}
+{Начальная разработка дизайна дрейфовых трубок для детектора в эксперименте SHiP}
 
 \newcommand{\thesistopicEN}
-{Design studies of a drift tube detector for SHiP experiment}
+{Preliminary design studies of a drift tube detector for SHiP experiment}
 
 \begin{document}
 %	 \linenumbers
@@ -74,20 +75,25 @@
 
 	\input{title}
 	\input{title2}
+	\pagestyle{empty}
 	\input{Annotation}	
 	\newpage
 	
 %	\input{title}
-%	\tableofcontents	
-		
-	\begin{spacing}{1}
+	\tableofcontents	 
+	\newpage
+	
+	\pagestyle{plain}
+	\pagenumbering{arabic}
+  
+	\begin{spacing}{1.5} 
 	\input{introduction/intro} 
-	\end{spacing}	
+	
 
- \section{Предмет вивчення}
+ \section{Предмет вивчення} 
 	
 	З новими вимогами до STRAW трекера ми отримали важливу задачу, пов’язану з великою довижиною STRAW трубок. Оскільки дріт всередині трубки і сама трубка мають масу можуть розтягуватися, таким чином під дією гравітаційного і електромагнітного поля в середині трубки деформуватися. Очікується значні просідання дроту -- на величини великі порівняно з радіусом трубки. Проте, оскільки трубки будуть орієнтовані горизонтально (або ж майже горизонтально -- на величину стерео кута у U i V шарах), під дією гравітаційного поля напрям провисання дроту у всіх трубках очікується строго вниз. Ця однозначність для напрямку провисання дозволить використання даного дизайну. 
-	
+
 %	With new requirements for new straw tracker we have important challenge for long straws. It is related to the fact of straw and wire will be subjected by gravitational and electrical forces and cause sagging. Because the straws are oriented horizontally (or almost, in case of stereo views), sagging is expected to cause in most drift tubes a downward deflection, which might be exploited when applying a correction.
 
 	Без сумніву, провисання дроту ускладнить процес обробки даних отриманих від дрейфової трубки, вимагатиме особливої калібровки  і можливо понизить точність реконструкції треку. Але найперше питання в тому чи можливо використання в даному експерименті подібний дизайн трубки що допускає провисання? Яким буде погіршення точності реконструкції треків?
@@ -109,6 +115,7 @@
 	В середовищі Garfield вихідним сигналом з дрейфової трубки є струм. Тож часові та амплітудні характеристики цього сигналу це те, що містить інформацію про "факт проходження частинки" через трубку і розташування треку в трубці. Факт реєстрації сигналу в трубкою здійснюється пороговим методом (дивись Рис.\ref{fig:signal_example}), тобто коли амплітуда вихідного з сигналу перевищує певне порогове значення.
 	
 %	The event registers if signal reach some a threshold voltage (Fig. \ref{fig:signal_example}). So the value of threshold is a key factor on the way of searching optimal setting for signal processing procedure.
+	
 	
 	
 	\begin{table}[h]
@@ -271,6 +278,7 @@
 	
 %	The number of produced ionization clusters directly affects the hit efficiency profile. \cite{kozlinskiy} Smaller ionization length increase hit efficiency because of more ionization clusters per length unit are producing. In GARFIELD we can easily calculate amount of clusters per track. In fig. \ref{fig:cluster_distrib} you can see a distribution of number of clusters per central track for our STRAW tube. It mean that straw efficiency will be lower near the tube wall(see Fig.\ref{fig:efficiency}).
 		
+	
 
 	\begin{figure}[h!]
 	\centering
@@ -352,18 +360,19 @@
 	\caption{Залежність коефіцієнту газового підсилення від напруги на дроті. Решта параметрів трубки описано в Таблиці \ref{table:straw_par}.}
 	%\caption{Dependence of the gain of the voltage applied to the wire. The rest of STRAW tube settings correspond to table \ref{table:straw_par}. }
 	\label{fig:gainVoltage}	
-	\end{figure}
+	\end{figure} 
 
 	З рисунку Рис.\ref{fig:gainVoltage} можна помітити строго експоненціальну залежність коефіцієнту підсилення $G(V)$ від напруги на аноді. Це це вселяє особливої довіри. Таким чином розрахунки необхідно перерахувати на пакетах новіших\footnote{По очікуванням зі слів Rob Veenhof - автора програми GARFIELD \cite{garfield} розходження може бути в плоть до 100\%}.
 	
 %	On the Fig.~\ref{fig:gainVoltage} you can see that the gain $G(V)$ have precisely exponential dependence. This is frankly does not inspire confidence. The difference can be up to 100\% (as Rob Veenhof - creator of GARFIELD \cite{garfield} said).
 	
-	\include{sag/sag}
 	
-	\include{track_reconstruction/track_reconstruction}	
+	\input{sag/sag}
 	
-		
-	\section{Mesurements}
+%	\include{track_reconstruction/track_reconstruction}	
+	
+
+	\section{Виміри з прототипом}
 	\label{sec:Mesurements}	
 	
 %	We made measurements of some important drift tube parameters. We had tube of $\sim 50cm$ length. But despite of short tube length we made there the length of the tube is not important.
@@ -381,6 +390,8 @@
 	Вся система не може похвастатися компактністю, тому уникнути "паразитичних" ємностей в місцях де їх не має бути не вдалося. Про міру впливу даного недоліку зараз мова не йде, так як нема з чим порівнювати - конструкція тестового стенду, що включає всі кріплення та фіксації трубки нерозбірна.
 	
 %	Схема підведення, циркуляції і контролю газу в трубці зображена на рисунку \ref{fig:gasFlowScheme}.
+	
+	
 	
 	\begin{figure}[!h]
 	\centering
@@ -543,7 +554,7 @@
 	Результати вимірювань представимо у вигляді таблиці \ref{table:GainTotal}. Криві коефіцієнту підсилення G(V) для ряду значень тиску зображено на рис.
 	
 	Для обрахунку сигналу спершу розглянемо специфіку взамодії гамма-квантів з енергією 5.9 КеВ з Аргоном.
-	
+		
 	\begin{table}[!h]
 	\centering
 	\begin{tabular}{|l|l|l|l|l|l|l|}
@@ -711,8 +722,10 @@
 	
 \section{ Подяка}
 
-	Передусім хочу висловити подяку Боярському Олексію(Boyarsky Alexey) та Шапошнікову Михайлові(Mikhail Shaposhnikov) за надання можливості виконувати магістерську роботу в ЦЕРНі.
-	Висловлюю величезну подяку науковому керівнику Massimiliano  Ferro-Luzzi за сприяння і всебічну допомогу у виконанні дипломної роботи, а також Rob Veenhof за допомогу при роботі в пакеті GARFIELD. У вимірюваннях з дрейфовою трубкою разом зі мною приймали участь Юрій Гус та Сергій Мовчан які допомагали мені в розумінні фізичних ефектів і ознайомленні з експериментальним технічним устаткуванням. Висловлюю подяку своєму керівнику від КЯФ Безшийко Олег Анатолійовичу за допомогу з дипломною роботою та вирішенням організаційних питань.
+	
+	Висловлюю величезну подяку науковому керівнику Massimiliano  Ferro-Luzzi за сприяння і всебічну допомогу у виконанні дипломної роботи, а також Rob Veenhof за допомогу при роботі в пакеті GARFIELD. У вимірюваннях з дрейфовою трубкою разом зі мною приймали участь Юрій Гус та Сергій Мовчан які допомагали мені в розумінні фізичних ефектів і ознайомленні з експериментальним технічним устаткуванням.
+	Окрему подяку хочу висловити Боярському Олексію (Boyarsky Alexey) та Шапошнікову Михайлові (Mikhail Shaposhnikov) за надання можливості виконувати магістерську роботу в ЦЕРНі.
+	Також висловлюю подяку своєму керівнику від КЯФ Безшийко Олег Анатолійовичу за допомогу з дипломною роботою та вирішенням організаційних питань.
 	Особливу подяку висловлюю Яригіній Оксані за моральну підтримку і допомогу в роботі над текстом.
 		
 \newpage
@@ -781,4 +794,7 @@
 	
 	\bibitem{escape2} Thermal Stretching of GEM Foils and Characterization of Triple-GEM Detectors  for Uses in Astronomy, Bryant Benson, april, 2011.
 \end{thebibliography}
+
+
+	\end{spacing}
 \end{document}
