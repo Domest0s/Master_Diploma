@@ -1,0 +1,210 @@
+Global ps True
+
+If ps Then
+   < /afs/cern.ch/user/r/rjd/Garfield/Files/garftrans
+   !add metafile type EPS file-name "img/res\{frame\}.eps"
+   !open metafile
+   !act metafile
+   Say "ps flag is True"
+Else
+   Say "ps flag is False"
+Endif
+
+&CELL
+// Tube parameters
+Global rtube = 0.98/2
+gravity 0 1 0
+tube radius {rtube} voltage 0
+rows
+s 1 0.0030 0 0.06 1750 90 500 19.3
+
+//0.145
+cell-identifier "Test cell"
+
+&FIELD
+// plot-field surface V, contour V
+
+&GAS
+// Gas composition
+Global ar = 70
+Global co2 = 100-ar
+say "Composition: ar {ar} % CO2 {100-ar} %"
+Global gas_file = `/afs/cern.ch/user/i/ibereziu/workDir/gas_compositions/Ar_`/string(ar)/`_CO2_`/string(co2)/`_1_bar.gas`
+If exist(gas_file) Then
+   get {gas_file}
+Else
+   pressure 1 bar
+   magboltz argon {ar} co2 {co2} ...
+     electric-range 100 350000 n-e 35 ...
+     coll 20
+   write {gas_file}
+Endif
+
+opt nogas-pl
+HEED argon {ar} co2 {co2}
+
+// Ion mobility data for Ar+ in Ar, T=300 K, error: 1 % below 250 Td and 3 % above (Hornbeck 51, Beaty 68)
+Vector E_Ar_Ar K_Ar_Ar
+   0  1.53
+   8  1.53
+  10  1.53
+  12  1.53
+  15  1.52
+  20  1.51
+  25  1.49
+  30  1.47
+  40  1.44
+  50  1.41
+  60  1.38
+  80  1.32
+ 100  1.27
+ 120  1.22
+ 150  1.16
+ 200  1.06
+ 250  0.99
+ 300  0.95
+ 400  0.85
+ 500  0.78
+ 600  0.72
+ 800  0.63
+1000  0.56
+1200  0.51
+1500  0.46
+2000  0.40
+
+Global E_Ar_Ar = E_Ar_Ar/(0.010354*300)
+Global K_Ar_Ar = K_Ar_Ar*1e-6
+
+// CO2+ in Ar, T=300 K, error: 7 % (I, Lindinger 75)
+Vector E_CO2_Ar K_CO2_Ar
+  0   2.14
+ 10   2.14
+ 20   2.14
+ 30   2.15
+ 40   2.19
+ 50   2.23
+ 60   2.29
+ 70   2.38
+ 80   2.47
+ 90   2.60
+100   2.73
+110   2.83
+120   2.88
+130   2.90
+140   2.92
+150   2.93
+160   2.93
+
+Global E_CO2_Ar = E_CO2_Ar/(0.010354*300)
+Global K_CO2_Ar = K_CO2_Ar*1e-6
+
+// CO2 CO2+ - CO2 near 300 K, acuracy 4%
+Vector E_CO2_CO2 K_CO2_CO2
+15  1.07
+20  1.07
+25  1.07
+30  1.07
+35  1.07
+40  1.07
+50  1.07
+60  1.07
+70  1.07
+80  1.07
+100 1.07
+120 1.08
+140 1.09
+170 1.10
+200 1.11
+
+Global E_CO2_CO2 = E_CO2_CO2/(0.010354*300)
+Global K_CO2_CO2 = K_CO2_CO2 * 1e-6
+
+// add ion-mobility K_Ar_Ar vs E_Ar_Ar
+// add ion-mobility K_CO2_Ar vs E_CO2_Ar
+add ion-mobility K_CO2_CO2 vs E_CO2_CO2
+extrapolation low-ion-mobility constant high-ion-mobility linear
+
+&OPTIMISE
+select s
+// forces detailed plot-sag keep-sag SCANNING-AREA -0.2 -0.2 0.2 0.2
+penning Ar* 55
+// Global outFile = '/afs/cern.ch/user/i/ibereziu/workDir/myTest1/output_data/signal.dat'
+//> sag_profile
+//Say {sag_x_1, sag_y_1}
+//>
+
+
+// Prepare ionisation cross sections
+DRIFT
+Global trackDist = 0*{rtube}/20.0
+track {-sqrt(rtube^2-trackDist^2), trackDIst, sqrt(rtube^2-trackDist^2), trackDist} muon energy 1 GeV
+//track {-sqrt(rtube^2-trackDist^2) , trackDIst, sqrt(rtube^2-trackDist^2), trackDist} fixed-number lines 3
+drift track NOTIME-GRAPH noAVALANCHE-GRAPH
+
+
+
+&SIGNAL
+// window 0 0.0005
+ window 0 0.0005
+avalanche townsend
+sel s
+OPTIONS noCLUSTER-PLOT
+Global outputFile = `/afs/cern.ch/user/i/ibereziu/workDir/myTest1/output_data/signal.dat`
+For j From 1 To 5 Do
+For i From 1 To 50000 Do
+   Global r = 2*(rnd_uniform(1)-0.5)*rtube
+//   Global r = (9 +rnd_uniform(1))/10.0*rtube
+//   Global r = (9 + {i}/50000.0)/10.0*rtube
+//   Say {r}
+//   track {-sqrt(rtube^2-trackDist^2)/20 , trackDIst, sqrt(rtube^2-trackDist^2)/20, trackDist} fixed-number lines 5
+   track {-sqrt(rtube^2-r^2), r, sqrt(rtube^2-r^2), r} muon energy 1 GeV
+   signal detailed-ion-tail
+// ELECTRON-PULSE
+//   plot-signal
+   if False Then
+      Call get_signal(1,time, dir)
+      !options LOGARITHMIC-Y 
+      Call plot_frame( ...
+        1e-3, 1e-6, ...
+        3e+2, 1.05*maximum(-dir)-0.05*minimum(-dir), ...
+        `Time [&mu;s]`, `Current [&mu;A]`)
+      Call plot_line(time, -dir, `function-2`)
+      Call plot_end
+   Endif
+
+   add-noise noise-function -0.015*(rnd_poisson(30)-30) cross-ind
+//   plot-signal
+//     transfer-function 250*(6*t/0.025)^6*exp(-6*t/0.025) ...
+   convolute-signals ...
+      transfer-function 'EXP(-t/5./0.001) - exp(-t/30./0.001)' range 0. 2000.
+//   write-signals file-name "/afs/cern.ch/user/i/ibereziu/workDir/myTest1/output_data/signal.dat"
+
+// here we set threshold as 5 sigma. 1sigma = 0.165e-3
+   Global thr=0.000825
+   // add `,plot` to see the posints of theshold crossing
+   Call threshold_crossing(1, thr,`rising,linear,direct,nocross`,n,t1,t2)
+   Say "Found {n} threshold crossings, 1st at {t1} us."
+   > "/afs/cern.ch/user/i/ibereziu/workDir/myTest1/output_data/start{j}.dat"
+      If n <> 0 Then Say "{r} {t1}"
+   >
+//   plot-signals
+
+if False Then
+   Call get_signal(1, time, dir, cross)
+   Call plot_frame( ...
+      minimum(time), 1.05*minimum(cross)-0.05*maximum(cross), ...
+      maximum(time), 1.05*maximum(dir)-0.05*minimum(dir), ...
+      `Time [&mu;s]`, `Voltage [&mu;V]`)
+   Call plot_line(time, dir, `function-1`)
+   Call plot_line(time, cross, `function-3`)
+   Call plot_line(minimum(time), thr, maximum(time), thr, `comment`)
+   Call plot_end
+EndIf
+Enddo
+Enddo
+
+If ps Then
+   !deact metafile
+   !close metafile
+   !del metafile
+Endif
