@@ -119,10 +119,11 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 	First steps for sag estimation are:
 	\begin{enumerate}
 	\item measure wire sag profile via optical method;	
-	\item make a sectioning for wire sag profile;
+	\item make a sectioning of tube due to wire sag profile;
 	\item collect enough amount of events for every of dt-distribution and save this {\it core} distribution for further comparisons.
-	\item measure dt-distribution for new drift tube section that is subject of study.
-	\item calculate $\chi^2$ criteria for this current dt-distribution with each of core distribution. 
+	\item measure dt-distribution of tube section that is subject of study and and adjacent area.
+	\item calculate $\chi^2$ criteria for this current dt-distribution with each of core distribution.
+	\item correlate found values of wire displacement relatively to the adjacent sections or by fitting of whole wire profile points.
 	\end{enumerate}
 
 	\subsection{Finding most probable value of wire displacement for certain point of the tube}
@@ -148,13 +149,13 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 	
 
 	\subsection{"Minimum of $\chi^2$ as linear approximation"}
-	But what is most probable value of wire displacement $S$ in this case? Probably somewhere between them. So can we go in more clever way to reach better result? Probably yes.
+%	But what is most probable value of wire displacement $S$ in this case? Probably somewhere between them. So can we go in more clever way to reach better result? Probably yes.
 	
 	If dependence of $\chi^2$ criteria of wire displacement $S$ for near to the true position region is linear(that certainly is not a true, but as first approximation) than we can easily find this intermediate value of wire displacement.
 	
 	There we proceed in two steps. The first is raw estimation of wire displacement as in above mentioned method.
 	
-	For the second step we need to know some additional estimations.	The first question is how small can be  $\chi^2$ it our case? Lets fix statistic on 50k events for one DT-distribution. This value should a bit depend for different $S$. But for now lets consider that it is a constant value. From the figure \ref{fig:chi2Shelf} you can see distribution of $\chi^2$ from comparison of 20 DT-distribution\footnote{pair comparison give us $C_{20}^2 = \frac{20!}{2!18!}=190$ different combinations}  for $S=0.7mm$. Mean value + RMS of distribution is $ 5.3*10^{-5}$. So if some of the $\chi^2$ is higher than this threshold than we go for second stage.
+	For the second step we need to know some additional estimations.	The first question is how small can be  $\chi^2$ it our case? Lets fix statistic on 50k events for one DT-distribution. This value should a bit depend for different $S$. But for now lets consider that it is a constant value. From the Fig.\ref{fig:chi2Shelf} you can see distribution of $\chi^2$ from comparison of 20 DT-distribution\footnote{pair comparison give us $C_{20}^2 = \frac{20!}{2!18!}=190$ different combinations}  for $S=0.7mm$. Mean value + RMS of distribution is $ 5.3*10^{-5}$. So if some of the $\chi^2$ is higher than this threshold than we go for second stage.
 	
 	
 	\begin{figure}[h!]
@@ -169,13 +170,12 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 		\caption{Comparison of $\chi^2$ distributions for self-comparison of DT-distribution diagram.} 
 	\end{figure}	
 	
-	On the figure \ref{fig:chi_063_5k} you can see distribution wire sag calculation for 180 histograms with 5k events statistic. Precision in this case  $\sim 50\mu$. The algorithm of sag estimation is pretty simple: wire offset value eual to the as best match between $test$ and $core$ histogram.
+	On the Fig.\ref{fig:chi_063_5k} you can see distribution of wire sag calculation for 180 histograms with 5k events statistic. Precision in this case  $\sim 50\mu$. The algorithm of sag estimation is pretty simple: wire offset value is equal to the offset  of best matched  $core$ histogram.
 
-	After we know sag value at some points of the tube or every where we can make one awesome collective analysis. The smoothing of wire offset value along the tube will give us much more precision results.  
+	After we know sag value at some points of the tube or every where we can make one awesome collective analysis. The smoothing of wire offset value along the tube will give to us much more precision results.  
 	
-	From the Fig.\ref{fig:06_07_chi_stat} the distribution of $\chi^2$ for adjasent point have narrower distribution by comparison to "self-comparison" $\chi^2$ distribution. Therefore method of reconstructing of wire offset that based on comparison of DT-distribution histogram can find  wire offset much precisely.
-	
-	
+	From the Fig.\ref{fig:06_07_chi_stat} the distribution of $\chi^2$ for adjacent point have narrower distribution by comparison to "self-comparison" $\chi^2$ distribution. Therefore calculation of $S$ from analyse of consecutive smallest $\chi^2$ values can improve precision.
+	Need to say that collective approach to this task also can improve precision of $S$ finding. 
 	
 	
 	\subsection{Practical measurements of DT-distribution}
@@ -275,5 +275,5 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 	
 	In this method detector before tube (D1) and detector placed after the tube(D2) in total should provide sufficient precision for track reconstruction to be able distinguish tracks for different section of the tube (approximately as shown on the Fig. \ref{fig:tube_sectioning}). Muon flow should be homogeneous and so D1 and D2 also should cover full acceptance of the tube.
 	
-	The profile of wire sagging can be measured by optical method. Wall of is very thin, so it can be simplest way to get sag profile.
+	The profile of the wire sagging can be measured by optical method. Walls of the tube is very thin, so it can be simplest way to get sag profile.
 	
