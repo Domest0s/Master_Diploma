@@ -28,6 +28,7 @@
 \usetikzlibrary{circuits.ee.IEC}
 \usetikzlibrary{circuits.logic.IEC}
 
+\usepackage{epstopdf}
 
 \usepackage{graphicx}
 \usepackage{subfig}
@@ -54,48 +55,48 @@
 %	\tableofcontents	
 		
 %	\begin{spacing}{1}
-	\input{introduction/intro} 
+	\input{introduction/intro}
 %	\end{spacing}	
 
  \section{Subject of study}
 	
-	With new requirements for new straw tracker we have important challenge for long straws. It is related to the fact of straw and wire will be subjected by gravitational and electrical forces and cause sagging. Because the straws are oriented horizontally (or almost, in case of stereo views), sagging is expected to cause in most drift tubes a downward deflection, which might be exploited
+	With new requirements for new straw tracker we have important challenge for long straws. It  is related with the fact that straw and wire will be subjected to gravitational and electrical forces and it causes the sagging. Because the straws are oriented horizontally (or almost, in case of stereo views), sagging is expected to cause in most drift tubes a downward deflection, which might be exploited
 when applying a correction.
 
-	Undoubtedly the presence of sagging may complicate the data processing stage and somewhat worse accuracy of track reconstruction. Primary question we have to investigate "is acceptable sag-admitting design?" and "What a downgrade of precision for sag-admitting design?".
+	Undoubtedly the presence of sagging can complicate the data processing stage and somewhat worse accuracy of track reconstruction. Primary question we have to investigate "is acceptable sag-admitting design?" and "What a downgrade of precision for sag-admitting design?".
 	
 	Results of measurements on prototypes are discussed in Section \ref{sec:Mesurements}.
 	
 	
 	\section{Signal}	
-	Computer program Garfield \cite{garfield} is designed for detailed simulation of two- and three-dimensional drift chambers. So we will perform STRAW tube studies using this program.
+	Computer program Garfield \cite{garfield} is designed for detailed simulation of two- and three-dimensional gas detectors. So we will perform STRAW tube studies using this program.
 	
-	Charged particle  create electron-ion pairs wile traverse the drift tube. Electrons under affecting the electric field drift to the wire anode (see figure \ref{fig:track_reconstruction}). During the travel they increase their energy and invoke an avalanche. Therefore they produce a measurable signal.
+	Charged particle  create electron-ion pairs wile traverse the drift tube. Electrons under affecting the electric field drift to the wire anode (see Fig.\ref{fig:track_reconstruction}). During the travel they increase their energy and invoke an avalanche. Therefore they produce a measurable signal.
 
-	Initial electrons drift to the wire due to the electrical field between the wire and the tube wall. Electrons ionize gas molecules due to the high electric field around the wire, especially near the wire when the electric becomes very strong.  Subsequently readout electronics process the signal induced on the wire.
+	Initial electrons drift to the wire due to the electrical field between the wire and the tube wall. Electrons ionize gas molecules due to the high electric field around the wire, especially near the wire when the strength of the electric field becomes very large.  Subsequently readout electronics process the signal induced on the wire.
 	  
-	The event registers if signal reach some a threshold voltage (Fig. \ref{fig:signal_example}). So the value of threshold is a key factor on the way of searching optimal setting for signal processing procedure.
+	The event is registered if signal reach some a threshold voltage (Fig. \ref{fig:signal_example}). So the value of threshold is a key factor on the way of searching optimal setting for signal processing procedure.
 	
 	\begin{table}[h]
 	\centering
 	\caption[Table caption text]{STRAW tube parameters }
 	\begin{tabular}{|l|l|p{8cm}|}
 		\hline
-		Parameter name & Value \\
+		parameter name & value \\
 		\hline
-		wire & $30\mu m$ gold-plated Tungsten\\
+		wire & $30~\mu m$ gold-plated Tungsten\\
 		\hline
-		straw length & $5m$ \\
+		straw length & $5~m$ \\
 		\hline
-		Voltage & $1750 V$ \\
+		voltage & $1750~V$ \\
 		\hline
 		inner tube radius & $9.8~mm$ \\
 		\hline
 		wire medium density & $19.3 ~g/cm^3$ \\
 		\hline
-		Wire tension& $\sim 90~g$ \\
+		wire tension& $\sim 90~g$ \\
 		\hline
-		Working tube gas mixture & $Ar70\% ~CO_2 30\%$ \\
+		working tube gas mixture & $Ar~70\% ~CO_230\%$ \\
 		\hline
 	\end{tabular}
 	
@@ -104,7 +105,7 @@ when applying a correction.
 	
 	We have to set threshold as low as possible but enough above from noise level to achieve best rate of true/false detected tracks and highest track registration precision and efficiency.
 	
-	A variation of the signal height introduces a variation in the time when the signal passes the threshold and is considered to be the main contribution to the STRAW tracker resolution.
+	A variation of the signal height introduces a variation in the time when the signal passes the threshold and is considered to be the main contribution to the STRAW tracker resolution. 
 	
 	\begin{figure}[!h]
 	\centering
@@ -167,14 +168,14 @@ when applying a correction.
 	
 	\end{tikzpicture} 
 	\caption{Schematic view of a particle passing the straw and producing
-ionization clusters(orange points). The ionization cluster electrons drift to the wire and induce the signal. The closest distance from the track to the wire, $r_{track}$, and radius of the straw, $r_{tube} = 2.45 mm$, are also indicated. }
+ionization clusters (orange points). Electrons of ionization cluster drift to the wire and induce the signal. The closest distance from the track to the wire, $r_{track}$, and radius of the straw, $r_{tube} = 2.45 mm$, are also indicated. }
 	\label{fig:track_reconstruction}
 	\end{figure}
 
 
 	In the track reconstruction software(GARFIELD \cite{garfield}) an effective TR-relation is used. It only describes the relation between the drift time and the distance from the track to the wire, which differs from the distance to the ionization cluster. The shape of the TR-relation is defined by the drift velocity of the ionization cluster inside the straw. The electric field increases towards the wire, leading to a non linear TR-relation. 
 
-	The drift time versus the unbiased distance distribution and the result of the fit are shown in Fig. \ref{fig:t_r_distr_00}. Noise hits under the main distribution, i.e. at earlier times, are due to primary or secondary particles ($\delta$-rays) passing the straw at a closer distance to the wire, consequently producing an earlier signal. Initial clusters along the track are marked by orange points on the figure.
+	The drift time versus the unbiased distance distribution and the result of the fit are shown in Fig. \ref{fig:t_r_distr_00}. Noise hits under the main distribution, i.e. at earlier times, are due to primary or secondary particles ($\delta$-rays) passing the straw at a closer distance to the wire, consequently producing an earlier signal. Initial clusters along the track are marked by orange points in the figure.
 	
 	Muon $\mu$ was chosen as test particle for simulation with energy $1GeV$. You can see some of typical tracks from the $\mu$ through the tube Fig.\ref{fig:electron_ion_track},\ref{fig:electron_ion_track_sag}. 
 			
@@ -189,31 +190,31 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 	\label{eq:responce_function}
 	\end{equation}
 	
-	Noise is very important for every calculations and it makes bit impact on straw precision and straw efficiency. So we can't rely on results until we receive signal and noise  from real STRAW tube prototypes.
+	Noise is very important for every calculations and it makes bit impact on straw precision and straw efficiency. So we can't rely on results until we receive signal and noise  from real STRAW tube prototypes. 
 		
-	Convolution of input current make it smooth. Usually in typical conditions\footnote{as in table \ref{table:straw_par}} noise have gauss distribution with RMS equal to a amplitude of signal from 2000 electron in the tube - electric noise charge (ENC)\footnote{With testing of real 5 m long straws and ultimate examples of electronics we will measure real noise. But for now is only close to reality suggestion concerning whis.}	In fig.\ref{fig:signal_example} you can see deposition from noise marked by blue line.
+	Convolution of input current makes it smooth. Usually in typical conditions\footnote{as in table \ref{table:straw_par}} noise have gauss distribution with RMS equal to a amplitude of signal from 2000 electron in the tube - electric noise charge (ENC)\footnote{With testing of real 5 m long straws and ultimate examples of electronics we will measure real noise. But for now it is only close to reality suggestion concerning to this issue.} On Fig.\ref{fig:signal_example} you can see deposition from noise marked by blue line.
 
-	On the Fig.\ref{fig:signal_example} The timestamp $Time=0$ correspond to the time muon hits a tube. The convolution function smooths and spreads input current. It mean that the output voltage in GARFIELD does not contain part of signal before hit event timestamp.
+	On the Fig.\ref{fig:signal_example} the timestamp $Time=0$ corresponds to the time when muon hits a tube. The convolution function smooths and spreads input current. It mean that the output voltage in GARFIELD does not contain part of signal before hit event timestamp.
 
 	\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\textwidth]{signal_noise_threshold.eps}
-	\caption{ Example of output signal $V(t)$ after convolution(front-end electronics) from central track(yellow line). The noise component of the same signal depicted by separate blue line. Grin dashed line is a threshold for trigering drift time and equal to $5\sigma$ of noise distribution.}
+	\caption{ Example of output signal $V(t)$ after convolution (front-end electronics) from central track (yellow line). The noise component of the same signal depicted by separate blue line. Grin dashed line is a threshold for trigering drift time and equals to $5\sigma$ of noise distribution.}
 	\label{fig:signal_example}
 	\end{figure}
 	
 	\subsection{ STRAW efficiency}
 	
-	The interaction of charge particle with gas molecules have probabilistic nature. For short distance tracks(somewhere near the tube wall) the probability of tracks that do produce zero electron/ion pair becomes significantly high.
-		
-	The number of produced ionization clusters directly affects the hit efficiency profile. \cite{kozlinskiy} Smaller ionization length increase hit efficiency because of more ionization clusters per length unit are producing. In GARFIELD we can easily calculate amount of clusters per track. In fig. \ref{fig:cluster_distrib} you can see a distribution of number of clusters per central track for our STRAW tube. It mean that straw efficiency will be lower near the tube wall(see Fig.\ref{fig:efficiency}).
+	The interaction of charge particle with gas molecules has probabilistic nature. For short distance tracks (somewhere near the tube wall) the probability of tracks that generation of zero electron/ion pairs becomes significantly high.
+	
+	The number of produced ionization clusters directly affects the hit efficiency profile. Smaller ionization length increases the hitting efficiency because of production more ionization clusters per length unit \cite{kozlinskiy}. In GARFIELD we can easily calculate amount of clusters per track. In Fig.\ref{fig:cluster_distrib} you can see a distribution of number of clusters per central track for our STRAW tube. It means that straw efficiency will be lower near the tube wall (see Fig.\ref{fig:efficiency}).
 		
 
 	\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.8\textwidth]{periffEff}
 	
-	\caption{ Straw tube efficiency. Result of homogeneous penetrating periphery of tube by 50k events(scaled down by factor of 5. $\dfrac{50k~events}{100 bin}  = 500 \dfrac{eventst}{bin}$).}
+	\caption{Straw tube efficiency. Result of homogeneous penetrating periphery of tube by 50k events (scaled down by factor of 5. $\dfrac{50k~events}{100 bin}  = 500 \dfrac{eventst}{bin}$).}
 %	Ефективність реєстрації треків в області периферії трубки від рівномірного опромінення 50 тис. треків
 	\label{fig:efficiency}
 	\end{figure}	
@@ -227,7 +228,7 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 		\subfloat[number of clusters per central track]{
 			\includegraphics[width=0.45\textwidth]{cluster_distrib} 
 			\label{fig:cluster_distrib} }%
-			\caption{ Statistics info from GARFIELD about track from $1GeV~ \mu$. Tube described in table \ref{table:straw_par}}
+			\caption{Statistics info from GARFIELD about track from $1GeV~\mu$. Tube described in table~\ref{table:straw_par}}
 	\end{figure}
 	
 	From the Fig.\ref{fig:efficiency} we can conclude that the efficiency of tube is $100\%$ almost in whole region covered by tube except pre wall region which is quite small. Increasing the gas mixture density or increasing the tube radius for the same gas density can increase tube efficiency.
@@ -242,7 +243,7 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 		\label{eq:diffGain}
 	\end{equation}
 	
-	The coefficient $\alpha$ is determined by the excitation and ionization cross sections of the electrons that have acquired sufficient energy in the field. It also depends on the various transfer mechanism and electric field E and increases with the field because the ionization cross-section goes up from threshold as the collision energy $\varepsilon$ increases. As we can suppose the coefficient $\alpha$ is of big amount of parameters.
+	The coefficient $\alpha$ is determined by the excitation and ionization cross sections of the electrons that have acquired sufficient energy in the field. It also depends on the various transfer mechanisms and electric field E and increases with the field because the ionization cross-section goes up from threshold as the collision energy $\varepsilon$ increases. As we can suppose the coefficient $\alpha$ is of big amount of parameters.
 	
 	The amplification factor $G$ on a wire(that is more interesting for us) is given by integrating (\ref{eq:diffGain}) between the point $s_{min}$ where the field is just sufficient to start the avalanche and the wire radius $a$:
 	
@@ -251,7 +252,7 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 	\label{eq:gain}
 	\end{equation}
 	
-	GARFIELD can provide us by amplification factor $G$ for any point of the tube(because  $G$ is coordinate dependent magnitude). The amplification factor is equal almost in whole tube space except neighbourhood near the wire because electric field  becomes significantly high only near the wire (see figs \ref{fig:elFieldCentered}, \ref{fig:elField1mmShifted}). When the wire is shifted from the center of the cube the electric field in area close to the wire is the same as in centered state. So the amplification factor $G$ is quite similar in both cases.
+	GARFIELD can provide us by amplification factor $G$ for any point of the tube(because  $G$ is coordinate dependent magnitude). The amplification factor is equal almost in whole tube space except neighbourhood near the wire because electric field  becomes significantly high only near the wire (see figs \ref{fig:elFieldCentered}, \ref{fig:elField1mmShifted}). When the wire is shifted from the center of the tube the electric field in area close to the wire is the same as in centered state. So the amplification factor $G$ is quite similar in both cases.
 	
 	\begin{figure}[!h] 
 		\centering
@@ -265,21 +266,22 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 		\caption{Electric field intensity map for different wire position in the cube calculated in GARFIELD software. Conditions for those plots are described in table \ref{table:straw_par} }
 	\end{figure}
 	
-	Implementation of gain value calculation is not so reliable in GARFIELD(especially fortran version). Gain should be recalculated using Garfield++ (which is newer and take into consideration more effects).
+	Implementation of gain value calculation is not so reliable in GARFIELD(especially fortran version). Gain should be recalculated using Garfield++ (which is newer and takes into consideration more effects).
 	
 	\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\textwidth]{gain_1450_2050V}	
-	\caption{Dependence of the gain of the voltage applied to the wire. The rest of STRAW tube settings correspond to table \ref{table:straw_par}. }
+	\caption{Dependence of the gain of the voltage applied to the wire. The rest of STRAW tube settings corresponds to table \ref{table:straw_par}. }
 	\label{fig:gainVoltage}	
 	\end{figure}
 
-	On the Fig.~\ref{fig:gainVoltage} you can see that the gain $G(V)$ have precisely exponential dependence. This is frankly does not inspire confidence. The difference can be up to 100\% (as Rob Veenhof - creator of GARFIELD \cite{garfield} said).
+	On the Fig.\ref{fig:gainVoltage} you can see that the gain $G(V)$ have precisely exponential dependence. This is frankly does not inspire confidence. The difference can be up to 100\% (as Rob Veenhof - creator of GARFIELD \cite{garfield} said).
 	
 	\include{sag/sag}
+	
 	\include{track_reconstruction/track_reconstruction}	
 	
-		
+	
 	\section{Mesurements}
 	\label{sec:Mesurements}	
 	
@@ -652,14 +654,17 @@ ionization clusters(orange points). The ionization cluster electrons drift to th
 	\end{equation}
 
 \newpage
-\begin{thebibliography}{00}
-	\bibitem{garfield} http://garfield.web.cern.ch/garfield
+\begin{thebibliography}{00}	
 
-	\bibitem{kozlinskiy} thesis Kozlinskiy.pdf 
 	
-	\bibitem{ship_TP} Technical Proposal from 8 april 2015: arXiv:1504.04956v1	
-	
+		
 	\bibitem{NA62_TDR} F. Hahn, F. Ambrosino, A. Ceccucci, H. Danielsson, N. Doble, F. Fantechi, A. Kluge, C. Lazzeroni, M. Lenti, G. Ruggiero, M. Sozzi, P. Valente, and R. Wanke. NA62: Technical Design Document. Technical Report NA62-10-07, CERN, Geneva
+	
+	\bibitem{ship_TP} Technical Proposal from 8 april 2015: arXiv:1504.04956v1
+	
+	\bibitem{garfield} http://garfield.web.cern.ch/garfield
+	
+	\bibitem{kozlinskiy} Master Thesis Kozlinskiy.pdf (????????????????)
 	
 	\bibitem{presTransmitDatasheet} DataSheet for Pressure transmitters for corrosive liquids and gases CTE/CTU9000 series. \url{http://www.first-sensor.com/cms/upload/datasheets/DS_Standard-CTE-CTU9000_E_11509.pdf}
 	

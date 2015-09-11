@@ -1,6 +1,6 @@
 \section{Wire sagging}
 
-	Easy to predict that the displacement of the wire invokes distorting an electric field(see figs~\ref{fig:elFieldCentered},\ref{fig:elField1mmShifted}) and drift path for electrons/ions inside the tube(see fig.\ref{fig:electron_ion_track} and fig.\ref{fig:electron_ion_track_sag}). The rt-relation for track reconstruction directly depend on the wire position in the tube. So rt-relation lose it's previous symmetry(see next sections).
+	Easy to predict that the displacement of the wire invokes distortion an electric field (see figs~\ref{fig:elFieldCentered},\ref{fig:elField1mmShifted}) and drift path for electrons/ions inside the tube (see fig.\ref{fig:electron_ion_track} and Fig.\ref{fig:electron_ion_track_sag}). The RT-relation for track reconstruction directly depends on the wire position in the tube. So RT-relation loses it's previous symmetry (see next sections).
 	
 	\begin{figure}[h!]
 		\centering
@@ -18,9 +18,9 @@
 	Even when strung with a pulling force $T$ close to the breaking limit, wires in several metre long tubes will experience a gravitational sag that is large in comparison with the achievable accuracy of drift tubes.
 	
 	
-	We estimate significant wire sagging(by comparison to the tube radius) because of wire attracts to the tube under affecting of gravitation and electric field force.
+	We estimate significant wire sagging(by comparison to the tube radius) because of wire attraction to the tube under affecting of gravitation and electric field force.
 	
-	You can see a profile of wire sagging of $5m$ length wire in $1cm$ diameter straw tube and 1750V voltage on the fig.\ref{fig:sagProfile} calculated in GARFIELD software \cite{garfield}.
+	You can see a profile of wire sagging of $5m$ length wire in $1cm$ diameter straw tube and 1750V voltage on the Fig.\ref{fig:sagProfile} calculated in GARFIELD software \cite{garfield}.
 	
 	\begin{figure}[h!]
 	\centering
@@ -34,12 +34,12 @@
 	Variation of wire tension, wire radius should be taken into account as high affect factor for sag value.
 	
 	\section{Sag estimation}
-
+	\label{sec:sagEstimation}
 	In this section we have to find out method for assessing sagging. This is key step that makes track reconstruction procedure possible.
 	
-	At first we have to think on data we can use for such kind of calculations. Much attractable information we can extract from drift time distribution. 
+	At first we have to think on data we can use for such kind of calculations. We can extract much useful information  from drift time distribution.
 	
-	The wire sags under electric and gravitation force. Therefore the sag value is differ along the tube(fig~\ref{fig:sagProfile}). But we can separate collected data for different position along the tube. STRAW tube detector consist of several parallel layers of tubes at some angle to each other. So we can easily fix longitudinal position(along the tube)  for tracks that cross several crossed tubes(at least two). Collimation is also possible via scintillator triggering before and after STRAW tube.
+	The wire sags under electric and gravitation force. Therefore the sag value differs along the tube (Fig.\ref{fig:sagProfile}). But we can separate collected data for different position along the tube. STRAW tube detector consists of several parallel layers of tubes at some angle to each other. So we can easily fix longitudinal position (along the tube) for tracks that cross several crossed tubes (at least two). Collimation is also possible via scintillator triggering before and after STRAW tube.
 	
 	Lets say we can install our STRAW tube into homogeneous particle flow and save drift time distribution for some narrow section of the tube. These distributions are different from each other(see example on Fig.\ref{fig:DrftTimeDistr_00_09_comp}). The difference between diagrams increasing with sag difference. So it is good tools for sag calibration.
 		
@@ -53,11 +53,12 @@ ation with a centered wire (red) and for a wire offset of 0.9 mm (blue).}
 	
 	Then we have to bind each drift time distribution with appropriate sag value. This is part of laboratory work when sag profile measurements can be performed via optical method prior to the exposition.
 	
-	Distributions on graph~\ref{fig:DrftTimeDistr_00_09_comp} contain GARFIELD simulations for some certain wire(not for section of sagged wire)because of GARFIELD can handle only two-dimensional tasks.
+	GARFIELD can handle only two-dimensional tasks. So every simulation in this article is plane - as shown in Fig.\ref{fig:electron_ion_track}.
+	Distributions on Fig.\ref{fig:DrftTimeDistr_00_09_comp} contains GARFIELD simulations for tube with wire located at certain position (in terms of displacement from tube center).
 	
-	Lets say we have an equipment for scanning the tube to measure wire sagging profile. After profile measurements we divide our tube into sections. Wire position within separate section should be within desired precision.
+	Lets say we have an equipment for scanning the tube to measure wire sagging profile. After profile measurements we divide our tube into sections.Wire position within separate section should be defined within desired precision
 	
-	So we need divide our tube into $57$ sections (see figure~\ref{fig:tube_sectioning}) if maximum of wire offset(at the center of the tube) is equal to $1.45mm$ and desired precision is $50\mu m$.
+	So we need divide our tube on $57$ sections (see Fig.\ref{fig:tube_sectioning}) if maximum of wire offset (at the center of the tube) is equal to $1.45mm$ and desired precision is $50\mu m$.
 	
 	\begin{equation}
 	N_{halftube} = \frac{1.45 mm}{50 \mu m} = 29;
