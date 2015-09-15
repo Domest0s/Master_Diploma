@@ -266,7 +266,7 @@ ionization clusters (orange points). Electrons of ionization cluster drift to th
 		\caption{Electric field intensity map for different wire position in the cube calculated in GARFIELD software. Conditions for those plots are described in table \ref{table:straw_par} }
 	\end{figure}
 	
-	Implementation of gain value calculation is not so reliable in GARFIELD(especially fortran version). Gain should be recalculated using Garfield++ (which is newer and takes into consideration more effects).
+	Implementation of gain value calculation is not so reliable in GARFIELD(especially fortran version). Gain should be recalculated using Garfield++ (which is newer and takes into consideration more effects). 
 	
 	\begin{figure}[h!]
 	\centering
@@ -282,24 +282,16 @@ ionization clusters (orange points). Electrons of ionization cluster drift to th
 	\include{track_reconstruction/track_reconstruction}	
 	
 	
-	\section{Mesurements}
+	\section{Mesurements} 
 	\label{sec:Mesurements}	
 	
-	We made measurements of some important drift tube parameters. We had tube of $\sim 50cm$ length. But despite of short tube length we made there the length of the tube is not important.
+	We made measurements of some important drift tube parameters. We had tube of $\sim 50cm$ length. But despite of short tube length we made measurements where the length of the tube is not important.
 	
 	The tube was manufactured in Dubna(Russian Federation) and was placed into the appropriate  mechanics which include tube fixing, channels for supply of gas mixture, connector for grounding to the tube walls and connector for High Voltage (HV) supply.
 	
 	The whole system is not compact, therefore we could not avoid the parasitic capacities. Now we will not go into details about it, as we have nothing to compare with because the system is non-separable.
 
 	The scheme of gas supply, circulation and control in the tube is shown in the Fig.\ref{fig:gasFlowScheme}.
-	 	
-%	За період перебування в ЦЕРНі було проведено виміри деяких важливих параметрів дрейфової трубки.	Хоча довжина тестової трубки сягала порядку 50 см в довжину, це не завадило провести виміри там де довжина трубки не грає ролі.
-	
-%	Трубка виготовлена в м. Дубна і поміщена у відповідну механіку яка включає в себе кріплення трубки, має канали для циркуляції і газової суміші в трубці, конектори для підведення землі до стінок трубки та високої напруги до дроту. 
-	
-%	Вся система не може похвастатися компактністю, тому уникнути "паразитичних" ємностей в місцях де їх не має бути не вдалося. Про міру впливу даного недоліку зараз мова не йде, так як нема з чим порівнювати - конструкція тестового стенду, що включає всі кріплення та фіксації трубки нерозбірна.
-	
-%	Схема підведення, циркуляції і контролю газу в трубці зображена на рисунку \ref{fig:gasFlowScheme}.
 	
 	\begin{figure}[!h]
 	\centering
@@ -394,24 +386,13 @@ ionization clusters (orange points). Electrons of ionization cluster drift to th
 	
 	As it is seen above, the scheme is very simple.
 	
-	For our research we used a source $Fe^{55}$ witch is suitable for a drift tube calibration. In our case $Fe^{55}$ serves as a photon source with almost monochromatic spectra with energy 5.9 keV.
+	For our research we used a source $Fe^{55}$ which is suitable for a drift tube calibration. In our case $Fe^{55}$ serves as a photon source with almost monochromatic spectra with energy 5.9 keV.
 	
-	The most important parameter witch we have to measure a Gain $G$ (\ref{eq:gain}).
+	The most important parameter which we have to measure is Gain $G$ (\ref{eq:gain}).
 	
-	The idea is to measure a charge that goes thought the tube electric circuit per unit of time and then find a Gain.  We assume that a current $I_0$ though the ampere meter(see fig.~\ref{fig:electricCircuit}) is constant when the radioactive source is absent. The current  is non-zero when the tube detects background particles(for example atmospheric muon flux) or when  a leakage current is present. Therefore, with the presence of a source $Fe^{55}$ all surplus of the current $\bigtriangleup I = I-I_0$ in the drift tube circuit occurs because of gamma ray detection.
+	The idea is to measure a charge that goes through the tube electric circuit per unit of time and then find Gain.  We assume that a current $I_0$ through the ampere meter(see fig.~\ref{fig:electricCircuit}) is constant when the radioactive source is absent. The current  is non-zero when the tube detects background particles(for example atmospheric muon flux) or when  a leakage current is present. Therefore, with the presence of a source $Fe^{55}$ all surplus of the current $\bigtriangleup I = I-I_0$ in the drift tube circuit occurs because of gamma ray detection.
 	
-	On the other hand, we can white $\bigtriangleup I$ in terms of initial amount of electrons and Gain in the following form :
-	
-	
-%	Ось така досить проста дослідна схема для дослідження зразка трубки.
-	
-%	В нашій наявності було джерело $Fe^{55}$  яке підходить для калібровки дрейфової трубки. $Fe^{55}$ в нашому випадку виступає джерелом фотонів з майже моноенергетичним спектром з енергією 5.9 keV.
-	
-%	Першим і найбільш важливим параметром, який необхідно виміряти за допомогою даної установки буде коефіцієнт підсилення сигналу в трубці $G$ (\ref{eq:gain}).
-	
-%	Ідея полягає в тому, щоб виміряти заряд, що протікає через електричне коло трубки за одиницю часу і по ньому знайти коефіцієнт газового підсилення. Будемо дотримуватися тієї точки зору, що струм через амперметр  (see fig.~\ref{fig:electricCircuit}) за відсутності радіоактивного $I_0$ джерела буде сталий з часом. Цей струм може мати місце в результаті струмів витоку в колі або ж фактом реєстрації трубкою фонових частинок(наприклад атмосферних мюонів). Тож за наявності джерела $Fe^{55}$ весь надлишковий струм $\bigtriangleup I = I-I_0$ в колі  дрейфової трубки буде пов’язаний лише з реєстрацією гамма-квантів джерела $Fe^{55}$.
-	
-%	З іншої сторони $\bigtriangleup I$  можна виразити через початкову кількість електронів та коефіцієнт газового підсилення (\ref{eq:IGainN0}):
+	On the other hand, we can write $\bigtriangleup I$ in terms of initial amount of electrons and Gain in the following form :
 	
 	\begin{equation}
 	\bigtriangleup I = G N_0 e,
@@ -421,9 +402,7 @@ ionization clusters (orange points). Electrons of ionization cluster drift to th
 	where $G$ -- Gain; $N_0$ - number of initial electron-ion pairs per second; e - charge of electron in C.
 	
 	On the other hand we can express $N_0$ as:
-%	тут $G$ - коефіцієнт газового підсилення; $N_0$ - кількість початкових електрон-іонних пар за одну секнду, е - заряд електрона в Кл.
-	
-%	В свою чергу $N_0$ можна виразити як:
+
 	\begin{equation}
 	N_0 = R \cdot \mean{n} = R \cdot\sum_n n p(n) \approx R \int_0^\infty n p(n) dn;
 	\end{equation}
@@ -443,11 +422,11 @@ ionization clusters (orange points). Electrons of ionization cluster drift to th
 	\label{fig:fe55_n_probability}
 	\end{figure}
 	
-	The realisation of a measurement is very simple.  On the output of amplifier(see Fig.\ref{fig:electricCircuit}) the signal goes to the discriminator with  trigger threshold on the level enough for a signal detection and big enough for noise neglecting. The signal from discriminator goes into counter in rectangle form. The counter triggering for the rising edge. This scheme has a small dead time $~0.5 \mu s$, therefore for the signal frequency of $R \sim 5000 \frac{events}{second} \approx 200 \frac{\mu s}{event}$ the amount of non counted signal is negligibly small.
+	The realisation of a measurement is very simple.  On the amplifier output (see Fig.\ref{fig:electricCircuit}) the signal goes to the discriminator with  trigger threshold on the level enough for a signal detection and big enough for noise neglecting. The signal from discriminator in rectangular form goes into counter. The counter is triggered for the rising edge. This scheme has a small dead time $~0.5 \mu s$, therefore for the signal frequency of $R \sim 5000 \frac{events}{second} \approx 200 \frac{\mu s}{event}$ the amount of non counted signals is negligibly small.
 	
 	For the first gain estimation we assume about avalanche superposition and linear amplitude dependence of final signal on the amount of initial electrons(later we will show that this is not true).
 	
-	From the distribution in Fig.\ref{fig:fe55_n_probability} we can find $\mean{n} = 197.87$ for average amount of primary electron because of photon(5.9keV) interaction with atoms of a gas $Ar70\%+CO_230\%$.
+	From the distribution in Fig.\ref{fig:fe55_n_probability} we can find $\mean{n} = 197.87$ for average amount of primary electron because of photon (5.9keV) interaction with atoms of a gas $Ar70\%+CO_230\%$.
 	
 	The results of measurements are shown in the table \ref{table:GainTotal}. The Gain curves G(V) for several pressure values are shown in the Fig.\ref{fig:Gain_multy}.
 		
@@ -542,9 +521,8 @@ ionization clusters (orange points). Electrons of ionization cluster drift to th
 		
 	
 	\subsection{Experimental spectra from the source Fe55}
-%	\subsection{ експериментальний спектр від джерела Fe55}
 		
-	$Fe^{55}$  is a source of gamma-rays with energy of 5.9 keV. Each signal at the output of amplifier differs by amplitude in dependence of initial electron number. Therefore, according to the calculated in GARFIELD spectra $p(n)$ (see Fig.\ref{fig:fe55_n_probability}), it is expected to see two peaks in experimental spectra.
+	$^{55}Fe$  is a source of gamma-rays with energy of 5.9 keV. Each signal at the output of amplifier differs by amplitude in dependence of initial electron number. Therefore, according to the calculated in GARFIELD spectra $p(n)$ (see Fig.\ref{fig:fe55_n_probability}), it is expected to see two peaks in experimental spectra.
 	
 	For spectra measurements we first have to get a match between a certain signal and the amplitude on the output of the drift tube. In our case such a quantity is an integral from a signal on during the time of a signal.
 	
@@ -552,13 +530,13 @@ ionization clusters (orange points). Electrons of ionization cluster drift to th
 	
 	The stages {\it sampling + storing} are time-consuming and a dead time in this case is bigger than an average time interval between events in the tube(with current detector system) therefore is a big probability to miss detecting an event.
 	
-	The sampling stage is built in such a way to calibrate for pedestal shelf voltage from the integrator. On the final histogram it will look as a small peak. We will calibrate exactly with regard to it. The second control point is a gamma-ray 5.9 keV photo peak from the source $Fe^{55}$.
+	The sampling stage is built in such a way to calibrate for pedestal shelf voltage from the integrator. On the final histogram it will look as a small peak. We will calibrate exactly with regard to it. The second control point is a gamma-ray 5.9 keV photo peak from the source $^{55}Fe$.
 	
 	\begin{figure}
 	\centering
 	\includegraphics[width=0.7\textwidth]{expFitted1750}
 	
-	\caption{Experimental spectra from $Fe^{55}$.}
+	\caption{Experimental spectra from $^{55}Fe$.}
 	\label{fig:expFitted1750}
 	\end{figure}
 	
@@ -592,7 +570,7 @@ ionization clusters (orange points). Electrons of ionization cluster drift to th
 	
 	\subsection{ Space charge effect}
 	
-	Photons from $Fe^{55}$ of energy 5.9 keV create $\sim 200$ electron-ion pairs as a result of photoeffect with $Ar70\%+CO_230\%$ gas mixture. As we have a strong electric field between anode and cathode such electron cloud starts to drift toward a wire. The external field distorts as any space charge creates its own e/m field. As a result, partial avalanches per initial electron of a cloud creates an avalanche of size smaller than from a single-electron cloud(as in case muon ionisation).
+	Photons from $^{55}Fe$ of energy 5.9 keV create $\sim 200$ electron-ion pairs as a result of photoeffect with $Ar70\%+CO_230\%$ gas mixture. As we have a strong electric field between anode and cathode such electron cloud starts to drift toward a wire. The external field distorts as any space charge creates its own e/m field. As a result, partial avalanches per initial electron of a cloud creates an avalanche of size smaller than from a single-electron cloud(as in case muon ionisation).
 	
 	Such an effect indeed was observed. If we suppose a linear dependence of output signal amplitude from number of initial electrons a relative position for experimental peak should be located at(calibration relatively to the photopeak):
 	
@@ -619,7 +597,7 @@ ionization clusters (orange points). Electrons of ionization cluster drift to th
 
 	For the pressure measurement inside of drift tube we used pressure transmitters from SensorTechnics$^{\textregistered}$. The devise is marked by ID:CTE9005AQ4, so we used appropriate datasheet  from the manufacturer \cite{presTransmitDatasheet}.
 	
-	According to datasheet and marking, this pressure transmitter is designed for pressure measurements in the interval $0 \dots 5~bar$. But on the transmitter is marked an interval $0\dots 3,5~bar$. So to be able to use this devise, we additionally calibrated it.
+	According to datasheet and marking, this pressure transmitter is designed for pressure measurements in the interval $0 \dots 5~bar$. But on the transmitter is marked an interval $0\dots 3,5~bar$. So to be able to use this device, we additionally calibrated it.
 	
 	For this purpose we used two control points: the output current value for atmospheric pressure at that point (727 mmHg) and a current for a vacuum. To get a vacuum we used a pump which decreases a pressure to the value  $<0.001~bar$ which we consider as a vacuum.
 	
@@ -636,7 +614,7 @@ ionization clusters (orange points). Electrons of ionization cluster drift to th
 		\hline
 		pressure [bar] & voltage[V] \\
 		\hline
-		<0.001 & 0.405\\
+		$<0.001$ & 0.405\\
 		\hline
 		1 & 0.858\\
 		\hline
@@ -655,16 +633,14 @@ ionization clusters (orange points). Electrons of ionization cluster drift to th
 
 \newpage
 \begin{thebibliography}{00}	
-
-	
 		
 	\bibitem{NA62_TDR} F. Hahn, F. Ambrosino, A. Ceccucci, H. Danielsson, N. Doble, F. Fantechi, A. Kluge, C. Lazzeroni, M. Lenti, G. Ruggiero, M. Sozzi, P. Valente, and R. Wanke. NA62: Technical Design Document. Technical Report NA62-10-07, CERN, Geneva
 	
-	\bibitem{ship_TP} Technical Proposal from 8 april 2015: arXiv:1504.04956v1
+	\bibitem{ship_TP} SHiP Technical Proposal from 8 april 2015: arXiv:1504.04956v1
 	
-	\bibitem{garfield} http://garfield.web.cern.ch/garfield
+	\bibitem{garfield} GARFIELD tutorial \url{http://garfield.web.cern.ch/garfield}
 	
-	\bibitem{kozlinskiy} Master Thesis Kozlinskiy.pdf (????????????????)
+	\bibitem{kozlinskiy} Outer Tracker calibration and open charm production cross section measurement at LHCb, 2013 A.V.Kozlinskiy. \\  \url{http://dspace.ubvu.vu.nl/bitstream/handle/1871/40430/dissertation.pdf}
 	
 	\bibitem{presTransmitDatasheet} DataSheet for Pressure transmitters for corrosive liquids and gases CTE/CTU9000 series. \url{http://www.first-sensor.com/cms/upload/datasheets/DS_Standard-CTE-CTU9000_E_11509.pdf}
 	
